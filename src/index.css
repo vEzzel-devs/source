@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.bg-main-red {
+    background-color: #ff4949;
+}
+
+.bg-main-purple {
+    background-color: #541690;
+}
+
+.border-main-red {
+    border-color: #ff4949;
+}
+
+.border-main-purple {
+    border-color: #541690;
+}
+
+.text-main-red {
+    color: #ff6969;
+}
+
+.text-main-purple {
+    color: #6416B0;
+}
