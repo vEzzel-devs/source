@@ -10,7 +10,7 @@ const LIGHT = ({
     "hoverNavbar" : " hover:bg-neutral-400 hover:text-black",
     "textNavbar" : " text-neutral-700",
     "borderNavbar" : " border-neutral-700",
-    "mainBorder" : "border-black",
+    "mainBorder" : " border-black",
     "mainBg" : " bg-neutral-200",
     "lightText" : " text-neutral-600",
     "mainText" : " text-black",
@@ -18,6 +18,10 @@ const LIGHT = ({
     "secondaryAccent" : " bg-main-red",
     "primaryText" : " text-main-purple",
     "secondaryText" : " text-main-red",
+    "primaryButton" : " border-main-purple hover-bg-main-purple hover:text-white",
+    "secondaryButton" : " border-main-red hover-bg-main-red hover:text-white",
+    "primaryBg" : " bg-light-pattern",
+    "secondaryBg" : " bg-light-alt-pattern",
 });
 const DARK = ({
     "folder" : "dark",
@@ -27,7 +31,7 @@ const DARK = ({
     "hoverNavbar" : " hover:bg-neutral-600 hover:text-white",
     "textNavbar" : " text-neutral-300",
     "borderNavbar" : " border-neutral-300",
-    "mainBorder" : "border-white",
+    "mainBorder" : " border-white",
     "mainBg" : " bg-neutral-800",
     "lightText" : " text-neutral-400",
     "mainText" : " text-white",
@@ -35,6 +39,10 @@ const DARK = ({
     "secondaryAccent" : " bg-main-purple",
     "primaryText" : " text-main-red",
     "secondaryText" : " text-main-purple",
+    "primaryButton" : " border-main-red hover-bg-main-red hover:text-black",
+    "secondaryButton" : " border-main-purple hover-bg-main-purple hover:text-black",
+    "primaryBg" : " bg-dark-pattern",
+    "secondaryBg" : " bg-dark-alt-pattern",
 });
 
 export const ThemeContext = createContext();

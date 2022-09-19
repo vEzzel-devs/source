@@ -1,5 +1,4 @@
 import { CarrouselContextProvider } from './context/CarrouselContext';
-import './Layout.css'
 import Navbar from './components/Navbar'
 import Start from './sections/Start';
 import Login from './sections/Login';

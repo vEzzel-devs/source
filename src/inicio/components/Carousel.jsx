@@ -22,10 +22,10 @@ function Carousel() {
   }, [active]);
 
   return (
-    <div className="carousel w-full">
+    <div className="w-full">
       {slides.map((visibility, index) => {
         return (
-          <div key={"slide-key-" + index} className={"relative flex justify-between transform px-8 top-1/2 w-full" + visibility}>
+          <div key={"slide-key-" + index} className={"flex justify-between transform px-8 top-1/2 w-full" + visibility}>
             <Slide
               next={() => {setActive((active+1) % slides.length)}}
               prev={() => {setActive((active-1 < 0) ? slides.length-1 : active-1)}}

@@ -25,3 +25,11 @@
 .text-main-purple {
     color: #6416B0;
 }
+
+.hover-bg-main-red:hover {
+    background-color: #ff4949;
+}
+
+.hover-bg-main-purple:hover {
+    background-color: #541690;
+}

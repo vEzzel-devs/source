@@ -1,9 +1,8 @@
 import { ThemeContext } from '../../context/ThemeContext'
-import { useState, useContext } from 'react'
+import { useContext } from 'react'
 import Carousel from "../components/Carousel";
 
 function Start() {
-  const [count, setCount] = useState(0);
   const { theme } = useContext(ThemeContext);
 
   return (
