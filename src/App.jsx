@@ -1,5 +1,4 @@
-import { useEffect } from 'react';
-import { useContext } from 'react';
+import { useEffect, useContext } from 'react';
 import { ThemeContext } from './context/ThemeContext'
 import Layout from './inicio/Layout'
 

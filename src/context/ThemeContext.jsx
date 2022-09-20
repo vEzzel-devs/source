@@ -18,8 +18,8 @@ const LIGHT = ({
     "secondaryAccent" : " bg-main-red",
     "primaryText" : " text-main-purple",
     "secondaryText" : " text-main-red",
-    "primaryButton" : " border-main-purple hover-bg-main-purple hover:text-white",
-    "secondaryButton" : " border-main-red hover-bg-main-red hover:text-white",
+    "primaryButton" : " border-main-purple hover:bg-main-purple hover:text-white",
+    "secondaryButton" : " border-main-red hover:bg-main-red hover:text-white",
     "primaryBg" : " bg-light-pattern",
     "secondaryBg" : " bg-light-alt-pattern",
 });
@@ -39,8 +39,8 @@ const DARK = ({
     "secondaryAccent" : " bg-main-purple",
     "primaryText" : " text-main-red",
     "secondaryText" : " text-main-purple",
-    "primaryButton" : " border-main-red hover-bg-main-red hover:text-black",
-    "secondaryButton" : " border-main-purple hover-bg-main-purple hover:text-black",
+    "primaryButton" : " border-main-red hover:bg-main-red hover:text-black",
+    "secondaryButton" : " border-main-purple hover:bg-main-purple hover:text-black",
     "primaryBg" : " bg-dark-pattern",
     "secondaryBg" : " bg-dark-alt-pattern",
 });
