@@ -3,6 +3,7 @@ import { useContext } from 'react'
 import Vezzel from '../../components/Vezzel';
 import ContainerBox from '../../components/ContainerBox';
 
+
 function Login() {
   const { theme } = useContext(ThemeContext);
 
@@ -18,7 +19,9 @@ function Login() {
           </div>
           <div className="w-2/3 mx-auto flex justify-end">
             <button className={"md:w-1/8 mr-2 p-2 rounded-lg border-4" + theme.mainText + theme.mainBg + theme.secondaryButton}>Regístrate</button>
+            
             <button className={"md:w-1/8 p-2 rounded-lg border-4" + theme.mainText + theme.mainBg + theme.primaryButton}>Inicia sesión</button>
+
           </div>
         </ContainerBox>
       </div>
