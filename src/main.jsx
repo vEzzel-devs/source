@@ -18,7 +18,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <ThemeContextProvider>
         <Routes>
           <Route exact path="/" element={<App/>}/>
-          <Route exact path="/as" element={<Layout2/>}/>
           <Route exact path="/Editor" element={<Layout2 page={<Editor/>} tool={<ToolEditor/>} />}/>
           <Route exact path="/Ejecutar" element={<Layout2 page={<Ejecutar/>} tool={<ToolEjecutar/>} />}/>
         </Routes>
