@@ -1,17 +1,14 @@
 import React from "react";
 
 
-function ToolBar(props) {
+export default function ToolBar(props) {
   return (
-    <div className="flex-row">
-      <div className={`w-screen h-[10%] p-[10px] bg-gray-400 relative`}>
+      <div className={` bg-gray-400`}>
         {props.tool}
+        <div className="right-1">
+          ayuda
+        </div>
       </div>
-      <div className={`w-screen h-screen p-[10px] bg-gray-300 relative`}>
-        {props.page}
-      </div>
-    </div>
   );
 }
 
-export default ToolBar;
