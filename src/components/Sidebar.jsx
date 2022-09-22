@@ -32,7 +32,7 @@ function Sidebar() {
   ];
   return (
     <div className="h-screen">
-      <div className={`${isOpen ? "w-[200px]" : "w-[80px]"} duration-[250ms] h-screen p-5 bg-gray-900 relative`}>
+      <div className={`${isOpen ? "w-[170px]" : "w-[80px]"} duration-[250ms] h-screen p-5 bg-gray-900 relative`}>
         <div className="px-4 cursor-pointer" onClick={toggleOpen}>
           <AppsIcon 
           className={`absolute z-10 cursor-pointer rounded-full text-lg -right-3 top-9 w-7 border-2 bg-white border-gray-900 ${isOpen && "rotate-45"}`}/>

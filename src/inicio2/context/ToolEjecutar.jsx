@@ -1,8 +1,12 @@
+import ToolBar from '../components/ToolBar';
+
 export default function ToolEjecutar() {
 
   return (
-    <div>
-      Barra de herramientas de ejecutar
-    </div>
+    <ToolBar>
+      <div>
+        Barra de herramientas de Ejecutar
+      </div>
+    </ToolBar>
   );
 }

@@ -1,10 +1,10 @@
-
+import Page from '../components/Page';
 
 export default function Editor() {
 
   return (
-    <div>
+    <Page>
       pagina del editor
-    </div>
+    </Page>
   );
 }

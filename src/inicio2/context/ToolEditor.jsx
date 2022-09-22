@@ -1,8 +1,14 @@
+import ToolBar from '../components/ToolBar';
+
+
 export default function ToolEditor() {
 
   return (
-    <div>
-      Barra de herramientas del editor
-    </div>
+    <ToolBar>
+      <div>
+        Barra de herramientas del editor
+      </div>
+    </ToolBar>
+
   );
 }

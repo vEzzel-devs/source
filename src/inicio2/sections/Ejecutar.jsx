@@ -1,10 +1,10 @@
-
+import Page from '../components/Page';
 
 export default function Ejecutar() {
 
   return (
-    <div>
+    <Page>
       pagina de Ejecutar
-    </div>
+    </Page>
   );
 }
