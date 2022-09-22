@@ -1,10 +1,10 @@
-import Page from '../components/Page';
+import Page from '../../components/Page';
 
 export default function Editor() {
 
   return (
     <Page>
-      pagina del editor
+      pagina de Editar
     </Page>
   );
 }

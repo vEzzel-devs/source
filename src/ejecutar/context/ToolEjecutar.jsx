@@ -1,4 +1,4 @@
-import ToolBar from '../components/ToolBar';
+import ToolBar from '../../components/ToolBar';
 
 export default function ToolEjecutar() {
 

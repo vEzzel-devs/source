@@ -1,7 +1,7 @@
 import React from "react";
-import Sidebar from '../components/Sidebar';
+import Sidebar from './components/Sidebar';
 
-function Layout2(props) {
+function Layout(props) {
   return (
     <div className="flex flex-nowrap ">
       <div className="">
@@ -16,4 +16,4 @@ function Layout2(props) {
   );
 }
 
-export default Layout2;
+export default Layout;
