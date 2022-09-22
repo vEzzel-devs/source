@@ -31,7 +31,7 @@ function Sidebar() {
     { title: "LogOut",path:"/", icon:<PowerSettingsNewIcon/>, position:-1 },
   ];
   return (
-    <div className="h-screen">
+    <div className="h-screen z-10">
       <div className={`${isOpen ? "w-[200px]" : "w-[80px]"} duration-[250ms] h-screen p-5 bg-gray-900 relative`}>
         <div className="px-4 cursor-pointer" onClick={toggleOpen}>
           <AppsIcon 

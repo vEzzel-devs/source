@@ -5,7 +5,7 @@ import Login from './sections/Login';
 import Docs from './sections/Docs';
 import About from './sections/About';
 
-function Layout() {
+export function Layout() {
   return (
     <CarrouselContextProvider>
       <Navbar/>
@@ -16,5 +16,3 @@ function Layout() {
     </CarrouselContextProvider>
   )
 }
-
-export default Layout

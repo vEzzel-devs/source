@@ -1,18 +1,19 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { ThemeContextProvider } from './context/ThemeContext'
-import{ BrowserRouter, Routes } from "react-router-dom";
+import { RouteContextProvider } from './context/RouteContext';
+import{ BrowserRouter } from "react-router-dom";
 import './index.css'
 import App from './App'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
-      <ThemeContextProvider>
-        <Routes>
+      <RouteContextProvider>
+        <ThemeContextProvider>
           <App/>
-        </Routes>
-      </ThemeContextProvider>
+        </ThemeContextProvider>
+      </RouteContextProvider>
     </BrowserRouter>
   </React.StrictMode>
 )

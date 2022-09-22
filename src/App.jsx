@@ -1,7 +1,7 @@
 import { useEffect, useContext } from 'react';
 import { ThemeContext } from './context/ThemeContext'
 import { RouteContext } from './context/RouteContext'
-import { Route } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
 function App() {
   const { theme } = useContext(ThemeContext);
@@ -15,11 +15,11 @@ function App() {
   }, [theme]);
 
   return (
-    <>
+    <Routes>
       {allRoutes.map((page) => {
         return <Route exact path={page.url} element={page.comp}/>;
       })}
-    </>
+    </Routes>
   );
 }
 
