@@ -1,9 +1,11 @@
 import { useEffect, useContext } from 'react';
 import { ThemeContext } from './context/ThemeContext'
-import Layout from './inicio/Layout'
+import { RouteContext } from './context/RouteContext'
+import { Route } from 'react-router-dom';
 
 function App() {
   const { theme } = useContext(ThemeContext);
+  const { allRoutes } = useContext(RouteContext);
 
   useEffect(() => {
     let icon = document.getElementById('icon');
@@ -12,7 +14,13 @@ function App() {
     }
   }, [theme]);
 
-  return <Layout />;
+  return (
+    <>
+      {allRoutes.map((page) => {
+        return <Route exact path={page.url} element={page.comp}/>;
+      })}
+    </>
+  );
 }
 
 
