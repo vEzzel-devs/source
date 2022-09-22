@@ -6,7 +6,6 @@ import Toolbar from './sections/Toolbar'
 import SpreadSheet from './sections/SpreadSheet'
 
 export function Layout() {
-
   return (
     <AutocompleteContextProvider>
       <SpreadSheetContextProvider>
