@@ -15,10 +15,10 @@ function About() {
             <h1 className={"text-4xl" + theme.mainText}>El equipo <Vezzel/></h1>
           </div>
           <br/>
-          <div className="flex md:flex-row flex-col justify-center md:px-16">
-            <Card name="Vicente González"/>
-            <Card name="Hernán Moreno"/>
-            <Card name="Yerko Sepúlveda"/>
+          <div className="flex md:flex-row flex-col justify-center content-center md:px-16 gap-4 place-content-center">
+            <Card name="Vicente González" text="Desarrollador full stack."/>
+            <Card name="Hernán Moreno" text="Desarrollador full stack."/>
+            <Card name="Yerko Sepúlveda" text="Desarrollador full stack."/>
           </div>
         </ContainerBox>
       </div>

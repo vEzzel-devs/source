@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import MenuIcon from '@mui/icons-material/Menu';
 import { ThemeContext } from "../../context/ThemeContext";
+import MenuItems from "./MenuItems";
 
 function Navbar() {
     const paths = ["#start", "#login", "#docs", "#about"];
@@ -13,6 +14,10 @@ function Navbar() {
         "px-3 py-2 rounded-md font-medium" + theme.textNavbar + theme.borderNavbar + theme.hoverNavbar,
         "px-3 py-2 rounded-md font-medium" + theme.textNavbar + theme.borderNavbar + theme.hoverNavbar,
     ]);
+    const [active, setActive] = useState(false);
+    const showMenu = () => {
+      setActive(!active);
+    };
 
     function toggleCollapse() {
       if (collapse === "") {
@@ -39,7 +44,7 @@ function Navbar() {
           <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
             <button type="button" className={"inline-flex items-center justify-center rounded-md p-2 focus:outline-none" + theme.hoverNavbar} aria-controls="mobile-menu" aria-expanded="false" onClick={toggleCollapse}>
               <span className="sr-only">Open main menu</span>
-              <MenuIcon className={theme.textNavbar}/>
+              <MenuIcon className={theme.textNavbar} onClick={showMenu}/>
             </button>
           </div>
           <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
@@ -63,15 +68,8 @@ function Navbar() {
           </div>
         </div>
       </div>
-    
-      <div className="sm:hidden" id="mobile-menu">
-        <div className={"space-y-1 px-2 pt-2 pb-3 " + collapse}>
-            <a href="#start" className={navstyle[0] + " block text-base"} onClick={() => setSelection('#start')}>vEzzel?</a>
-            <a href="#login" className={navstyle[1] + " block text-base"} onClick={() => setSelection('#login')}>Iniciar</a>
-            <a href="#docs" className={navstyle[2] + " block text-base"} onClick={() => setSelection('#docs')}>Docs</a>
-            <a href="#about" className={navstyle[3] + " block text-base"} onClick={() => setSelection('#about')}>Nosotros</a>
-        </div>
-      </div>
+      
+      <MenuItems showMenu={showMenu} active={active} />
     </nav>
     )
 }
