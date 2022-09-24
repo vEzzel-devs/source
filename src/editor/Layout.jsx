@@ -9,11 +9,11 @@ export function Layout() {
   return (
     <AutocompleteContextProvider>
       <SpreadSheetContextProvider>
-        <Sidebar/>
         <DashboardPage>
           <Toolbar/>
           <SpreadSheet/>
         </DashboardPage>
+        <Sidebar/>
       </SpreadSheetContextProvider>
     </AutocompleteContextProvider>
   )
