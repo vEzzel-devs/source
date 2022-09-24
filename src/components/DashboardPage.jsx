@@ -6,10 +6,8 @@ export function DashboardPage(props) {
   const { theme } = useContext(ThemeContext)
 
   return (
-    <div className="absolute top-0 left-[80px] h-screen w-screen">
-      <div className="flex flex-col">
-        {props.children}
-      </div>
+    <div className="absolute top-0 pl-[80px] pt-16 h-screen w-screen">
+      {props.children}
     </div>
   );
 }

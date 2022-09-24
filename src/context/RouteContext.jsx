@@ -1,6 +1,7 @@
 import { createContext } from "react";
 import { Layout as Inicio } from "../inicio/Layout";
 import { Layout as Editor } from "../editor/Layout";
+import { Layout as Ejecutar } from "../ejecutar/Layout";
 
 export const RouteContext = createContext();
 export function RouteContextProvider(props) {
@@ -12,6 +13,10 @@ export function RouteContextProvider(props) {
         {
             url: "/editor",
             comp: <Editor/>,
+        },
+        {
+            url: "/ejecutar",
+            comp: <Ejecutar/>,
         },
     ];
 
