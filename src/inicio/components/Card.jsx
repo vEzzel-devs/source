@@ -1,14 +1,21 @@
 import { useContext } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
 
-function Card({name}) {
+function Card({name, text}) {
     const { theme } = useContext(ThemeContext);
     return (
-      <div className="w-1/3 mx-auto flex flex-col">
-        <div className="md:my-auto md:px-4 md:py-8 py-4 text-center flex md:flex-col flex-row">
-          <h1 className={"text-4xl" + theme.mainText}>{name}</h1>
+      <div className={"max-w-sm rounded overflow-hidden shadow-lg md:items-center m-auto" + theme.secondaryAccent + theme.primaryText}>
+        <img
+          className="w-full object-cover"
+          src="imagen_gatos.jpg"
+          alt="foto de gatos"
+        />
+        <div className="p-5 flex flex-col">
+          <h2
+            className="text-4xl">{name}
+          </h2>
           <br className="md:block hidden"/>
-          <h3 className={"text-lg md:block hidden" + theme.lightText}>Desarrollador full stack.</h3>
+          <h3 className={"text-lg" + theme.mainText}>{text}</h3>
         </div>
       </div>
     )
