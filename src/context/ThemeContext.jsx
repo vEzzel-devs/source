@@ -28,6 +28,13 @@ const LIGHT = ({
     "secondaryButton" : " border-main-red hover:bg-main-red hover:text-white",
     "primaryBg" : " bg-cover bg-light-pattern",
     "secondaryBg" : " bg-cover bg-light-alt-pattern",
+    "cells" : {
+        "base": " bg-neutral-200",
+        "view": " bg-yellow-100",
+        "math": " bg-green-200",
+        "data": " bg-blue-200",
+        "ctrl": " bg-purple-200",
+    }
 });
 const DARK = ({
     "folder" : "dark",
@@ -55,6 +62,13 @@ const DARK = ({
     "secondaryButton" : " border-main-purple hover:bg-main-purple hover:text-black",
     "primaryBg" : " bg-cover bg-dark-pattern",
     "secondaryBg" : " bg-cover bg-dark-alt-pattern",
+    "cells" : {
+        "base": " bg-neutral-800",
+        "view": " bg-yellow-600",
+        "math": " bg-green-800",
+        "data": " bg-blue-900",
+        "ctrl": " bg-purple-900",
+    }
 });
 
 export const ThemeContext = createContext();

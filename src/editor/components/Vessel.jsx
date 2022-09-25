@@ -9,7 +9,7 @@ function Vessel({ cell }) {
   const { theme } = useContext(ThemeContext);
   const { setVal, remVal, inputBar, setSelectedCell } = useContext(SpreadSheetContext);
   //const {  } = useContext(AutocompleteContext);
-  const [ addStyle, setAddStyle ] = useState("");
+  const [ addStyle, setAddStyle ] = useState("base");
   const vessel = useRef();
 
   const changeVal = () => {
@@ -19,6 +19,7 @@ function Vessel({ cell }) {
 
     if (entry === "") {
       remVal(vessel.current.name);
+      setAddStyle("base");
       return;
     }
 
@@ -67,7 +68,7 @@ const setInputBarOnMe = () => {
 
   return (
     <TooltipCell cellRef={vessel} setCls={setAddStyle}>
-      <input name={cell} ref={vessel} onFocus={setInputBarOnMe} onChange={changeVal} placeholder={cell} className={"border text-center" + theme.mainBorder + theme.mainBg + theme.mainText + addStyle}/>
+      <input name={cell} ref={vessel} onFocus={setInputBarOnMe} onChange={changeVal} placeholder={cell} className={"border text-center" + theme.mainBorder + theme.mainBg + theme.mainText + theme.cells[addStyle]}/>
     </TooltipCell>
   )
 }

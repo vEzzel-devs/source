@@ -5,27 +5,26 @@ import { ThemeContext } from "../../context/ThemeContext";
 function TooltipCell(props) {
     const { theme } = useContext(ThemeContext);
     const { selectedCell } = useContext(SpreadSheetContext)
-    const [status, setStatus] = useState(false);
+    const [status, setStatus] = useState(undefined);
 
     const setClass = (cls, newchar) => {
-        setStatus(false);
-        console.log(newchar, cls);
+        setStatus(undefined);
         selectedCell.current.value = newchar;
         props.setCls(cls);
         selectedCell.current.focus();
     };
 
     return (
-        <div className="relative max-w-[8rem] min-w-[8rem] flex flex-col" onClick={() => setStatus(true)} onBlur={() => setStatus(false)}>
+        <div className="relative max-w-[8rem] min-w-[8rem] flex flex-col" onClick={() => setStatus(props.cellRef)} onMouseLeave={() => setStatus(undefined)}>
             {props.children}
-            {status && (selectedCell.current.value === "") && <div role="tooltip" className="z-20 -mt-20 top-0 w-24 absolute left-auto rounded-lg overflow-hidden">
+            {status === selectedCell && (selectedCell.current.value === "") && <div role="tooltip" className="z-20 -mt-20 ml-4 top-0 w-24 absolute left-auto rounded-lg overflow-hidden">
                 <div>
-                    <button onClick={() => setClass(" bg-red-300", "/")} className="bg-red-300 w-1/2 py-2">/</button>
-                    <button onClick={() => setClass(" bg-blue-300", "#")} className="bg-blue-300 w-1/2 py-2">#</button>
+                    <button onClick={() => setClass("view", "/")} className={"w-1/2 py-2" + theme.cells.view}>/</button>
+                    <button onClick={() => setClass("data", "#")} className={"w-1/2 py-2" + theme.cells.data}>#</button>
                 </div>
                 <div>
-                    <button onClick={() => setClass(" bg-green-300", "=")} className="bg-green-300 w-1/2 py-2">=</button>
-                    <button onClick={() => setClass(" bg-purple-300", "$")} className="bg-purple-300 w-1/2 py-2">$</button>
+                    <button onClick={() => setClass("math", "=")} className={"w-1/2 py-2" + theme.cells.math}>=</button>
+                    <button onClick={() => setClass("ctrl", "$")} className={"w-1/2 py-2" + theme.cells.ctrl}>$</button>
                 </div>
             </div>}
         </div>

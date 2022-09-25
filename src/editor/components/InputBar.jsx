@@ -21,9 +21,9 @@ function InputBar() {
   }
 
   return (
-    <div className='flex flex-row rounded-lg overflow-hidden'>
-        <div className={'md:px-4 border' + theme.mainBorder}>{selectedCell ? selectedCell.current.placeholder : ""}</div>
-        <input ref={inputBar} onFocus={comeBackToCell} onBlur={quitCell} onChange={setCell} className={'border' + theme.mainBorder + theme.mainText}/>
+    <div className={'flex flex-row rounded-lg overflow-hidden border' + theme.mainBorder}>
+        <div className='md:px-4'>{selectedCell ? selectedCell.current.placeholder : ""}</div>
+        <input ref={inputBar} onFocus={comeBackToCell} onBlur={quitCell} onChange={setCell} className={"outline-0" + theme.mainBg + theme.mainText}/>
     </div>
   )
 }
