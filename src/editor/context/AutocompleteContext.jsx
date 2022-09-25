@@ -20,7 +20,25 @@ export function AutocompleteContextProvider(props) {
     const data = [""];
     const ctrl = [""];
     const view = [""];
+    
+    function filterByName(item) {
+        return item.name.substring(0, this.length) === this;
+    }
 
+    const getAC = (arrAC,str) => {
+        if (arrAC === "math"){
+            return math.filter(filterByName,str);
+        }
+        else if (arrAC === "data"){
+            return data.filter(filterByName,str);
+        }       
+        else if (arrAC === "ctrl"){
+            return ctrl.filter(filterByName,str);
+        }
+        else if (arrAC === "view"){
+            return view.filter(filterByName,str);
+        }
+    };
     return (
         <AutocompleteContext.Provider value={({math, data, ctrl, view})}>
             {props.children}

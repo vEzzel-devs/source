@@ -1,22 +1,16 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useRef } from "react";
 
 export const SpreadSheetContext = createContext();
 export function SpreadSheetContextProvider(props) {
-    const sheet = [
-        {
-            "ref": "B2",
-            "cell": {
-                "cls": "Basic",
-                "type": "String",
-                "cont": "Hello World!",
-            },
-            "display": () => `${this.cell.cont}`,
-            "hover": () => `${this.cell.cls} cell :${this.cell.type}`,
-        },
-    ];
-
     const [sheetDim, setSheetDim] = useState([6, 8]);
-    const [sheetData, setSheetData] = useState(sheet);
+    const [selectedCell, setSelectedCell] = useState(null);
+    const inputBar = useRef();
+    const [sheetData, setSheetData] = useState([
+        {
+            "ref": "A1",
+            "cont": "debug",
+        },
+    ]);
 
     const setDim = (cols, rows) => {
         let current = [sheetDim[0], sheetDim[1]];
@@ -52,22 +46,29 @@ export function SpreadSheetContextProvider(props) {
     };
     const remVal = (id) => {
         const newValues = [...sheetData];
+        let found = false;
         newValues.forEach((element, index) => {
             if (element.ref === id) {
+                found = true;
                 newValues.splice(index, 1);
             }
         });
-        setSheetData(newValues);
+        if (found) {
+            setSheetData(newValues);
+        }
     };
 
     return (
         <SpreadSheetContext.Provider value={({
             sheetDim,
             sheetData,
+            selectedCell,
+            inputBar,
             setDim,
             addDim,
             setVal,
             remVal,
+            setSelectedCell,
         })}>
             {props.children}
         </SpreadSheetContext.Provider>

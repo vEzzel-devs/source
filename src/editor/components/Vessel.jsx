@@ -1,18 +1,42 @@
 import { ThemeContext } from '../../context/ThemeContext'
 import { SpreadSheetContext } from '../context/SpreadSheetContext';
-import { useContext, useRef } from 'react'
+import { useContext, useRef, useState } from 'react'
+import { AutocompleteContext } from '../context/AutocompleteContext';
+import TooltipCell from './TooltipCell'
+
 
 function Vessel({ cell }) {
   const { theme } = useContext(ThemeContext);
-  const { setVal, remVal } = useContext(SpreadSheetContext);
+  const { setVal, remVal, inputBar, setSelectedCell } = useContext(SpreadSheetContext);
+  //const {  } = useContext(AutocompleteContext);
+  const [ addStyle, setAddStyle ] = useState("");
   const vessel = useRef();
 
   const changeVal = () => {
+    inputBar.current.value = vessel.current.value;
     const entry = vessel.current.value;
+    
+
     if (entry === "") {
       remVal(vessel.current.name);
       return;
     }
+
+    let clsType="Base";
+    if (entry[0] == "="){
+      clsType="Math";
+    }   
+    else if (entry[0] == "#"){
+      clsType="Data";
+    }
+    else if (entry[0] == "/"){
+      clsType="View";
+    }
+    else if (entry[0] == "$"){
+      clsType="Ctrl";
+    }
+
+    // esto solo aplica a Base
     let entryType = "";
     if (isNaN(entry)) {
       entryType = "String";
@@ -26,7 +50,7 @@ function Vessel({ cell }) {
     const value = ({
       "ref": vessel.current.name,
       "cell": {
-        "cls": "Basic",
+        "cls": "Base",
         "type": entryType,
         "cont": entry,
       },
@@ -36,10 +60,15 @@ function Vessel({ cell }) {
     setVal(vessel.current.name, value);
   };
 
+const setInputBarOnMe = () => {
+  inputBar.current.value = vessel.current.value;
+  setSelectedCell(vessel);
+};
+
   return (
-    <>
-      <input name={cell} ref={vessel} onChange={changeVal} placeholder={cell} className={"border text-center" + theme.mainBorder + theme.mainBg}/>
-    </>
+    <TooltipCell cellRef={vessel} setCls={setAddStyle}>
+      <input name={cell} ref={vessel} onFocus={setInputBarOnMe} onChange={changeVal} placeholder={cell} className={"border text-center" + theme.mainBorder + theme.mainBg + theme.mainText + addStyle}/>
+    </TooltipCell>
   )
 }
 
