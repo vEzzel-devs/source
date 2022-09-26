@@ -17,14 +17,14 @@ function TooltipCell(props) {
     return (
         <div className="relative max-w-[8rem] min-w-[8rem] flex flex-col" onClick={() => setStatus(props.cellRef)} onMouseLeave={() => setStatus(undefined)}>
             {props.children}
-            {status === selectedCell && (selectedCell.current.value === "") && <div role="tooltip" className="z-20 -mt-20 ml-4 top-0 w-24 absolute left-auto rounded-lg overflow-hidden">
+            {status === selectedCell && (selectedCell.current.value === "") && <div role="tooltip" className={"z-20 ml-4 w-24 absolute left-auto rounded-lg overflow-hidden" + ("1 2 3".includes(props.cellRow) ? " mt-6" : " top-0 -mt-20")}>
                 <div>
-                    <button onClick={() => setClass("view", "/")} className={"w-1/2 py-2" + theme.cells.view}>/</button>
-                    <button onClick={() => setClass("data", "#")} className={"w-1/2 py-2" + theme.cells.data}>#</button>
+                    <button onClick={() => setClass("view", "/")} className={"w-1/2 py-2" + theme.cells.view + theme.mainText}>/</button>
+                    <button onClick={() => setClass("data", "#")} className={"w-1/2 py-2" + theme.cells.data + theme.mainText}>#</button>
                 </div>
                 <div>
-                    <button onClick={() => setClass("math", "=")} className={"w-1/2 py-2" + theme.cells.math}>=</button>
-                    <button onClick={() => setClass("ctrl", "$")} className={"w-1/2 py-2" + theme.cells.ctrl}>$</button>
+                    <button onClick={() => setClass("math", "=")} className={"w-1/2 py-2" + theme.cells.math + theme.mainText}>=</button>
+                    <button onClick={() => setClass("ctrl", "$")} className={"w-1/2 py-2" + theme.cells.ctrl + theme.mainText}>$</button>
                 </div>
             </div>}
         </div>

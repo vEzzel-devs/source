@@ -10,7 +10,7 @@ function Toolbar() {
   const { addDim } = useContext(SpreadSheetContext);
 
   return (
-    <DashboardToolbar>
+    <DashboardToolbar helpText={"Texto de ayuda del editor"}>
       <h1>Editor de HCT <Vezzel/></h1>
 
         <InputBar/>

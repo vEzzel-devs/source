@@ -3,6 +3,7 @@ import { SpreadSheetContext } from '../context/SpreadSheetContext';
 import { useContext, useRef, useState } from 'react'
 import { AutocompleteContext } from '../context/AutocompleteContext';
 import TooltipCell from './TooltipCell'
+import { parseCell } from "../utils/strings.js"
 
 
 function Vessel({ cell }) {
@@ -67,7 +68,7 @@ const setInputBarOnMe = () => {
 };
 
   return (
-    <TooltipCell cellRef={vessel} setCls={setAddStyle}>
+    <TooltipCell cellRef={vessel} cellRow={parseCell(cell)[1]} setCls={setAddStyle}>
       <input name={cell} ref={vessel} onFocus={setInputBarOnMe} onChange={changeVal} placeholder={cell} className={"border text-center" + theme.mainBorder + theme.mainBg + theme.mainText + theme.cells[addStyle]}/>
     </TooltipCell>
   )
