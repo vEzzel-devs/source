@@ -7,8 +7,8 @@ export function SpreadSheetContextProvider(props) {
     const inputBar = useRef();
     const [sheetData, setSheetData] = useState([
         {
-            "ref": "A1",
-            "cont": "debug",
+            "ref": "A0",
+            "cont": "Hello World!",
         },
     ]);
 
