@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { SpreadSheetContext } from "../context/SpreadSheetContext";
 import { AutocompleteContext } from '../context/AutocompleteContext';
 import { ThemeContext } from "../../context/ThemeContext";
+import { Tooltip, Zoom } from "@mui/material";
 
 function TooltipAC(props) {
     const { theme } = useContext(ThemeContext);
@@ -34,7 +35,10 @@ function TooltipAC(props) {
       try {
         return(
           array.map((content) => {
-            return <button onClick={() => setValue(content.value)} className={"py-2" + themeBtt + theme.mainText}>{content.func}</button>
+            return <Tooltip TransitionComponent={Zoom} placement="bottom-start" title={content.desc} arrow disableInteractive>
+
+            <button onClick={() => setValue(content.value)} className={"py-2" + themeBtt + theme.mainText}>{content.func}</button>
+            </Tooltip>
           })    
         )
       } catch (error) {
