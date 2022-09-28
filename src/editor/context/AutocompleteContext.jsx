@@ -6,15 +6,20 @@ export function AutocompleteContextProvider(props) {
         {
             "name": "avg",
             "desc": "Calculates de average value from a collection of data",
-            "func": '{return 1}',
+            "func": 'avg(1,2,3...n)',
+            "value": "avg( )",
         },
         {
             "name": "std",
             "desc": "Calculates de standard deviation from a collection of data",
+            "func": 'std(1,2,3...n)',
+            "value": "std( )",
         },
         {
             "name": "sum",
             "desc": "Calculates de total sum of a collection of data",
+            "func": "sum(1,2,3...n)",
+            "value": "sum( )",
         },
     ];
 
