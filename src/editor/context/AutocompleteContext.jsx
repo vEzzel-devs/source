@@ -23,29 +23,47 @@ export function AutocompleteContextProvider(props) {
         },
     ];
 
-    const data = [""];
-    const ctrl = [""];
-    const view = [""];
+    const data = [
+        {
+            "name": "test data ",
+            "desc": "Calculates de average value from a collection of data",
+            "func": 'avg(1,2,3...n)',
+            "value": "avg( )",
+        },
+    ];
+    const ctrl = [
+        {
+            "name": "test ctrl",
+            "desc": "Calculates de average value from a collection of data",
+            "func": 'avg(1,2,3...n)',
+            "value": "avg( )",
+        },
+    ];
+    const view = [
+        {
+            "name": "test view",
+            "desc": "Calculates de average value from a collection of data",
+            "func": 'avg(1,2,3...n)',
+            "value": "avg( )",
+        },
+    ];
     
     function filterByName(item) {
         return item.name.substring(0, this.length) === this;
     }
 
     const getAC = (arrAC,str) => {
-        if (arrAC === "math"){
-            console.log(math.filter(filterByName,str));
+        if (arrAC === "="){
+            return math.filter(filterByName,str);
         }
-        else if (arrAC === "data"){
-            data.filter(filterByName,str);
+        else if (arrAC === "#"){
+            return data.filter(filterByName,str);
         }       
-        else if (arrAC === "ctrl"){
-            ctrl.filter(filterByName,str);
+        else if (arrAC === "$"){
+            return ctrl.filter(filterByName,str);
         }
-        else if (arrAC === "view"){
-            view.filter(filterByName,str);
-        }
-        else{
-            console.log("base");
+        else if (arrAC === "/"){
+            return view.filter(filterByName,str);
         }
     };
     return (
