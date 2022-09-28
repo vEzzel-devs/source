@@ -65,7 +65,6 @@ function Vessel({ cell }) {
       "hover": () => `${this.cell.cls} cell :${this.cell.type}`,
     });
     setVal(vessel.current.name, value);
-    getAC(clsType, entry.substring(1));
   };
 
 const setInputBarOnMe = () => {
