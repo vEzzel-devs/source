@@ -17,26 +17,27 @@ function Vessel({ cell }) {
     inputBar.current.value = vessel.current.value;
     const entry = vessel.current.value;
     
+    let clsType="base";
 
     if (entry === "") {
       remVal(vessel.current.name);
-      setAddStyle("base");
+      setAddStyle(clsType);
       return;
     }
 
-    let clsType="Base";
     if (entry[0] == "="){
-      clsType="Math";
+      clsType="math";
     }   
     else if (entry[0] == "#"){
-      clsType="Data";
+      clsType="data";
     }
     else if (entry[0] == "/"){
-      clsType="View";
+      clsType="view";
     }
     else if (entry[0] == "$"){
-      clsType="Ctrl";
+      clsType="ctrl";
     }
+    setAddStyle(clsType);
 
     // esto solo aplica a Base
     let entryType = "";
@@ -52,7 +53,7 @@ function Vessel({ cell }) {
     const value = ({
       "ref": vessel.current.name,
       "cell": {
-        "cls": "Base",
+        "cls": clsType,
         "type": entryType,
         "cont": entry,
       },
