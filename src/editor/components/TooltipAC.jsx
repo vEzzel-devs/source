@@ -43,7 +43,7 @@ function TooltipAC(props) {
         )
       } catch (error) {
         return(
-          <button onClick={() => setValue("")} className={"py-2" + themeBtt + theme.mainText}></button>
+          <button onClick={() => setValue("")} className={"py-2 w-[126px]" + themeBtt + theme.mainText}></button>
         )
       }
 

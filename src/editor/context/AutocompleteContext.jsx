@@ -26,25 +26,25 @@ export function AutocompleteContextProvider(props) {
     const data = [
         {
             "name": "test data ",
-            "desc": "Calculates de average value from a collection of data",
-            "func": 'avg(1,2,3...n)',
-            "value": "avg( )",
+            "desc": "test data ",
+            "func": "test data ",
+            "value": "test data ",
         },
     ];
     const ctrl = [
         {
             "name": "test ctrl",
-            "desc": "Calculates de average value from a collection of data",
-            "func": 'avg(1,2,3...n)',
-            "value": "avg( )",
+            "desc": "test ctrl",
+            "func": "test ctrl",
+            "value": "test ctrl",
         },
     ];
     const view = [
         {
             "name": "test view",
-            "desc": "Calculates de average value from a collection of data",
-            "func": 'avg(1,2,3...n)',
-            "value": "avg( )",
+            "desc": "test view",
+            "func": "test view",
+            "value": "test view",
         },
     ];
     
