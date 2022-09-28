@@ -30,6 +30,3 @@ function InputBar() {
 
 export default InputBar;
 
-/*
- Error, el contenido agregado o eliminado en la inputbar no actualiza sheetData
-*/

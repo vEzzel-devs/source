@@ -21,21 +21,26 @@ function Vessel({ cell }) {
 
     if (entry === "") {
       remVal(vessel.current.name);
+      setAddStyle(clsType);
+      return;
+      
+    }else{    
+      if (entry[0] == "="){
+      clsType="math";
+      }   
+      else if (entry[0] == "#"){
+        clsType="data";
+      }
+      else if (entry[0] == "/"){
+        clsType="view";
+      }
+      else if (entry[0] == "$"){
+        clsType="ctrl";
+      }
+      setAddStyle(clsType);
     }
 
-    if (entry[0] == "="){
-      clsType="math";
-    }   
-    else if (entry[0] == "#"){
-      clsType="data";
-    }
-    else if (entry[0] == "/"){
-      clsType="view";
-    }
-    else if (entry[0] == "$"){
-      clsType="ctrl";
-    }
-    setAddStyle(clsType);
+
 
     // esto solo aplica a Base
     let entryType = "";
@@ -59,7 +64,7 @@ function Vessel({ cell }) {
       "hover": () => `${this.cell.cls} cell :${this.cell.type}`,
     });
     setVal(vessel.current.name, value);
-    getAC(clsType,vessel.current.value.substring(1));
+    getAC(clsType, entry.substring(1));
   };
 
 const setInputBarOnMe = () => {
