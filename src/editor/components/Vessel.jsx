@@ -9,7 +9,7 @@ import { parseCell } from "../utils/strings.js"
 function Vessel({ cell }) {
   const { theme } = useContext(ThemeContext);
   const { setVal, remVal, inputBar, setSelectedCell } = useContext(SpreadSheetContext);
-  //const {  } = useContext(AutocompleteContext);
+  const {getAC } = useContext(AutocompleteContext);
   const [ addStyle, setAddStyle ] = useState("base");
   const vessel = useRef();
 
@@ -21,8 +21,6 @@ function Vessel({ cell }) {
 
     if (entry === "") {
       remVal(vessel.current.name);
-      setAddStyle(clsType);
-      return;
     }
 
     if (entry[0] == "="){
@@ -61,6 +59,7 @@ function Vessel({ cell }) {
       "hover": () => `${this.cell.cls} cell :${this.cell.type}`,
     });
     setVal(vessel.current.name, value);
+    getAC(clsType,vessel.current.value.substring(1));
   };
 
 const setInputBarOnMe = () => {

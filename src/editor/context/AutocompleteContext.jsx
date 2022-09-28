@@ -6,6 +6,7 @@ export function AutocompleteContextProvider(props) {
         {
             "name": "avg",
             "desc": "Calculates de average value from a collection of data",
+            "func": '{return 1}',
         },
         {
             "name": "std",
@@ -27,20 +28,23 @@ export function AutocompleteContextProvider(props) {
 
     const getAC = (arrAC,str) => {
         if (arrAC === "math"){
-            return math.filter(filterByName,str);
+            console.log(math.filter(filterByName,str));
         }
         else if (arrAC === "data"){
-            return data.filter(filterByName,str);
+            data.filter(filterByName,str);
         }       
         else if (arrAC === "ctrl"){
-            return ctrl.filter(filterByName,str);
+            ctrl.filter(filterByName,str);
         }
         else if (arrAC === "view"){
-            return view.filter(filterByName,str);
+            view.filter(filterByName,str);
+        }
+        else{
+            console.log("base");
         }
     };
     return (
-        <AutocompleteContext.Provider value={({math, data, ctrl, view})}>
+        <AutocompleteContext.Provider value={({getAC,math, data, ctrl, view})}>
             {props.children}
         </AutocompleteContext.Provider>
     )
