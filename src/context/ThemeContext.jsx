@@ -1,4 +1,4 @@
-import { useState, createContext } from "react";
+import { useState, createContext, useEffect } from "react";
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 
@@ -65,6 +65,16 @@ export function ThemeContextProvider(props) {
             setTheme(DARK);
         }
     }
+
+    useEffect(() => {
+        let localTheme = JSON.parse(localStorage.getItem('theme'));
+        if (localTheme?.mainBg === " bg-neutral-800") {
+            toggleTheme();
+        }
+    }, []);
+    useEffect(() => {
+        localStorage.setItem('theme', JSON.stringify(theme));
+    }, [theme]);
 
     return (
         <ThemeContext.Provider value={({theme, toggleTheme})}>

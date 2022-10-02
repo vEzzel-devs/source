@@ -1,14 +1,14 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 
 export const SpreadSheetContext = createContext();
 export function SpreadSheetContextProvider(props) {
     const sheet = [
         {
-            "ref": "B2",
+            "ref": "A0",
             "cell": {
-                "cls": "Basic",
-                "type": "String",
-                "cont": "Hello World!",
+                "cls": "Debug",
+                "type": "None",
+                "cont": "",
             },
             "display": () => `${this.cell.cont}`,
             "hover": () => `${this.cell.cls} cell :${this.cell.type}`,
@@ -59,6 +59,23 @@ export function SpreadSheetContextProvider(props) {
         });
         setSheetData(newValues);
     };
+
+    useEffect(() => {
+        let localDim = JSON.parse(localStorage.getItem('sheetDim'));
+        if (localDim) {
+            setSheetDim(localDim);
+        }
+        let localData = JSON.parse(localStorage.getItem('sheetData'));
+        if (localData) {
+            setSheetData(localData);
+        }
+    }, []);
+    useEffect(() => {
+        localStorage.setItem('sheetDim', JSON.stringify(sheetDim));
+    }, [sheetDim]);
+    useEffect(() => {
+        localStorage.setItem('sheetData', JSON.stringify(sheetData));
+    }, [sheetData]);
 
     return (
         <SpreadSheetContext.Provider value={({
