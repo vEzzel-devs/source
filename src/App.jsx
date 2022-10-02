@@ -8,6 +8,17 @@ function App() {
   const { allRoutes } = useContext(RouteContext);
 
   useEffect(() => {
+    let localDim = JSON.parse(localStorage.getItem('sheetDim'));
+        if (localDim) {
+            localStorage.removeItem('sheetDim');
+        }
+        let localData = JSON.parse(localStorage.getItem('sheetData'));
+        if (localData) {
+          localStorage.removeItem('sheetData');
+        }
+  }, []);
+
+  useEffect(() => {
     let icon = document.getElementById('icon');
     if (icon) {
       icon.href = theme.folder + "/icon.png"

@@ -1,6 +1,7 @@
 import { ThemeContext } from "../context/ThemeContext";
 import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
 import { useContext } from "react";
+import { Tooltip, Zoom } from "@mui/material";
 
 function DashboardToolbar(props) {
   const { toggleTheme, theme } = useContext(ThemeContext)
@@ -13,9 +14,11 @@ function DashboardToolbar(props) {
             <button onClick={toggleTheme} className={"rounded-full p-2" + theme.hoverNavbar}>
               {theme.buttonIcon}
             </button>
-            <button onClick={props.someFunction} className={"rounded-full p-2" + theme.hoverNavbar}>
-              <QuestionMarkIcon className={theme.iconHover}/>
-            </button>
+            <Tooltip TransitionComponent={Zoom} placement="bottom-start" title={props.helpText} arrow>
+              <button className={"rounded-full p-2" + theme.hoverNavbar}>
+                <QuestionMarkIcon className={theme.iconHover}/>
+              </button>
+            </Tooltip>
           </div>
         </div>
       </div>

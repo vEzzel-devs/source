@@ -9,3 +9,14 @@ export function baseChar(int) {
     }
     return result;
 }
+
+export function rBaseChar(str) {
+    let acc = 0;
+    let min = 'A'.charCodeAt(0);
+    let base = 'Z'.charCodeAt(0) - min + 1;
+    let chars = Array.from(str).reverse();
+    chars.forEach((c, idx) => {
+        acc += (c.charCodeAt(0) - min + 1) * Math.pow(base, idx);
+    });
+    return acc;
+}

@@ -1,16 +1,18 @@
+import { UserAppContextProvider } from './context/UserAppContext'
+
 import Sidebar from '../components/Sidebar'
 import DashboardPage from '../components/DashboardPage'
 import Toolbar from './sections/Toolbar'
-import Pendient from './sections/Pendient'
+import AppContainer from './sections/AppContainer'
 
 export function Layout() {
   return (
-    <>
+    <UserAppContextProvider>
       <DashboardPage>
         <Toolbar/>
-        <Pendient/>
+        <AppContainer/>
       </DashboardPage>
       <Sidebar/>
-    </>
+    </UserAppContextProvider>
   )
 }
