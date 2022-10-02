@@ -10,8 +10,9 @@ export function Layout() {
     <AutocompleteContextProvider>
       <SpreadSheetContextProvider>
         <DashboardPage>
-          <Toolbar/>
+          
           <SpreadSheet/>
+          <Toolbar/>
         </DashboardPage>
         <Sidebar/>
       </SpreadSheetContextProvider>

@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useRef } from "react";
 
 export const SpreadSheetContext = createContext();
 export function SpreadSheetContextProvider(props) {
@@ -14,9 +14,12 @@ export function SpreadSheetContextProvider(props) {
             "hover": () => `${this.cell.cls} cell :${this.cell.type}`,
         },
     ];
+    const dim = [6, 8];
 
-    const [sheetDim, setSheetDim] = useState([6, 8]);
+    const [sheetDim, setSheetDim] = useState(dim);
     const [sheetData, setSheetData] = useState(sheet);
+    const [selectedCell, setSelectedCell] = useState(null);
+    const inputBar = useRef();
 
     const setDim = (cols, rows) => {
         let current = [sheetDim[0], sheetDim[1]];
@@ -52,12 +55,16 @@ export function SpreadSheetContextProvider(props) {
     };
     const remVal = (id) => {
         const newValues = [...sheetData];
+        let found = false;
         newValues.forEach((element, index) => {
             if (element.ref === id) {
+                found = true;
                 newValues.splice(index, 1);
             }
         });
-        setSheetData(newValues);
+        if (found) {
+            setSheetData(newValues);
+        }
     };
 
     useEffect(() => {
@@ -81,10 +88,13 @@ export function SpreadSheetContextProvider(props) {
         <SpreadSheetContext.Provider value={({
             sheetDim,
             sheetData,
+            selectedCell,
+            inputBar,
             setDim,
             addDim,
             setVal,
             remVal,
+            setSelectedCell,
         })}>
             {props.children}
         </SpreadSheetContext.Provider>
