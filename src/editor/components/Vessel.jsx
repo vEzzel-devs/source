@@ -74,9 +74,7 @@ const setInputBarOnMe = () => {
 
   return (
     <TooltipCell cellRef={vessel} cellRow={parseCell(cell)[1]} setCls={setAddStyle}>
-      <TooltipAC cellRef={vessel} cellRow={parseCell(cell)[1]}>
         <input name={cell} ref={vessel} onFocus={setInputBarOnMe} onChange={changeVal} placeholder={cell} className={"border text-center" + theme.mainBorder + theme.mainBg + theme.mainText + theme.cells[addStyle]}/>
-      </TooltipAC>
     </TooltipCell>
   )
 }
