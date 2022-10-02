@@ -8,10 +8,10 @@ function AppContainer() {
 
   return (
     <div className={"w-full p-3 h-full flex items-start justify-start" + theme.primaryBg}>
-      <div className={"w-full h-full p-4 md:p-8 flex flex-col overflow-scroll" + theme.mainBg + theme.scrollbar}>
+      <div className={"w-full h-full p-4 md:p-8 flex flex-wrap overflow-y-scroll" + theme.mainBg + theme.scrollbar}>
         {userApp.map((row) => {
           return (
-            <div className="w-full flex flex-row">
+            <div className="w-full py-2 flex flex-row">
               { row };
             </div>
           );

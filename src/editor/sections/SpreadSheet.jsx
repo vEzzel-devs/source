@@ -1,7 +1,7 @@
 import { ThemeContext } from '../../context/ThemeContext'
 import { SpreadSheetContext } from '../context/SpreadSheetContext';
 import { useContext, useRef, useEffect, useState } from 'react'
-import { baseChar } from "../utils/numbers.js";
+import { baseChar, rBaseChar } from "../utils/numbers.js";
 import { parseCell } from "../utils/strings.js";
 import Vessel from '../components/Vessel';
 import Column from '../components/Column';
@@ -12,8 +12,8 @@ function SpreadSheet() {
   const { theme } = useContext(ThemeContext);
   const { sheetDim, sheetData, setDim } = useContext(SpreadSheetContext);
   const [ cells, setCells ] = useState([[<Vessel key={"A1"} cell={"A1"}/>],]);
-  const [ cols, setCols ] = useState([<Column key={"A"} val={"A"}/>]);
-  const [ rows, setRows ] = useState([<Row key={"1"} val={"1"}/>]);
+  const [ cols, setCols ] = useState([<Column key={"col-key-A"} val={"A"}/>]);
+  const [ rows, setRows ] = useState([<Row key={"row-key-1"} val={"1"}/>]);
   
   useEffect(() => {
     let oldCells = [...cells];
@@ -59,8 +59,17 @@ function SpreadSheet() {
   useEffect(() => {
     let newDim = [...sheetDim]
     let less = true;
+    let oldCells = [...cells];
+    let children = oldCells.map((col) => {
+      return col.map((cell) => String(cell.key));
+    });
     sheetData.forEach((element) => {
       let [ x, y ] = parseCell(element.ref)
+      let [ nx, ny ] = [rBaseChar(x) - 1, parseInt(y) - 1];
+      if (children[nx][ny] === element.ref) {
+        let vessel = document.getElementById(element.ref)
+        vessel.value = element.cell.cont;
+      }
       if (baseChar(newDim[0]-1) === x) {
         newDim[0] += 1;
         less = false;

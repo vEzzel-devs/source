@@ -24,7 +24,11 @@ export function UserAppContextProvider(props) {
         }
     }, []);
     useEffect(() => {
-        // interprete
+        let wait = async () => {
+            await new Promise(r => setTimeout(r, 10));
+            //interprete
+        }
+        wait();
     }, [sheetData]);
 
     return (

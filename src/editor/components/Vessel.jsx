@@ -1,6 +1,6 @@
 import { ThemeContext } from '../../context/ThemeContext'
 import { SpreadSheetContext } from '../context/SpreadSheetContext';
-import { useContext, useRef, useState } from 'react'
+import { useContext, useState, useRef } from 'react'
 import { AutocompleteContext } from '../context/AutocompleteContext';
 import TooltipCell from './TooltipCell'
 import TooltipAC from './TooltipAC'
@@ -10,9 +10,9 @@ import { parseCell } from "../utils/strings.js"
 function Vessel({ cell }) {
   const { theme } = useContext(ThemeContext);
   const { setVal, remVal, inputBar, setSelectedCell } = useContext(SpreadSheetContext);
-  const {getAC } = useContext(AutocompleteContext);
+  const { getAC } = useContext(AutocompleteContext);
   const [ addStyle, setAddStyle ] = useState("base");
-  const vessel = useRef();
+  const vessel = useRef()
 
   const changeVal = () => {
     inputBar.current.value = vessel.current.value;
@@ -21,7 +21,7 @@ function Vessel({ cell }) {
     let clsType="base";
 
     if (entry === "") {
-      remVal(vessel.current.name);
+      remVal(vessel.current.id);
       setAddStyle(clsType);
       return;
       
@@ -55,7 +55,7 @@ function Vessel({ cell }) {
       }
     }
     const value = ({
-      "ref": vessel.current.name,
+      "ref": vessel.current.id,
       "cell": {
         "cls": clsType,
         "type": entryType,
@@ -64,7 +64,7 @@ function Vessel({ cell }) {
       "display": () => `${this.cell.cont}`,
       "hover": () => `${this.cell.cls} cell :${this.cell.type}`,
     });
-    setVal(vessel.current.name, value);
+    setVal(vessel.current.id, value);
   };
 
 const setInputBarOnMe = () => {
@@ -74,7 +74,7 @@ const setInputBarOnMe = () => {
 
   return (
     <TooltipCell cellRef={vessel} cellRow={parseCell(cell)[1]} setCls={setAddStyle}>
-        <input name={cell} ref={vessel} onFocus={setInputBarOnMe} onChange={changeVal} placeholder={cell} className={"border text-center" + theme.mainBorder + theme.mainBg + theme.mainText + theme.cells[addStyle]}/>
+        <input id={cell} ref={vessel} onFocus={setInputBarOnMe} onChange={changeVal} placeholder={cell} className={"border text-center" + theme.mainBorder + theme.mainBg + theme.mainText + theme.cells[addStyle]}/>
     </TooltipCell>
   )
 }

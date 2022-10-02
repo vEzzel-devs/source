@@ -70,6 +70,7 @@ export function SpreadSheetContextProvider(props) {
     useEffect(() => {
         let localDim = JSON.parse(localStorage.getItem('sheetDim'));
         if (localDim) {
+            console.log(localDim);
             setSheetDim(localDim);
         }
         let localData = JSON.parse(localStorage.getItem('sheetData'));
@@ -78,10 +79,18 @@ export function SpreadSheetContextProvider(props) {
         }
     }, []);
     useEffect(() => {
-        localStorage.setItem('sheetDim', JSON.stringify(sheetDim));
+        let wait = async () => {
+            await new Promise(r => setTimeout(r, 10));
+            localStorage.setItem('sheetDim', JSON.stringify(sheetDim));
+        }
+        wait();
     }, [sheetDim]);
     useEffect(() => {
-        localStorage.setItem('sheetData', JSON.stringify(sheetData));
+        let wait = async () => {
+            await new Promise(r => setTimeout(r, 10));
+            localStorage.setItem('sheetData', JSON.stringify(sheetData));
+        }
+        wait();
     }, [sheetData]);
 
     return (
