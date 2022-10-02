@@ -8,7 +8,7 @@ export function SpreadSheetContextProvider(props) {
             "cell": {
                 "cls": "Debug",
                 "type": "None",
-                "cont": "",
+                "cont": "Hello World!",
             },
             "display": () => `${this.cell.cont}`,
             "hover": () => `${this.cell.cls} cell :${this.cell.type}`,

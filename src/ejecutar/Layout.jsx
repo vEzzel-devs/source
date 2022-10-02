@@ -14,5 +14,5 @@ export function Layout() {
       </DashboardPage>
       <Sidebar/>
     </UserAppContextProvider>
-  );
+  )
 }

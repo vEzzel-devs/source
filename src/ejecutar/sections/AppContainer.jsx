@@ -12,7 +12,7 @@ function AppContainer() {
         {userApp.map((row) => {
           return (
             <div className="w-full py-2 flex flex-row">
-              { row };
+              { row }
             </div>
           );
         })}
