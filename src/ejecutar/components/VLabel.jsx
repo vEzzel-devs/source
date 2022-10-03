@@ -11,7 +11,7 @@ function VLabel({cell, bg, color}) {
     });
 
     return (
-        <p className={"w-full text-md break-words cursor-default" + (bg ? ` bg-[${bg}]` : theme.mainBg) + (color ? ` text-[${color}]` : theme.mainText)}>
+        <p className={"w-full text-md text-center break-words cursor-default" + (bg ? ` bg-[${bg}]` : theme.mainBg) + (color ? ` text-[${color}]` : theme.mainText)}>
             { cellRef.cell.cont }
         </p>
     )

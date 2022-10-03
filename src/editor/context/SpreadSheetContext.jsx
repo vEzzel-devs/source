@@ -6,7 +6,7 @@ export function SpreadSheetContextProvider(props) {
         {
             "ref": "A0",
             "cell": {
-                "cls": "Debug",
+                "cls": "debug",
                 "type": "None",
                 "cont": "Hello World!",
             },

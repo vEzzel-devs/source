@@ -1,10 +1,10 @@
 import { useContext } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
 
-function VTitle({inRef, text, bg, color}) {
+function VTitle({text, bg, color}) {
     const { theme } = useContext(ThemeContext);
     return (
-        <h1 ref={inRef} className={"w-full p-2 text-2xl break-words rounded-md" + (bg ? ` bg-[${bg}]` : theme.mainBg) + (color ? ` text-[${color}]` : theme.mainText)}>
+        <h1 className={"w-full text-2xl text-center break-words rounded-md" + (bg ? ` bg-[${bg}]` : theme.mainBg) + (color ? ` text-[${color}]` : theme.mainText)}>
             {text}
         </h1>
     )
