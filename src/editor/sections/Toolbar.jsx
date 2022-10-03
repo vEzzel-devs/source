@@ -10,8 +10,11 @@ function Toolbar() {
   const { addDim } = useContext(SpreadSheetContext);
 
   return (
-    <DashboardToolbar helpText={"Texto de ayuda del editor"}>
-      <h1>Editor de HCT <Vezzel/></h1>
+    <DashboardToolbar helpText={<>
+    <p>En esta vista puedes definir las funcionalidades y la vista de tu apliación mediante celdas tipadas. Entre los tipos disponibles:</p>
+    <p>Vistas (/): Son celdas para </p>
+    </>}>
+      <h1>Editor <Vezzel/></h1>
 
         <InputBar/>
       
