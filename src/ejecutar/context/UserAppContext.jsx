@@ -62,6 +62,7 @@ export function UserAppContextProvider(props) {
     useEffect(() => {
         let wait = async () => {
             await new Promise(r => setTimeout(r, 10));
+            /*
             let viewList = [];
             let locList = [];
             let [ mx, my ] = [ 0, 0 ]
@@ -92,6 +93,7 @@ export function UserAppContextProvider(props) {
                 viewMatrix[pos[0]][pos[1]] = viewList[idx];
             });
             setUserApp(viewMatrix);
+            */
         }
         wait();
     }, [sheetData]);

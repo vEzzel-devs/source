@@ -16,6 +16,10 @@ function App() {
         if (localData) {
           localStorage.removeItem('sheetData');
         }
+        let localCells = JSON.parse(localStorage.getItem('sheetCells'));
+        if (localCells) {
+          localStorage.removeItem('sheetCells');
+        }
   }, []);
 
   useEffect(() => {

@@ -34,7 +34,6 @@ export function SpreadSheetContextProvider(props) {
         let current = [sheetDim[0], sheetDim[1]];
         cols = cols ? cols : 0;
         rows = rows ? rows : 0;
-        console.log(current, cols, rows)
         setDim(cols+current[0], rows+current[1])
     };
 
@@ -70,7 +69,6 @@ export function SpreadSheetContextProvider(props) {
     useEffect(() => {
         let localDim = JSON.parse(localStorage.getItem('sheetDim'));
         if (localDim) {
-            console.log(localDim);
             setSheetDim(localDim);
         }
         let localData = JSON.parse(localStorage.getItem('sheetData'));

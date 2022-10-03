@@ -69,6 +69,7 @@ function SpreadSheet() {
       if (children[nx][ny] === element.ref) {
         let vessel = document.getElementById(element.ref)
         vessel.value = element.cell.cont;
+        vessel.classList.add(theme.cells[element.cell.cls].slice(1));
       }
       if (baseChar(newDim[0]-1) === x) {
         newDim[0] += 1;
