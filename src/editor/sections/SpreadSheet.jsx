@@ -101,7 +101,7 @@ function SpreadSheet() {
     if (notEqual) {
       setDim(newDim[0], newDim[1]);
     }
-  }, [sheetData]);
+  }, [sheetData, theme]);
 
   return (
     <div className={"w-full p-3 h-full flex items-start justify-start" + theme.primaryBg}>
