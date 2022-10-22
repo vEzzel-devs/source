@@ -1,6 +1,6 @@
 import { ThemeContext } from '../../context/ThemeContext'
 import { SpreadSheetContext } from '../context/SpreadSheetContext';
-import { useContext, useState, useRef } from 'react'
+import { useContext, useState, useRef, useEffect } from 'react'
 import { AutocompleteContext } from '../context/AutocompleteContext';
 import TooltipCell from './TooltipCell'
 import TooltipAC from './TooltipAC'
@@ -67,14 +67,21 @@ function Vessel({ cell }) {
     setVal(vessel.current.id, value);
   };
 
-const setInputBarOnMe = () => {
-  inputBar.current.value = vessel.current.value;
-  setSelectedCell(vessel);
-};
+  const setInputBarOnMe = () => {
+    inputBar.current.value = vessel.current.value;
+    setSelectedCell(vessel);
+  };
+
+  useEffect(() => {
+    if (cell === "A1") {
+      vessel.current.focus();
+      setInputBarOnMe();
+    }
+  }, []);
 
   return (
     <TooltipCell cellRef={vessel} cellRow={parseCell(cell)[1]} setCls={setAddStyle}>
-        <input id={cell} ref={vessel} onFocus={setInputBarOnMe} onChange={changeVal} placeholder={cell} className={"border text-center" + theme.mainBorder + theme.mainBg + theme.mainText + theme.cells[addStyle]}/>
+        <input id={cell} ref={vessel} onFocus={setInputBarOnMe} onChange={changeVal} placeholder={cell} className={"border text-center" + theme.mainBorder + theme.mainBg + theme.mainText + theme.cells[addStyle]} autocomplete="off"/>
     </TooltipCell>
   )
 }

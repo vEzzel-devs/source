@@ -1,4 +1,3 @@
-import DashboardToolbar from '../../components/DashboardToolbar'
 import { ThemeContext } from '../../context/ThemeContext'
 import React,{ useContext } from 'react'
 import { SpreadSheetContext } from '../context/SpreadSheetContext';
@@ -16,14 +15,11 @@ function InputBar() {
       selectedCell.current.value = inputBar.current.value;
     }
   };
-  const quitCell = () => {
-    inputBar.current.value = "";
-  }
 
   return (
-    <div className={'flex flex-row rounded-lg overflow-hidden border' + theme.mainBorder}>
+    <div className={'w-1/2 flex flex-row rounded-lg overflow-hidden border' + theme.mainBorder}>
         <div className='md:px-4'>{selectedCell ? selectedCell.current.placeholder : ""}</div>
-        <input ref={inputBar} onFocus={comeBackToCell} onBlur={quitCell} onChange={setCell} className={"outline-0" + theme.mainBg + theme.mainText}/>
+        <input ref={inputBar} onFocus={comeBackToCell} onChange={setCell} className={"px-2 w-full outline-0" + theme.mainBg + theme.mainText}/>
     </div>
   )
 }

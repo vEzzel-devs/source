@@ -1,11 +1,11 @@
 import { useEffect, useContext } from 'react';
 import { ThemeContext } from './context/ThemeContext'
 import { RouteContext } from './context/RouteContext'
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
 function App() {
   const { theme } = useContext(ThemeContext);
-  const { allRoutes } = useContext(RouteContext);
+  const { allRoutes, logged } = useContext(RouteContext);
 
   useEffect(() => {
     let localDim = JSON.parse(localStorage.getItem('sheetDim'));
@@ -31,12 +31,14 @@ function App() {
 
   return (
     <Routes>
-      {allRoutes.map((page) => {
-        return <Route exact path={page.url} element={page.comp}/>;
+      {allRoutes.map((page, idx) => {
+        if (page.url === "/") {
+          return <Route key={`route-${idx}-to-${page}`} path={page.url} element={page.comp}/>;
+        } else {
+          return <Route key={`route-${idx}-to-${page}`} path={page.url} element={logged ? page.comp : <Navigate replace to={"/"}/>}/>;
+        }
       })}
     </Routes>
   );
 }
-
-
 export default App

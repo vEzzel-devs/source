@@ -2,7 +2,8 @@ import { ThemeContext } from '../../context/ThemeContext'
 import { useContext } from 'react'
 import Vezzel from '../../components/Vezzel';
 import ContainerBox from '../../components/ContainerBox';
-import { Link } from 'react-router-dom';
+import SessionRegister from '../components/SessionRegister';
+import SessionLogger from '../components/SessionLogger';
 
 
 function Login() {
@@ -19,12 +20,8 @@ function Login() {
             <br/>
           </div>
           <div className="md:w-2/3 md:mx-auto flex justify-center md:justify-end">
-            {/*<button className={"md:w-1/8 mr-2 p-2 rounded-lg border-4" + theme.mainText + theme.mainBg + theme.secondaryButton}>Regístrate</button>
-            
-            <button className={"md:w-1/8 p-2 rounded-lg border-4" + theme.mainText + theme.mainBg + theme.primaryButton}>Inicia sesión</button>*/}
-            <Link to={"/editor"}>
-              <button className={"md:w-1/8 p-2 rounded-lg border-4" + theme.mainText + theme.mainBg + theme.primaryButton}>Ingresar</button>
-            </Link>
+            <SessionRegister/>
+            <SessionLogger/>
           </div>
         </ContainerBox>
       </div>

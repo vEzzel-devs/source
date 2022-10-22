@@ -4,6 +4,7 @@ import { useContext } from 'react'
 import Vezzel from '../../components/Vezzel'
 import { SpreadSheetContext } from '../context/SpreadSheetContext';
 import InputBar from '../components/InputBar';
+import ButtonRack from '../components/ButtonRack';
 
 function Toolbar() {
   const { theme } = useContext(ThemeContext);
@@ -17,8 +18,7 @@ function Toolbar() {
     <p>Control ($): Son celdas para realizar operaciones de control con otras celdas, como bucles, condicionales o eventos.</p>
     <p>Algebra (=): Son celdas para calcular expresiones matemáticas, utilizando funciones y operaciones.</p>
     </>}>
-      <h1>Editor <Vezzel/></h1>
-
+        <ButtonRack/>
         <InputBar/>
       
     </DashboardToolbar>

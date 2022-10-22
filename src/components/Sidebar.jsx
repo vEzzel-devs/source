@@ -10,23 +10,28 @@ import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import AppsIcon from '@mui/icons-material/Apps';
 import EditIcon from '@mui/icons-material/Edit';
+import CreateNewFolderIcon from '@mui/icons-material/CreateNewFolder';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import { ThemeContext } from "../context/ThemeContext";
+import { RouteContext } from "../context/RouteContext";
 
 function Sidebar() {
   const { theme } = useContext(ThemeContext)
+  const { setLogged } = useContext(RouteContext);
   const [isOpen, setIsOpen] = useState(false);
   const toggleOpen = () => {
     setIsOpen(!isOpen);
   };
   const Menus = [
+    { title: "Busqueda",path:"/search", icon:<SearchIcon/>, gap: true  },
     /*
-    { title: "Busqueda",path:"/", icon:<SearchIcon/> },
     { title: "Perfil",path:"/", icon:<AccountCircleIcon/> },
     */
-    { title: "Editor",path:"/Editor", icon:<EditIcon/>, gap: true },
-    { title: "Ejecutar",path:"/Ejecutar", icon:<PlayArrowIcon/>},
+    { title: "Mis proyectos",path:"/projects", icon:<CreateNewFolderIcon/>},
     /*
+    { title: "Editor",path:"/Editor", icon:<EditIcon/>},
+    { title: "Ejecutar",path:"/Ejecutar", icon:<PlayArrowIcon/>},
+    
     { title: "mensajeria ",path:"/", icon:<ChatIcon/>, gap: true  },
     { title: "favoritos",path:"/", icon:<FavoriteIcon/> },
     */
@@ -51,8 +56,9 @@ function Sidebar() {
             <Link to={Menu.path}>
               <li
                 key={index}
+                onClick={Menu.position === -1 ? ()=>setLogged(false) : ()=>{}}
                 className={`flex flex-row justify-center rounded-md py-2 cursor-pointer text-md items-center
-                ${Menu.gap ? "mt-[60px]" : "mt-[1px]"} ${Menu.position == -1 ? "absolute bottom-[5%] px-2 space-x-1" : "space-x-2 px-4"}` + theme.hoverSidebar + theme.textSidebar}
+                ${Menu.gap ? "mt-[60px]" : "mt-[1px]"} ${Menu.position === -1 ? "absolute bottom-[5%] px-2 space-x-1" : "space-x-2 px-4"}` + theme.hoverSidebar + theme.textSidebar}
               >
                 <span>
                   {Menu.icon}
