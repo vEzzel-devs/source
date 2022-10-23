@@ -24,7 +24,6 @@ function AppContainer() {
     }, []);
 
     return cards.map((card) => {
-      console.log(card.name, card.description, (card.tags).map(tag => String(tag)), card._id);
       return (
         <ProjectCard
           title={card.name}
@@ -35,7 +34,7 @@ function AppContainer() {
         />
       );
     });
-}
+  }
 
 
   return (
