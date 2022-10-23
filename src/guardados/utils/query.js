@@ -4,14 +4,13 @@ export async function spreadsheet(){
   let id_user = '6352f98082d156cd0571a0f2';
   
   let result = await spreadsheet_query(id_user);
-  console.log(result);
-  return result;
+  
+  return await result;
 }
 
 
 async function spreadsheet_query(id_user){
-  var myHeaders = new Headers();
-  
+
   var requestOptions = {
     method: 'POST',
     redirect: 'follow'
