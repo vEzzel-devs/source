@@ -28,7 +28,7 @@ function AppContainer() {
       return (
         <ProjectCard
           title={card.name}
-          name={card.username}
+          user={card.username}
           desc={card.description}
           tags={(card.tags).map(tag => String(tag))}
           idx={card._id}
@@ -40,10 +40,8 @@ function AppContainer() {
 
   return (
     <div className={"w-full p-3 h-full flex items-start justify-start" + theme.primaryBg}>
-      <div className={"w-full p-3 h-full flex items-start justify-start" + theme.primaryBg}>
         <div className={"w-full h-full p-4 md:p-8 flex flex-wrap overflow-y-scroll" + theme.mainBg + theme.scrollbar}>
           {loadCards()}
-        </div>
       </div>
     </div>
   )
