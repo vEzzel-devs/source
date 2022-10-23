@@ -30,16 +30,16 @@
 }
 
 .light-scrollbar::-webkit-scrollbar-track {
-    background: #e5e5e5;
+    background: #E5E5E5;
 }
 
 .light-scrollbar::-webkit-scrollbar-corner {
-    background: #e5e5e5;
+    background: #E5E5E5;
 }
 
 .light-scrollbar::-webkit-scrollbar-thumb {
     border-radius: 100vh;
-    border: 3px solid #a3a3a3;
+    border: 3px solid #A3A3A3;
 }
 
 .light-scrollbar::-webkit-scrollbar-thumb:hover {

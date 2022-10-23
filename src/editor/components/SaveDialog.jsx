@@ -18,8 +18,8 @@ function SaveDialog() {
             <Dialog open={open} onClose={() => setOpen(false)}>
                 <DialogTitle>Guardar proyecto</DialogTitle>
                 <DialogContent>
-                    <input className={"p-2 mb-2 w-full outline-0 border-2 rounded-lg" + theme.mainBg + theme.mainText + theme.mainBorder} placeholder="Título del proyecto"/>
-                    <textarea className={"p-2 mb-2 h-32 w-full outline-0 border-2 rounded-sm overflow-y-scroll resize-none" + theme.mainBg + theme.mainText + theme.mainBorder + theme.scrollbar} placeholder="Descripción del proyecto"/>
+                    <input className={"p-2 mb-2 w-full outline-0 border-2 rounded-md" + theme.mainBg + theme.mainText + theme.mainBorder} placeholder="Título del proyecto"/>
+                    <textarea className={"p-2 mb-2 h-32 w-full outline-0 border-2 overflow-y-scroll resize-none" + theme.mainBg + theme.mainText + theme.mainBorder + theme.scrollbar} placeholder="Descripción del proyecto"/>
                     <Autocomplete
                         multiple
                         disableClearable
@@ -29,7 +29,6 @@ function SaveDialog() {
                         renderInput={(params) => (
                         <TextField
                             {...params}
-                            label=""
                             placeholder="Tags"
                         />
                         )}
