@@ -27,7 +27,6 @@ function AppContainer() {
       return (
         <ProjectCard
           title={card.name}
-          user={card.username}
           desc={card.description}
           tags={(card.tags).map(tag => String(tag))}
           idx={card._id}
