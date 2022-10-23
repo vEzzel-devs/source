@@ -7,10 +7,18 @@ import SaveIcon from '@mui/icons-material/Save';
 function SaveDialog() {
     const { theme } = useContext(ThemeContext);
     const [ open, setOpen ] = useState(false);
+    const [added, setAdded] = useState([])
 
     const handleSubmit = () => {
         setOpen(false);
     };
+
+    const tagLimit = (to) => ((e, newValue) => {
+        if (newValue.length > to) {
+          newValue.pop(); 
+        }
+        setAdded([...newValue]);
+    });
 
     return (
         <>
@@ -24,6 +32,7 @@ function SaveDialog() {
                         multiple
                         disableClearable
                         popupIcon={""}
+                        onChange={tagLimit(5)}
                         id="tags-outlined"
                         options={["tag1", "tag2", "tag3", "tag4", "tag5", "tag6", "tag7", "tag8", "tag9"]}
                         renderInput={(params) => (

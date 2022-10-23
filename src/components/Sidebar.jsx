@@ -1,16 +1,14 @@
 import Vezzel from "./Vezzel";
 import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import SearchIcon from '@mui/icons-material/Search';
-import ConstructionIcon from '@mui/icons-material/Construction';
 import ChatIcon from '@mui/icons-material/Chat';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import PersonIcon from '@mui/icons-material/Person';
 import AppsIcon from '@mui/icons-material/Apps';
 import EditIcon from '@mui/icons-material/Edit';
-import CreateNewFolderIcon from '@mui/icons-material/CreateNewFolder';
+import FolderIcon from '@mui/icons-material/Folder';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import { ThemeContext } from "../context/ThemeContext";
 import { RouteContext } from "../context/RouteContext";
@@ -23,11 +21,11 @@ function Sidebar() {
     setIsOpen(!isOpen);
   };
   const Menus = [
-    { title: "Busqueda",path:"/search", icon:<SearchIcon/>, gap: true  },
+    { title: "Búsqueda",path:"/search", icon:<SearchIcon/>, gap: true  },
     /*
-    { title: "Perfil",path:"/", icon:<AccountCircleIcon/> },
+    { title: "Perfil",path:"/", icon:<PersonIcon/> },
     */
-    { title: "Mis proyectos",path:"/projects", icon:<CreateNewFolderIcon/>},
+    { title: "Guardados",path:"/saved", icon:<FolderIcon/>},
     /*
     { title: "Editor",path:"/Editor", icon:<EditIcon/>},
     { title: "Ejecutar",path:"/Ejecutar", icon:<PlayArrowIcon/>},
@@ -53,9 +51,8 @@ function Sidebar() {
 
         <ul className="pt-6">
           {Menus.map((Menu, index) => (
-            <Link to={Menu.path}>
+            <Link to={Menu.path} key={`sb-link-${index}`}>
               <li
-                key={index}
                 onClick={Menu.position === -1 ? ()=>setLogged(false) : ()=>{}}
                 className={`flex flex-row justify-center rounded-md py-2 cursor-pointer text-md items-center
                 ${Menu.gap ? "mt-[60px]" : "mt-[1px]"} ${Menu.position === -1 ? "absolute bottom-[5%] px-2 space-x-1" : "space-x-2 px-4"}` + theme.hoverSidebar + theme.textSidebar}

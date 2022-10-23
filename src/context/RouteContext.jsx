@@ -3,7 +3,7 @@ import { Layout as Inicio } from "../inicio/Layout";
 import { Layout as Editor } from "../editor/Layout";
 import { Layout as Ejecutar } from "../ejecutar/Layout";
 import { Layout as Busqueda } from "../busqueda/Layout";
-import { Layout as Proyectos } from "../proyectos/Layout";
+import { Layout as Guardados } from "../guardados/Layout";
 import { useState, useEffect } from "react";
 
 export const RouteContext = createContext();
@@ -14,8 +14,8 @@ export function RouteContextProvider(props) {
             comp: <Inicio/>,
         },
         {
-            url: "/projects",
-            comp: <Proyectos/>,
+            url: "/saved",
+            comp: <Guardados/>,
         },
         {
             url: "/search",
@@ -31,14 +31,14 @@ export function RouteContextProvider(props) {
         },
     ];
 
-    const [ logged, setLogged ] = useState(false);
+    let logged, setLogged;
+    let localLogged = JSON.parse(localStorage.getItem('logged'));
+    if (localLogged) {
+        [ logged, setLogged ] = useState(true);
+    } else {
+        [ logged, setLogged ] = useState(false);
+    }
 
-    useEffect(() => {
-        let localLogged = JSON.parse(localStorage.getItem('logged'));
-        if (localLogged) {
-            setLogged(true);
-        }
-    }, []);
     useEffect(() => {
         localStorage.setItem('logged', JSON.stringify(logged));
     }, [logged]);

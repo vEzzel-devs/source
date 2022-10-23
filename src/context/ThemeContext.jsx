@@ -21,6 +21,7 @@ const LIGHT = ({
     "highBg" : " bg-neutral-400",
     "lightText" : " text-neutral-600",
     "mainText" : " text-black",
+    "invText" : " text-white",
     "primaryAccent" : " bg-main-purple",
     "secondaryAccent" : " bg-main-red",
     "primaryText" : " text-main-purple",
@@ -55,6 +56,7 @@ const DARK = ({
     "highBg" : " bg-neutral-600",
     "lightText" : " text-neutral-400",
     "mainText" : " text-white",
+    "invText" : " text-black",
     "primaryAccent" : " bg-main-red",
     "secondaryAccent" : " bg-main-purple",
     "primaryText" : " text-main-red",
@@ -75,8 +77,15 @@ const DARK = ({
 export const ThemeContext = createContext();
 export function ThemeContextProvider(props) {
     const { toggleMui } = useContext(MuiThemeContext);
-    const [theme, setTheme] = useState(LIGHT);
+    let theme, setTheme;
+    let localTheme = JSON.parse(localStorage.getItem('theme'));
+    if (localTheme?.mainBg === " bg-neutral-800") {
+        [theme, setTheme] = useState(DARK);
+    } else {
+        [theme, setTheme] = useState(LIGHT);
+    }
     function toggleTheme() {
+        toggleMui();
         if (theme.mainBg === " bg-neutral-800") {
             setTheme(LIGHT);
         } else {
@@ -84,13 +93,6 @@ export function ThemeContextProvider(props) {
         }
     }
 
-    useEffect(() => {
-        let localTheme = JSON.parse(localStorage.getItem('theme'));
-        if (localTheme?.mainBg === " bg-neutral-800") {
-            toggleMui();
-            toggleTheme();
-        }
-    }, []);
     useEffect(() => {
         localStorage.setItem('theme', JSON.stringify(theme));
     }, [theme]);

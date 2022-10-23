@@ -112,7 +112,7 @@ function SpreadSheet() {
         </div>
         {cols.map((col, index) => {
           return (
-            <div className="max-w-[8rem] min-w-[8rem] flex flex-col">
+            <div key={`col-id-${index}-for-${col}`} className="max-w-[8rem] min-w-[8rem] flex flex-col">
               {col}
               {cells[index]}
             </div>

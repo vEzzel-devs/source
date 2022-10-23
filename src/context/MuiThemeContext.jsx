@@ -213,7 +213,13 @@ const themeDark = createTheme({
 
 export const MuiThemeContext = createContext();
 export function MuiThemeContextProvider(props) {
-    const [ muiDark, setMuiDark ] = useState(false);
+    let muiDark, setMuiDark;
+    let localTheme = JSON.parse(localStorage.getItem('theme'));
+    if (localTheme?.mainBg === " bg-neutral-800") {
+        [ muiDark, setMuiDark ] = useState(true);
+    } else {
+        [ muiDark, setMuiDark ] = useState(true);
+    }
     const toggleMui = () => { setMuiDark(!muiDark); };
     return (
         <ThemeProvider theme={muiDark ? themeDark : themeLight}>
