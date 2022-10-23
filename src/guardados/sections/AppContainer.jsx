@@ -22,14 +22,15 @@ function AppContainer() {
         }
         fetchData();
     }, []);
-
+    let i = 0;
     return cards.map((card) => {
       return (
         <ProjectCard
           title={card.name}
           desc={card.description}
           tags={(card.tags).map(tag => String(tag))}
-          idx={card._id}
+          key={card._id}
+          idx={i++}
         />
       );
     });
