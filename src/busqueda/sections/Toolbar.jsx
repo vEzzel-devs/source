@@ -3,6 +3,7 @@ import DashboardToolbar from '../../components/DashboardToolbar'
 import { ThemeContext } from '../../context/ThemeContext'
 import { useContext, useState } from 'react'
 import { Autocomplete, TextField } from '@mui/material';
+import {search} from "../utils/query";
 
 function Toolbar() {
   const { theme } = useContext(ThemeContext);
@@ -41,8 +42,9 @@ function Toolbar() {
         <TextField
           style={{ width: 350 }}
           placeholder="Buscar"
+          id="input-search"
         />
-        <button className={"p-4 rounded-lg" + theme.primaryText + theme.mainBg + theme.primaryButton}><SearchIcon/></button>
+        <button className={"p-4 rounded-lg" + theme.primaryText + theme.mainBg + theme.primaryButton} onClick={search}><SearchIcon/></button>
       </div>
     </DashboardToolbar>
   )

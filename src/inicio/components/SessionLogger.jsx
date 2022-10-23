@@ -6,17 +6,24 @@ import { useNavigate } from "react-router-dom";
 import Vezzel from "../../components/Vezzel";
 import { ThemeContext } from "../../context/ThemeContext";
 import { RouteContext } from "../../context/RouteContext";
-
+import {logger} from "../utils/query";
 function SessionLogger() {
     const { theme } = useContext(ThemeContext);
     const { setLogged } = useContext(RouteContext);
     const [ open, setOpen ] = useState(false);
     const navigate = useNavigate();
 
-    const handleSubmit = () => {
-        setOpen(false);
-        setLogged(true);
-        navigate("/search");
+    const handleSubmit = async () => {
+        let log = await logger();
+        if (log[0]) {
+            //hacer algo con la id que contiene log[1]
+            setOpen(false);
+            setLogged(true);
+            navigate("/search");
+        }else{
+            // hacer mas bonito el alert
+            alert(log[1]);
+        }
     };
 
     return (
