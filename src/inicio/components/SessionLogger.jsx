@@ -32,7 +32,7 @@ function SessionLogger() {
             <Dialog open={open} onClose={() => setOpen(false)}>
                 <DialogTitle>Inicia sesión en <Vezzel/></DialogTitle>
                 <DialogContent>
-                    <h3 className={"text-lg" + theme.lightText}>
+                    <h3 className={"font-mono text-lg" + theme.lightText} style={{fontFamily: "Cascadia Code"}}>
                         Bienvenid@ de vuelta!
                     </h3>
                     <TextField required autoFocus fullWidth margin="dense" id="mail" label="Correo electrónico" type="email" variant="standard"/>

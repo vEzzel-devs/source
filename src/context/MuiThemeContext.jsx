@@ -5,6 +5,9 @@ const themeLight = createTheme({
     palette: {
         mode: "light",
     },
+    typography: {
+        fontFamily: `"Cascadia Code", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace`
+    },
     components: {
         MuiTooltip: {
             styleOverrides: {
@@ -109,6 +112,9 @@ const themeLight = createTheme({
 const themeDark = createTheme({
     palette: {
         mode: "dark",
+    },
+    typography: {
+        fontFamily: `"Cascadia Code", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace`
     },
     components: {
         MuiTooltip: {
@@ -218,7 +224,7 @@ export function MuiThemeContextProvider(props) {
     if (localTheme?.mainBg === " bg-neutral-800") {
         [ muiDark, setMuiDark ] = useState(true);
     } else {
-        [ muiDark, setMuiDark ] = useState(true);
+        [ muiDark, setMuiDark ] = useState(false);
     }
     const toggleMui = () => { setMuiDark(!muiDark); };
     return (

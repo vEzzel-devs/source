@@ -33,7 +33,7 @@ function SessionRegister() {
             <Dialog open={open} onClose={() => setOpen(false)}>
                 <DialogTitle>Regístrate en <Vezzel/></DialogTitle>
                 <DialogContent>
-                    <h3 className={"text-lg" + theme.lightText}>
+                <h3 className={"font-mono text-lg" + theme.lightText} style={{fontFamily: "Cascadia Code"}}>
                         Ingrese los siguientes datos a continuación:
                     </h3>
                     <TextField autoFocus fullWidth margin="dense" id="mail" label="Correo electrónico" type="email" variant="standard"/>
