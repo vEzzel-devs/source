@@ -8,6 +8,7 @@ export async function search(){
 }
 
 export async function search_default(){
+  // esta query es para cuando no se ingresa nada en el buscador
   let name= String('');
   let tags= [''];
   let result = await search_query(name, tags);
