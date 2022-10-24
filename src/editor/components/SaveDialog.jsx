@@ -26,7 +26,7 @@ function SaveDialog() {
             <Dialog open={open} onClose={() => setOpen(false)}>
                 <DialogTitle>Guardar proyecto</DialogTitle>
                 <DialogContent>
-                    <input className={"font-mono p-2 mb-2 w-full outline-0 border-2 rounded-md" + theme.mainBg + theme.mainText + theme.mainBorder} placeholder="Título del proyecto" style="font-family: Cascadia Code;"/>
+                    <input className={"font-mono p-2 mb-2 w-full outline-0 border-2 rounded-sm" + theme.mainBg + theme.mainText + theme.mainBorder} placeholder="Título del proyecto" style={{fontFamily: "Cascadia Code"}}/>
                     <textarea className={"font-mono p-2 mb-2 h-32 w-full outline-0 border-2 overflow-y-scroll resize-none" + theme.mainBg + theme.mainText + theme.mainBorder + theme.scrollbar} placeholder="Descripción del proyecto" style={{fontFamily: "Cascadia Code"}}/>
                     <Autocomplete
                         multiple
@@ -44,8 +44,8 @@ function SaveDialog() {
                     />
                 </DialogContent>
                 <DialogActions>
-                    <button className={"md:w-1/4 mr-2 p-2 rounded-lg border-2" + theme.mainText + theme.mainBg + theme.secondaryButton} onClick={() => setOpen(false)}>Cancelar</button>
-                    <button className={"md:w-1/4 mr-2 p-2 rounded-lg border-2" + theme.mainText + theme.mainBg + theme.primaryButton} type="submit" onClick={handleSubmit}>Guardar</button>
+                    <button className={"font-mono md:w-1/4 mr-2 p-2 rounded-lg border-2" + theme.mainText + theme.mainBg + theme.secondaryButton} onClick={() => setOpen(false)} style={{fontFamily: "Cascadia Code"}}>Cancelar</button>
+                    <button className={"font-mono md:w-1/4 mr-2 p-2 rounded-lg border-2" + theme.mainText + theme.mainBg + theme.primaryButton} type="submit" onClick={handleSubmit} style={{fontFamily: "Cascadia Code"}}>Guardar</button>
                 </DialogActions>
             </Dialog>
         </>

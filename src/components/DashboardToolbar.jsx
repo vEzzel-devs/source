@@ -8,9 +8,9 @@ function DashboardToolbar(props) {
 
   return (
       <div className={"absolute top-0 left-0 pl-[80px] w-full" + theme.navbarBg + theme.mainText}>
-        <div className="flex flex-row h-16 items-center justify-between px-2 sm:px-6 lg:px-8">
+        <div className="flex flex-row h-16 content-center items-center justify-between px-2 sm:px-6 lg:px-8">
           {props.children}
-          <div className="flex items-center justify-self-end px-4 space-x-2">
+          <div className="flex content-center items-center justify-self-end px-4 space-x-2">
             <button onClick={toggleTheme} className={"rounded-full p-2" + theme.hoverNavbar}>
               {theme.buttonIcon}
             </button>

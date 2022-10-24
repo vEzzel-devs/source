@@ -23,28 +23,33 @@ function Toolbar() {
       <p>Control ($): Son celdas para realizar operaciones de control con otras celdas, como bucles, condicionales o eventos.</p>
       <p>Algebra (=): Son celdas para calcular expresiones matemáticas, utilizando funciones y operaciones.</p>
       </>}>
-      <div className="w-full space-x-1 flex flex-row">
-        <Autocomplete
-          multiple
-          disableClearable
-          popupIcon={""}
-          style={{ width: 300 }}
-          onChange={tagLimit(5)}
-          id="tags-outlined"
-          options={["tag1", "tag2", "tag3", "tag4", "tag5", "tag6", "tag7", "tag8", "tag9"]}
-          renderInput={(params) => (
-          <TextField
-            {...params}
-            placeholder="Tags"
+      <div className="w-5/6 space-x-1 flex flex-row justify-center self-center">
+        <div className="w-1/3 py-2 flex flex-row content-center self-center">
+          <Autocomplete
+            multiple
+            fullWidth
+            disableClearable
+            popupIcon={""}
+            onChange={tagLimit(3)}
+            id="tags-outlined"
+            options={["tagsimo tag de todos los tags 1", "tag2", "tag3", "tag4", "tag5", "tag6", "tag7", "tag8", "tag9"]}
+            renderInput={(params) => (
+            <TextField
+              {...params}
+              fullWidth
+              placeholder="Tags"
+            />
+            )}
           />
-          )}
-        />
-        <TextField
-          style={{ width: 350 }}
-          placeholder="Buscar"
-          id="input-search"
-        />
-        <button className={"p-4 rounded-lg" + theme.primaryText + theme.mainBg + theme.primaryButton} onClick={search}><SearchIcon/></button>
+        </div>
+        <div className="w-1/2 py-2 space-x-2 flex flex-row self-center content-center">
+          <TextField
+            fullWidth
+            placeholder="Buscar"
+            id="input-search"
+          />
+          <button className={"p-3 rounded-lg" + theme.primaryText + theme.mainBg + theme.primaryButton} onClick={search}><SearchIcon/></button>
+        </div>
       </div>
     </DashboardToolbar>
   )

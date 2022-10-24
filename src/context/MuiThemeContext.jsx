@@ -54,6 +54,7 @@ const themeLight = createTheme({
                         color: "#525252"
                     },
                     "& .MuiInputBase-input": {
+                        padding: "3px",
                         color: "#000000"
                     },
                     "& label.Mui-focused": {
@@ -68,23 +69,50 @@ const themeLight = createTheme({
                     "& .MuiInput-underline:after": {
                         borderBottomColor: "#541690"
                     },
+                    '& .MuiOutlinedInput-root': {
+                        maxHeight: "3rem",
+                        height: "3rem",
+                        borderWidth: "2px",
+                        '& fieldset': {
+                            borderWidth: "0px"
+                        },
+                        '&.Mui-focused fieldset': {
+                            borderWidth: "0px"
+                        }
+                    }
+                }
+            }
+        },
+        MuiFormControl: {
+            styleOverrides: {
+                root: {
+                    justifyContent: "center"
                 }
             }
         },
         MuiAutocomplete: {
             styleOverrides: {
                 root: {
+                    paddingRight: "3px",
                     "& .MuiOutlinedInput-root": {
+                        padding: "3px",
+                        flexGrow: "grow",
+                        flexWrap: "nowrap !important",
+                        overflowX: "scroll !important",
+                        overflowY: "hidden !important",
+                        borderWidth: "2px",
+                        "::-webkit-scrollbar": {
+                            height: "5px"
+                        },
+                        "::-webkit-scrollbar-track": {
+                            backgroundColor: "#E5E5E5"
+                        },
+                        "::-webkit-scrollbar-thumb": {
+                            borderRadius: "100vh",
+                            border: "3px solid #A3A3A3"
+                        },
                         "& fieldset": {
-                            borderColor: "#000000",
-                            borderWidth: "2px"
-                        },
-                        "&:hover fieldset": {
-                            borderColor: "#000000",
-                            borderWidth: "2px"
-                        },
-                        "&.Mui-focused fieldset": {
-                            borderColor: "#000000",
+                            display: "hidden !important"
                         }
                     },
                     "& .MuiChip-root": {
@@ -162,6 +190,7 @@ const themeDark = createTheme({
                         color: "#A3A3A3"
                     },
                     "& .MuiInputBase-input": {
+                        padding: "3px",
                         color: "#FFFFFF"
                     },
                     "& label.Mui-focused": {
@@ -176,24 +205,51 @@ const themeDark = createTheme({
                     "& .MuiInput-underline:after": {
                         borderBottomColor: "#FF4949"
                     },
+                    '& .MuiOutlinedInput-root': {
+                        maxHeight: "3rem",
+                        height: "3rem",
+                        borderWidth: "2px",
+                        '& fieldset': {
+                            borderWidth: "0px"
+                        },
+                        '&.Mui-focused fieldset': {
+                            borderWidth: "0px"
+                        }
+                    }
+                }
+            }
+        },
+        MuiFormControl: {
+            styleOverrides: {
+                root: {
+                    justifyContent: "center"
                 }
             }
         },
         MuiAutocomplete: {
             styleOverrides: {
                 root: {
+                    paddingRight: "3px",
                     "& .MuiOutlinedInput-root": {
+                        padding: "3px",
+                        flexGrow: "grow",
+                        flexWrap: "nowrap !important",
+                        overflowX: "scroll !important",
+                        overflowY: "hidden !important",
+                        borderWidth: "2px",
+                        "::-webkit-scrollbar": {
+                            height: "5px"
+                        },
+                        "::-webkit-scrollbar-track": {
+                            backgroundColor: "#262626"
+                        },
+                        "::-webkit-scrollbar-thumb": {
+                            borderRadius: "100vh",
+                            border: "3px solid #404040"
+                        },
                         "& fieldset": {
-                            borderColor: "#FFFFFF",
-                            borderWidth: "2px"
+                            display: "hidden !important"
                         },
-                        "&:hover fieldset": {
-                            borderColor: "#FFFFFF",
-                            borderWidth: "2px"
-                        },
-                        "&.Mui-focused fieldset": {
-                            borderColor: "#FFFFFF",
-                        }
                     },
                     "& .MuiChip-root": {
                         backgroundColor: "#FF4949",
