@@ -3,6 +3,7 @@ import { SpreadSheetContext } from '../context/SpreadSheetContext';
 import { useContext, useRef, useEffect, useState } from 'react'
 import { baseChar, rBaseChar } from "../utils/numbers.js";
 import { parseCell } from "../utils/strings.js";
+import { keydownHelper } from '../utils/helpers';
 import Vessel from '../components/Vessel';
 import Column from '../components/Column';
 import Row from '../components/Row';
@@ -10,7 +11,7 @@ import Row from '../components/Row';
 
 function SpreadSheet() {
   const { theme } = useContext(ThemeContext);
-  const { sheetDim, sheetData, setDim } = useContext(SpreadSheetContext);
+  const { sheetDim, sheetData, setDim, selectedCell, setNextCell } = useContext(SpreadSheetContext);
   const [ cells, setCells ] = useState([[<Vessel key={"A1"} cell={"A1"}/>],]);
   const [ cols, setCols ] = useState([<Column key={"col-key-A"} val={"A"}/>]);
   const [ rows, setRows ] = useState([<Row key={"row-key-1"} val={"1"}/>]);
@@ -102,6 +103,13 @@ function SpreadSheet() {
       setDim(newDim[0], newDim[1]);
     }
   }, [sheetData, theme]);
+
+  document.onkeydown = (event) => {
+    let changeToCell = keydownHelper(sheetDim, selectedCell.current.id, event);
+    if (changeToCell) {
+      setNextCell(changeToCell);
+    }
+  }
 
   return (
     <div className={"w-full p-3 h-full flex items-start justify-start" + theme.primaryBg}>

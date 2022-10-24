@@ -5,11 +5,12 @@ import { AutocompleteContext } from '../context/AutocompleteContext';
 import TooltipCell from './TooltipCell'
 import TooltipAC from './TooltipAC'
 import { parseCell } from "../utils/strings.js"
+import { keydownHelper } from "../utils/helpers.js"
 
 
 function Vessel({ cell }) {
   const { theme } = useContext(ThemeContext);
-  const { setVal, remVal, inputBar, setSelectedCell } = useContext(SpreadSheetContext);
+  const { setVal, remVal, inputBar, setSelectedCell, nextCell } = useContext(SpreadSheetContext);
   const { getAC } = useContext(AutocompleteContext);
   const [ addStyle, setAddStyle ] = useState("base");
   const vessel = useRef()
@@ -73,11 +74,11 @@ function Vessel({ cell }) {
   };
 
   useEffect(() => {
-    if (cell === "A1") {
+    if (cell === nextCell) {
       vessel.current.focus();
       setInputBarOnMe();
     }
-  }, []);
+  }, [nextCell]);
 
   return (
     <TooltipCell cellRef={vessel} cellRow={parseCell(cell)[1]} setCls={setAddStyle}>

@@ -19,6 +19,7 @@ export function SpreadSheetContextProvider(props) {
     const [sheetDim, setSheetDim] = useState(dim);
     const [sheetData, setSheetData] = useState(sheet);
     const [selectedCell, setSelectedCell] = useState(null);
+    const [nextCell, setNextCell] = useState("A1");
     const inputBar = useRef();
 
     const setDim = (cols, rows) => {
@@ -97,10 +98,12 @@ export function SpreadSheetContextProvider(props) {
             sheetData,
             selectedCell,
             inputBar,
+            nextCell,
             setDim,
             addDim,
             setVal,
             remVal,
+            setNextCell,
             setSelectedCell,
         })}>
             {props.children}
