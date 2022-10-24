@@ -33,12 +33,13 @@ export function RouteContextProvider(props) {
 
     let logged, setLogged;
     let localLogged = JSON.parse(localStorage.getItem('logged'));
+
     if (localLogged) {
         [ logged, setLogged ] = useState(true);
     } else {
         [ logged, setLogged ] = useState(false);
     }
-
+    
     useEffect(() => {
         localStorage.setItem('logged', JSON.stringify(logged));
     }, [logged]);

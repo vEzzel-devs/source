@@ -17,7 +17,8 @@ function SessionRegister() {
         let log = await register();
 
         if (log[0]) {
-            //hacer algo con la id que contiene log[1]
+            
+            localStorage.setItem('userid', (log[1]));
             setOpen(false);
             setLogged(true);
             navigate("/search");
