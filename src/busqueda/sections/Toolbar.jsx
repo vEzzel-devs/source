@@ -1,14 +1,16 @@
 import SearchIcon from '@mui/icons-material/Search';
 import DashboardToolbar from '../../components/DashboardToolbar'
 import { ThemeContext } from '../../context/ThemeContext'
+import { SearchContext } from "../context/SearchContext"
 import { useContext, useState } from 'react'
 import { Autocomplete, TextField } from '@mui/material';
 import {search} from "../utils/query";
 
 function Toolbar() {
   const { theme } = useContext(ThemeContext);
+  const { setResults } = useContext(SearchContext);
   const [added, setAdded] = useState([])
-  const [input, setInput] = useState('')
+  const [input, setInput] = useState("")
 
   const tagLimit = (to) => ((e, newValue) => {
     if (newValue.length > to) {
@@ -18,10 +20,15 @@ function Toolbar() {
   });
 
   const handleSearch = async () => {
-    // falta acutalizar la vista al hacer la busqueda
-    let searchSpread = await search(added,input);
-    //console.log(searchSpread);
-
+    let searchSpread = await search(added, input);
+    console.log(searchSpread);
+    try {
+      if (searchSpread) {
+        setResults(searchSpread);
+      }
+    } catch (e) {
+      console.log(e);
+    }
   };
   return (
     <DashboardToolbar helpText={<>
@@ -40,7 +47,7 @@ function Toolbar() {
             popupIcon={""}
             onChange={tagLimit(3)}
             id="tags-outlined"
-            options={["tagsimo tag de todos los tags 1", "tag2", "tag3", "tag4", "tag5", "tag6", "tag7", "tag8", "tag9"]}
+            options={["tag1", "tag2", "tag3", "tag4", "tag5", "tag6", "tag7", "tag8", "tag9"]}
             renderInput={(params) => (
             <TextField
               {...params}
