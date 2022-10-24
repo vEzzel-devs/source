@@ -1,22 +1,35 @@
-export async function search(){
-  let name= String(document.getElementById("input-search").value);
-  let tags= String(document.getElementById("tags").values);
-  console.log(name,tags);
-  let result = await search_query(name, tags);
-  console.log(result);
-  return result;
+export async function search(tags,name){
+  console.log(name, tags);
+  
+  
+  if (name == "" & tags == ""){
+    // esta query es para cuando no se ingresa nada en el buscador
+    name= String('');
+    tags= [''];
+    let result = await search_query(name, tags);
+    return result;
+  }
+  else if (name == "" & tags != ""){
+    // esta query es para cuando se ingresa solo tags en el buscador
+    name= String('');
+    tags= tags;
+    let result = await search_query(name, tags);
+    return result;
+  }
+  else if (name != "" & tags == ""){
+    // esta query es para cuando se ingresa solo nombre en el buscador
+    name= name;
+    tags= [''];
+    let result = await search_query(name, tags);
+    return result;
+  }
+  else{
+    let result = await search_query(name, tags);
+    return result;
+  }
+
+  
 }
-
-export async function search_default(){
-  // esta query es para cuando no se ingresa nada en el buscador
-  let name= String('');
-  let tags= [''];
-  let result = await search_query(name, tags);
-  console.log(result);
-  return result;
-}
-
-
 
 async function search_query(name, tags){
   var myHeaders = new Headers();

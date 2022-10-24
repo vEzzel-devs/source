@@ -7,9 +7,16 @@ import SaveIcon from '@mui/icons-material/Save';
 function SaveDialog() {
     const { theme } = useContext(ThemeContext);
     const [ open, setOpen ] = useState(false);
-    const [added, setAdded] = useState([])
+    const [added, setAdded] = useState([]) 
 
     const handleSubmit = () => {
+        // falta obtener la spreadsheet
+
+        let titulo = document.getElementById("titulo").value;
+        let descripcion = document.getElementById("desc").value;
+        let tags = added
+        
+        console.log(titulo, descripcion, tags);
         setOpen(false);
     };
 
@@ -26,8 +33,8 @@ function SaveDialog() {
             <Dialog open={open} onClose={() => setOpen(false)}>
                 <DialogTitle>Guardar proyecto</DialogTitle>
                 <DialogContent>
-                    <input className={"font-mono p-2 mb-2 w-full outline-0 border-2 rounded-sm" + theme.mainBg + theme.mainText + theme.mainBorder} placeholder="Título del proyecto" style={{fontFamily: "Cascadia Code"}}/>
-                    <textarea className={"font-mono p-2 mb-2 h-32 w-full outline-0 border-2 overflow-y-scroll resize-none" + theme.mainBg + theme.mainText + theme.mainBorder + theme.scrollbar} placeholder="Descripción del proyecto" style={{fontFamily: "Cascadia Code"}}/>
+                    <input id='titulo'  className={"font-mono p-2 mb-2 w-full outline-0 border-2 rounded-sm" + theme.mainBg + theme.mainText + theme.mainBorder} placeholder="Título del proyecto" style={{fontFamily: "Cascadia Code"}}/>
+                    <textarea id='desc' className={"font-mono p-2 mb-2 h-32 w-full outline-0 border-2 overflow-y-scroll resize-none" + theme.mainBg + theme.mainText + theme.mainBorder + theme.scrollbar} placeholder="Descripción del proyecto" style={{fontFamily: "Cascadia Code"}}/>
                     <Autocomplete
                         multiple
                         disableClearable

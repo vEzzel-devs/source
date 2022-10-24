@@ -8,6 +8,8 @@ import {search} from "../utils/query";
 function Toolbar() {
   const { theme } = useContext(ThemeContext);
   const [added, setAdded] = useState([])
+  const [input, setInput] = useState('')
+
   const tagLimit = (to) => ((e, newValue) => {
     if (newValue.length > to) {
       newValue.pop(); 
@@ -15,6 +17,12 @@ function Toolbar() {
     setAdded([...newValue]);
   });
 
+  const handleSearch = async () => {
+    // falta acutalizar la vista al hacer la busqueda
+    let searchSpread = await search(added,input);
+    //console.log(searchSpread);
+
+  };
   return (
     <DashboardToolbar helpText={<>
       <p>En esta vista puedes definir las funcionalidades y la vista de tu apliación mediante celdas tipadas. Entre los tipos disponibles:</p>
@@ -38,6 +46,7 @@ function Toolbar() {
               {...params}
               fullWidth
               placeholder="Tags"
+              
             />
             )}
           />
@@ -47,8 +56,9 @@ function Toolbar() {
             fullWidth
             placeholder="Buscar"
             id="input-search"
+            onChange={(e) => setInput(e.target.value)}
           />
-          <button className={"p-3 rounded-lg" + theme.primaryText + theme.mainBg + theme.primaryButton} onClick={search}><SearchIcon/></button>
+          <button className={"p-3 rounded-lg" + theme.primaryText + theme.mainBg + theme.primaryButton} onClick={handleSearch}><SearchIcon/></button>
         </div>
       </div>
     </DashboardToolbar>
