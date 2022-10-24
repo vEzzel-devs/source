@@ -1,5 +1,5 @@
-import { Autocomplete, DialogTitle, TextField } from "@mui/material";
-import { Dialog, DialogContent, DialogActions } from "@mui/material";
+import { Autocomplete, DialogTitle, TextField, Tooltip } from "@mui/material";
+import { Dialog, DialogContent, DialogActions, Zoom } from "@mui/material";
 import { useContext, useState } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
 import SaveIcon from '@mui/icons-material/Save';
@@ -22,7 +22,9 @@ function SaveDialog() {
 
     return (
         <>
-            <button className={"md:w-1/8 p-2 rounded-lg" + theme.primaryText + theme.mainBg + theme.primaryButton} onClick={() => setOpen(true)}><SaveIcon/></button>
+            <Tooltip TransitionComponent={Zoom} placement="bottom" enterDelay={500} title={"Guardar"} arrow>
+                <button className={"md:w-1/8 p-2 rounded-lg" + theme.primaryText + theme.mainBg + theme.primaryButton} onClick={() => setOpen(true)}><SaveIcon/></button>
+            </Tooltip>
             <Dialog open={open} onClose={() => setOpen(false)}>
                 <DialogTitle>Guardar proyecto</DialogTitle>
                 <DialogContent>
