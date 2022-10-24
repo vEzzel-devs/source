@@ -1,8 +1,8 @@
 export async function spreadsheet(){
   //id user para test = 6352f98082d156cd0571a0f2
-  // obtener id guardada al iniciar sesion
-  let id_user = '6352f98082d156cd0571a0f2';
   
+  let id_user = localStorage.getItem('userid');
+
   let result = await spreadsheet_query(id_user);
   
   return await result;
