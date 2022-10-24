@@ -9,13 +9,13 @@ function About() {
 
   return (
     <section className={theme.mainBg} id="about">
-      <div className={"w-full max-h-screen h-screen flex flex-col items-center" + theme.secondaryBg}>
+      <div className={"w-full h-screen flex flex-col justify-center items-center p-2 md:p-4" + theme.secondaryBg}>
         <ContainerBox>
-          <div className="flex justify-center">
-            <h1 className={"text-4xl" + theme.mainText}>El equipo <Vezzel/></h1>
+          <div className="p-2 md:px-6 md:py-4 flex justify-center items-center">
+            <h1 className={"text-4xl text-center" + theme.mainText}>El equipo <Vezzel/></h1>
           </div>
           <br/>
-          <div className="flex md:flex-row flex-col justify-center content-center md:px-16 gap-4 place-content-center">
+          <div className="flex lg:flex-row flex-col items-center justify-center px-2 lg:px-16 lg:space-x-4 space-y-2">
             <Card name="Vicente González" text="Desarrollador full stack."/>
             <Card name="Hernán Moreno" text="Desarrollador full stack."/>
             <Card name="Yerko Sepúlveda" text="Desarrollador full stack."/>

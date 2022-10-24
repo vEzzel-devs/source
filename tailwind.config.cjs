@@ -13,8 +13,9 @@ module.exports = {
                  "dark-alt-pattern": "url('/dark/pattern2.png')",
                 }),
       colors: {
-        "main-red": "#ff4949",
+        "main-red": "#FF4949",
         "main-purple": "#541690",
+        "neutral-850": "#1E1E1E"
       }
     },
   },

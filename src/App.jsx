@@ -1,9 +1,26 @@
 import { useEffect, useContext } from 'react';
 import { ThemeContext } from './context/ThemeContext'
-import Layout from './inicio/Layout'
+import { RouteContext } from './context/RouteContext'
+import { Navigate, Route, Routes } from 'react-router-dom';
 
 function App() {
   const { theme } = useContext(ThemeContext);
+  const { allRoutes, logged } = useContext(RouteContext);
+
+  useEffect(() => {
+    let localDim = JSON.parse(localStorage.getItem('sheetDim'));
+        if (localDim) {
+            localStorage.removeItem('sheetDim');
+        }
+        let localData = JSON.parse(localStorage.getItem('sheetData'));
+        if (localData) {
+          localStorage.removeItem('sheetData');
+        }
+        let localCells = JSON.parse(localStorage.getItem('sheetCells'));
+        if (localCells) {
+          localStorage.removeItem('sheetCells');
+        }
+  }, []);
 
   useEffect(() => {
     let icon = document.getElementById('icon');
@@ -12,7 +29,16 @@ function App() {
     }
   }, [theme]);
 
-  return <Layout />;
+  return (
+    <Routes>
+      {allRoutes.map((page, idx) => {
+        if (page.url === "/") {
+          return <Route key={`route-${idx}-to-${page}`} path={page.url} element={page.comp}/>;
+        } else {
+          return <Route key={`route-${idx}-to-${page}`} path={page.url} element={logged ? page.comp : <Navigate replace to={"/"}/>}/>;
+        }
+      })}
+    </Routes>
+  );
 }
-
 export default App

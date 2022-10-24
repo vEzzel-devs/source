@@ -9,14 +9,15 @@ function Slide({next, prev, id}) {
   const { text, multimedia } = useContext(CarrouselContext);
 
   return (
-    <>
-      <div className="w-1/3 m-auto">
-        <h1 className={"text-4xl" + theme.mainText}>{text[id].title}</h1>
-        <br/>
-        <h3 className={"text-lg" + theme.lightText}>{text[id].body}</h3>
-      </div>
-      <div className="w-1/2 max-h-screen h-screen flex items-center">
-        <img src={multimedia[id]} className="w-full"/>
+    <div className="h-screen flex flex-col space-y-4 items-center justify-center p-4">
+      <h1 className={"text-4xl" + theme.mainText}>{text[id].title}</h1>
+      <div className="flex flex-col md:flex-row">
+        <div className="md:w-1/3 m-auto ">
+          <h3 className={"text-lg" + theme.lightText}>{text[id].body}</h3>
+        </div>
+        <div className="md:w-1/2 flex items-center">
+          <img src={multimedia[id]} className="w-full"/>
+        </div>
       </div>
       <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
       <button onClick={prev} className={"pl-3 pr-1 rounded-full" + theme.hoverNavbar}>
@@ -26,7 +27,7 @@ function Slide({next, prev, id}) {
       <ArrowForwardIosIcon className={theme.lightText}/>
       </button>
       </div>
-    </>
+    </div>
   )
 }
 
