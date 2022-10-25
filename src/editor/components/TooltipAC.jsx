@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { SpreadSheetContext } from "../context/SpreadSheetContext";
+import { SpreadSheetContext } from "../../context/SpreadSheetContext";
 import { AutocompleteContext } from '../context/AutocompleteContext';
 import { ThemeContext } from "../../context/ThemeContext";
 import { Tooltip, Zoom } from "@mui/material";

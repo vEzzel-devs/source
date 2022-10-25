@@ -35,6 +35,27 @@ function Sidebar() {
     */
     { title: "Cerrar sesión",path:"/", icon:<PowerSettingsNewIcon/>, position:-1 },
   ];
+
+  const handleLogout = () => {
+    let localDim = JSON.parse(localStorage.getItem('sheetDim'));
+    if (localDim) {
+        localStorage.removeItem('sheetDim');
+    }
+    let localData = JSON.parse(localStorage.getItem('sheetData'));
+    if (localData) {
+      localStorage.removeItem('sheetData');
+    }
+    let localConfig = JSON.parse(localStorage.getItem('sheetConfig'));
+    if (localConfig) {
+      localStorage.removeItem('sheetConfig');
+    }
+    let localCells = JSON.parse(localStorage.getItem('sheetCells'));
+    if (localCells) {
+      localStorage.removeItem('sheetCells');
+    }
+    setLogged(false);
+  };
+
   return (
     <div className="h-screen z-10">
       <div className={`${isOpen ? "w-[200px]" : "w-[80px]"} duration-[100ms] h-screen p-5 relative` + theme.sidebarBg}>
@@ -53,7 +74,7 @@ function Sidebar() {
           {Menus.map((Menu, index) => (
             <Link to={Menu.path} key={`sb-link-${index}`}>
               <li
-                onClick={Menu.position === -1 ? ()=>setLogged(false) : ()=>{}}
+                onClick={Menu.position === -1 ? handleLogout : ()=>{}}
                 className={`flex flex-row justify-center rounded-md py-2 cursor-pointer text-md items-center
                 ${Menu.gap ? "mt-[60px]" : "mt-[1px]"} ${Menu.position === -1 ? "absolute bottom-[5%] px-2 space-x-1" : "space-x-2 px-4"}` + theme.hoverSidebar + theme.textSidebar}
               >

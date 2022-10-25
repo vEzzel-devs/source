@@ -15,9 +15,36 @@ export function SpreadSheetContextProvider(props) {
         },
     ];
     const dim = [6, 8];
+    const config = {
+        id: "",
+        title: "",
+        desc: "",
+        tags: []
+    };
 
-    const [sheetDim, setSheetDim] = useState(dim);
-    const [sheetData, setSheetData] = useState(sheet);
+    let sheetDim, setSheetDim;
+    let sheetData, setSheetData;
+    let sheetConfig, setSheetConfig;
+
+    let localDim = JSON.parse(localStorage.getItem('sheetDim'));
+    if (localDim) {
+        [sheetDim, setSheetDim] = useState(localDim);
+    } else {
+        [sheetDim, setSheetDim] = useState(dim);
+    }
+    let localData = JSON.parse(localStorage.getItem('sheetData'));
+    if (localData) {
+        [sheetData, setSheetData] = useState(localData);
+    } else {
+        [sheetData, setSheetData] = useState(sheet);
+    }
+    let localConfig = JSON.parse(localStorage.getItem('sheetConfig'));
+    if (localConfig) {
+        [sheetConfig, setSheetConfig] = useState(localConfig);
+    } else {
+        [sheetConfig, setSheetConfig] = useState(config);
+    }
+
     const [selectedCell, setSelectedCell] = useState(null);
     const [nextCell, setNextCell] = useState("A1");
     const inputBar = useRef();
@@ -67,35 +94,27 @@ export function SpreadSheetContextProvider(props) {
         }
     };
 
+    const restartSheet = () => {
+        setSheetDim(dim);
+        setSheetData(sheet);
+        setSheetConfig(config);
+    };
+
     useEffect(() => {
-        let localDim = JSON.parse(localStorage.getItem('sheetDim'));
-        if (localDim) {
-            setSheetDim(localDim);
-        }
-        let localData = JSON.parse(localStorage.getItem('sheetData'));
-        if (localData) {
-            setSheetData(localData);
-        }
-    }, []);
-    useEffect(() => {
-        let wait = async () => {
-            await new Promise(r => setTimeout(r, 10));
-            localStorage.setItem('sheetDim', JSON.stringify(sheetDim));
-        }
-        wait();
+        localStorage.setItem('sheetDim', JSON.stringify(sheetDim));
     }, [sheetDim]);
     useEffect(() => {
-        let wait = async () => {
-            await new Promise(r => setTimeout(r, 10));
-            localStorage.setItem('sheetData', JSON.stringify(sheetData));
-        }
-        wait();
+        localStorage.setItem('sheetData', JSON.stringify(sheetData));
     }, [sheetData]);
+    useEffect(() => {
+        localStorage.setItem('sheetConfig', JSON.stringify(sheetConfig));
+    }, [sheetConfig]);
 
     return (
         <SpreadSheetContext.Provider value={({
             sheetDim,
             sheetData,
+            sheetConfig,
             selectedCell,
             inputBar,
             nextCell,
@@ -103,6 +122,10 @@ export function SpreadSheetContextProvider(props) {
             addDim,
             setVal,
             remVal,
+            restartSheet,
+            setSheetDim,
+            setSheetData,
+            setSheetConfig,
             setNextCell,
             setSelectedCell,
         })}>

@@ -9,17 +9,21 @@ function App() {
 
   useEffect(() => {
     let localDim = JSON.parse(localStorage.getItem('sheetDim'));
-        if (localDim) {
-            localStorage.removeItem('sheetDim');
-        }
-        let localData = JSON.parse(localStorage.getItem('sheetData'));
-        if (localData) {
-          localStorage.removeItem('sheetData');
-        }
-        let localCells = JSON.parse(localStorage.getItem('sheetCells'));
-        if (localCells) {
-          localStorage.removeItem('sheetCells');
-        }
+    if (localDim) {
+        localStorage.removeItem('sheetDim');
+    }
+    let localData = JSON.parse(localStorage.getItem('sheetData'));
+    if (localData) {
+      localStorage.removeItem('sheetData');
+    }
+    let localConfig = JSON.parse(localStorage.getItem('sheetConfig'));
+    if (localConfig) {
+      localStorage.removeItem('sheetConfig');
+    }
+    let localCells = JSON.parse(localStorage.getItem('sheetCells'));
+    if (localCells) {
+      localStorage.removeItem('sheetCells');
+    }
   }, []);
 
   useEffect(() => {

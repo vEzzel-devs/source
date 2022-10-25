@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { SpreadSheetContext } from "../context/SpreadSheetContext";
+import { SpreadSheetContext } from "../../context/SpreadSheetContext";
 import { ThemeContext } from "../../context/ThemeContext";
 
 function TooltipCell(props) {

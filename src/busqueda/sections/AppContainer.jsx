@@ -29,14 +29,17 @@ function AppContainer() {
         {results && results.length > 0
           ? results.map((result, idx) => {
             return (
-              <ProjectCard
-                key={`project-result-key-prop-${idx}`}
-                title={result.name}
-                user={result.username}
-                desc={result.description}
-                tags={(result.tags).map(tag => String(tag))}
-                idx={idx}
-              />
+              <div key={`project-result-key-prop-${idx}`} className="w-full h-2/5 flex flex-row px-2">
+                <ProjectCard
+                  title={result.name}
+                  user={result.username}
+                  desc={result.description}
+                  tags={(result.tags).map(tag => String(tag))}
+                  idx={idx}
+                  sheetId={result["_id"]}
+                  sheetCont={result.content}
+                />
+              </div>
             );
           })
           : <p className={theme.mainText}>No se han encontrado resultados para tu búsqueda...</p>}

@@ -5,7 +5,7 @@ import UndoIcon from '@mui/icons-material/Undo';
 import RedoIcon from '@mui/icons-material/Redo';
 import { useContext } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
-import { SpreadSheetContext } from "../context/SpreadSheetContext";
+import { SpreadSheetContext } from "../../context/SpreadSheetContext";
 import SaveDialog from './SaveDialog';
 import { Tooltip, Zoom } from '@mui/material';
 

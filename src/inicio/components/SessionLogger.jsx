@@ -36,8 +36,8 @@ function SessionLogger() {
                     <h3 className={"font-mono text-lg" + theme.lightText} style={{fontFamily: "Cascadia Code"}}>
                         Bienvenid@ de vuelta!
                     </h3>
-                    <TextField required autoFocus fullWidth margin="dense" id="mail" label="Correo electrónico" type="email" variant="standard"/>
-                    <TextField required autoFocus fullWidth margin="dense" id="pass" label="Contraseña" type="password" variant="standard"/>
+                    <TextField autoFocus fullWidth margin="dense" id="mail" label="Correo electrónico" type="email" variant="standard"/>
+                    <TextField fullWidth margin="dense" id="pass" label="Contraseña" type="password" variant="standard"/>
                 </DialogContent>
                 <DialogActions>
                     <button className={"font-mono md:w-1/4 mr-2 p-2 rounded-lg border-2" + theme.mainText + theme.mainBg + theme.secondaryButton} onClick={() => setOpen(false)} style={{fontFamily: "Cascadia Code"}}>Volver</button>

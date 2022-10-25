@@ -1,4 +1,5 @@
 export async function search(tags,name){
+    tags = tags.length > 0 ? tags : [""];
     let result = await search_query(name, tags);
     return result;
 }

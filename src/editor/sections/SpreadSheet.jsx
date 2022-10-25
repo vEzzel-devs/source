@@ -1,5 +1,5 @@
 import { ThemeContext } from '../../context/ThemeContext'
-import { SpreadSheetContext } from '../context/SpreadSheetContext';
+import { SpreadSheetContext } from '../../context/SpreadSheetContext';
 import { useContext, useRef, useEffect, useState } from 'react'
 import { baseChar, rBaseChar } from "../utils/numbers.js";
 import { parseCell } from "../utils/strings.js";
@@ -16,7 +16,7 @@ function SpreadSheet() {
   const [ cols, setCols ] = useState([<Column key={"col-key-A"} val={"A"}/>]);
   const [ rows, setRows ] = useState([<Row key={"row-key-1"} val={"1"}/>]);
   
-  useEffect(() => {
+  useEffect(() => { /* cells load */
     let oldCells = [...cells];
     let newCells = oldCells.map(() => []);
     let children = oldCells.map((col) => {
@@ -54,10 +54,10 @@ function SpreadSheet() {
     setRows(finalCells[0].map((_, idx) => {
       let row = `${idx + 1}`;
       return <Row key={"row-key-" + row} val={row}/>;
-    }).slice(0, sheetDim[1]))
+    }).slice(0, sheetDim[1]));
   }, [sheetDim]);
 
-  useEffect(() => {
+  useEffect(() => { /* dynamic resize */
     let newDim = [...sheetDim]
     let less = true;
     let oldCells = [...cells];
@@ -67,6 +67,9 @@ function SpreadSheet() {
     sheetData.forEach((element) => {
       let [ x, y ] = parseCell(element.ref)
       let [ nx, ny ] = [rBaseChar(x) - 1, parseInt(y) - 1];
+      if (nx >= children.length || ny >= children.length[0]) {
+        return;
+      }
       if (children[nx][ny] === element.ref) {
         let vessel = document.getElementById(element.ref)
         vessel.value = element.cell.cont;

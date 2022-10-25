@@ -1,5 +1,5 @@
 import { ThemeContext } from '../../context/ThemeContext'
-import { SpreadSheetContext } from '../context/SpreadSheetContext';
+import { SpreadSheetContext } from '../../context/SpreadSheetContext';
 import { useContext, useState, useRef, useEffect } from 'react'
 import { AutocompleteContext } from '../context/AutocompleteContext';
 import TooltipCell from './TooltipCell'

@@ -2,7 +2,7 @@ import DashboardToolbar from '../../components/DashboardToolbar'
 import { ThemeContext } from '../../context/ThemeContext'
 import { useContext } from 'react'
 import Vezzel from '../../components/Vezzel'
-import { SpreadSheetContext } from '../context/SpreadSheetContext';
+import { SpreadSheetContext } from '../../context/SpreadSheetContext';
 import InputBar from '../components/InputBar';
 import ButtonRack from '../components/ButtonRack';
 

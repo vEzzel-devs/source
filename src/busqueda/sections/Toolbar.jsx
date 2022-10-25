@@ -21,7 +21,6 @@ function Toolbar() {
 
   const handleSearch = async () => {
     let searchSpread = await search(added, input);
-    console.log(searchSpread);
     try {
       if (searchSpread) {
         setResults(searchSpread);
