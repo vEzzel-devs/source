@@ -60,8 +60,8 @@ function SaveDialog() {
             <Dialog open={open} onClose={handleCancel}>
                 <DialogTitle>Guardar proyecto</DialogTitle>
                 <DialogContent>
-                    <input id='titulo' ref={titleRef} className={"font-mono p-2 mb-2 w-full outline-0 border-2 rounded-sm" + theme.mainBg + theme.mainText + theme.mainBorder} placeholder="Título del proyecto" style={{fontFamily: "Cascadia Code"}}/>
-                    <textarea id='desc' ref={descRef} className={"font-mono p-2 mb-2 h-32 w-full outline-0 border-2 overflow-y-scroll resize-none" + theme.mainBg + theme.mainText + theme.mainBorder + theme.scrollbar} placeholder="Descripción del proyecto" style={{fontFamily: "Cascadia Code"}}/>
+                    <input id='titulo' ref={titleRef} className={"font-mono p-2 mb-2 w-full outline-0 border-2 rounded-sm" + theme.mainBg + theme.mainText + theme.borderNavbar} placeholder="Título del proyecto" style={{fontFamily: "Cascadia Code"}}/>
+                    <textarea id='desc' ref={descRef} className={"font-mono p-2 mb-2 h-32 w-full outline-0 border-2 overflow-y-scroll resize-none" + theme.mainBg + theme.mainText + theme.borderNavbar + theme.scrollbar} placeholder="Descripción del proyecto" style={{fontFamily: "Cascadia Code"}}/>
                     <Autocomplete
                         multiple
                         disableClearable

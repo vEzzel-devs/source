@@ -61,7 +61,7 @@ const themeLight = createTheme({
                         color: "#541690"
                     },
                     "& .MuiInput-underline:before": {
-                        borderBottomColor: "#525252"
+                        borderBottomColor: "#404040"
                     },
                     "& .MuiInput-underline:not(.Mui-disabled):hover::before": {
                         borderBottomColor: "#000000"
@@ -73,6 +73,7 @@ const themeLight = createTheme({
                         maxHeight: "3rem",
                         height: "3rem",
                         borderWidth: "2px",
+                        borderColor: "#404040",
                         '& fieldset': {
                             borderWidth: "0px"
                         },
@@ -102,14 +103,14 @@ const themeLight = createTheme({
                         overflowY: "hidden !important",
                         borderWidth: "2px",
                         "::-webkit-scrollbar": {
-                            height: "5px"
+                            height: "1px"
                         },
                         "::-webkit-scrollbar-track": {
                             backgroundColor: "#E5E5E5"
                         },
                         "::-webkit-scrollbar-thumb": {
                             borderRadius: "100vh",
-                            border: "3px solid #A3A3A3"
+                            border: "1px solid #A3A3A3"
                         },
                         "& fieldset": {
                             display: "hidden !important"
@@ -197,7 +198,7 @@ const themeDark = createTheme({
                         color: "#FF4949"
                     },
                     "& .MuiInput-underline:before": {
-                        borderBottomColor: "#A3A3A3"
+                        borderBottomColor: "#D4D4D4"
                     },
                     "& .MuiInput-underline:not(.Mui-disabled):hover::before": {
                         borderBottomColor: "#FFFFFF"
@@ -209,6 +210,7 @@ const themeDark = createTheme({
                         maxHeight: "3rem",
                         height: "3rem",
                         borderWidth: "2px",
+                        borderColor: "#D4D4D4",
                         '& fieldset': {
                             borderWidth: "0px"
                         },
@@ -238,14 +240,14 @@ const themeDark = createTheme({
                         overflowY: "hidden !important",
                         borderWidth: "2px",
                         "::-webkit-scrollbar": {
-                            height: "5px"
+                            height: "1px"
                         },
                         "::-webkit-scrollbar-track": {
                             backgroundColor: "#262626"
                         },
                         "::-webkit-scrollbar-thumb": {
                             borderRadius: "100vh",
-                            border: "3px solid #404040"
+                            border: "1px solid #404040"
                         },
                         "& fieldset": {
                             display: "hidden !important"
