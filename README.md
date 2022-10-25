@@ -6,4 +6,4 @@ coded in every way, and of course, it will be private.
 
 This project is being developed with SCRUM, using some JavaScript technologies oriented
 to web programming, the purpose of this platform is explained with more detail in
-the official site of vEzzel, so visit us there! (url when it gets deployed)
+the official site of vEzzel, so visit us there! [https://vezzel.netlify.app/](https://vezzel.netlify.app/)
