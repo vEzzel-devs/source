@@ -10,7 +10,7 @@ import { keydownHelper } from "../utils/helpers.js"
 
 function Vessel({ cell }) {
   const { theme } = useContext(ThemeContext);
-  const { setVal, remVal, inputBar, setSelectedCell, nextCell } = useContext(SpreadSheetContext);
+  const { setVal, remVal, inputBar, setSelectedCell, nextCell, sheetData } = useContext(SpreadSheetContext);
   const { getAC } = useContext(AutocompleteContext);
   const [ addStyle, setAddStyle ] = useState("base");
   const vessel = useRef()
@@ -79,6 +79,15 @@ function Vessel({ cell }) {
       setInputBarOnMe();
     }
   }, [nextCell]);
+
+  useEffect(() => {
+    sheetData.forEach((element) => {
+      if (cell === element.ref) {
+        vessel.current.value = element.cell.cont;
+        vessel.current.classList.add(theme.cells[element.cell.cls].slice(1));
+      }
+    });
+  }, []);
 
   return (
     <TooltipCell cellRef={vessel} cellRow={parseCell(cell)[1]} setCls={setAddStyle}>

@@ -44,10 +44,6 @@ function Toolbar() {
   };
 
   const handleNew = () => {
-    let localCells = JSON.parse(localStorage.getItem('sheetCells'));
-    if (localCells) {
-      localStorage.removeItem('sheetCells');
-    }
     restartSheet();
     navigate("/edit");
   };

@@ -1,9 +1,11 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { SpreadSheetContext } from "../context/SpreadSheetContext";
 import { ThemeContext } from "../context/ThemeContext";
 
 function ProjectCard({title, desc, user, tags, idx, sheetId, sheetCont}) {
     const { theme } = useContext(ThemeContext);
+    const { setSheetDim, setSheetData, setSheetConfig } = useContext(SpreadSheetContext);
     const navigate = useNavigate();
 
     const clickHandler = () => {
@@ -14,9 +16,9 @@ function ProjectCard({title, desc, user, tags, idx, sheetId, sheetCont}) {
         desc,
         tags
       });
-      localStorage.setItem('sheetDim', sheet.shape);
-      localStorage.setItem('sheetData', sheet.cont);
-      localStorage.setItem('sheetConfig', config);
+      setSheetDim(JSON.parse(sheet.shape));
+      setSheetData(JSON.parse(sheet.cont));
+      setSheetConfig(JSON.parse(config));
       navigate("/edit");
     };
 

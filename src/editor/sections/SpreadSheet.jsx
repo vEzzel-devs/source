@@ -16,7 +16,7 @@ function SpreadSheet() {
   const [ cols, setCols ] = useState([<Column key={"col-key-A"} val={"A"}/>]);
   const [ rows, setRows ] = useState([<Row key={"row-key-1"} val={"1"}/>]);
   
-  useEffect(() => { /* cells load */
+  const cellsLoad = () => {
     let oldCells = [...cells];
     let newCells = oldCells.map(() => []);
     let children = oldCells.map((col) => {
@@ -55,26 +55,13 @@ function SpreadSheet() {
       let row = `${idx + 1}`;
       return <Row key={"row-key-" + row} val={row}/>;
     }).slice(0, sheetDim[1]));
-  }, [sheetDim]);
+  };
 
-  useEffect(() => { /* dynamic resize */
+  const dynamicResize = () => {
     let newDim = [...sheetDim]
     let less = true;
-    let oldCells = [...cells];
-    let children = oldCells.map((col) => {
-      return col.map((cell) => String(cell.key));
-    });
     sheetData.forEach((element) => {
       let [ x, y ] = parseCell(element.ref)
-      let [ nx, ny ] = [rBaseChar(x) - 1, parseInt(y) - 1];
-      if (nx >= children.length || ny >= children.length[0]) {
-        return;
-      }
-      if (children[nx][ny] === element.ref) {
-        let vessel = document.getElementById(element.ref)
-        vessel.value = element.cell.cont;
-        vessel.classList.add(theme.cells[element.cell.cls].slice(1));
-      }
       if (baseChar(newDim[0]-1) === x) {
         newDim[0] += 1;
         less = false;
@@ -105,6 +92,16 @@ function SpreadSheet() {
     if (notEqual) {
       setDim(newDim[0], newDim[1]);
     }
+  };
+
+  
+
+  useEffect(() => {
+    cellsLoad();
+  }, [sheetDim]);
+
+  useEffect(() => {
+    dynamicResize();
   }, [sheetData, theme]);
 
   document.onkeydown = (event) => {
