@@ -26,6 +26,14 @@ function AppContainer() {
         {cards.map((card, idx) => {
             return (
               <div key={`project-card-key-prop-${idx}`} className="w-full h-2/5 flex flex-row px-2">
+                <ProjectCard
+                  title={card.name}
+                  desc={card.description}
+                  tags={(card.tags).map(tag => String(tag))}
+                  idx={idx}
+                  sheetId={card["_id"]}
+                  sheetCont={card.content}
+                />
                 <DeleteDialog
                   itemId={card["_id"]}
                   itemName={card.name}
@@ -35,14 +43,6 @@ function AppContainer() {
                     aux.splice(idx, 1);
                     setCards(aux);
                   }}/>
-                <ProjectCard
-                  title={card.name}
-                  desc={card.description}
-                  tags={(card.tags).map(tag => String(tag))}
-                  idx={idx}
-                  sheetId={card["_id"]}
-                  sheetCont={card.content}
-                />
               </div>
             )
           })}

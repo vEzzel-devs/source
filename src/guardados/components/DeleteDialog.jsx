@@ -17,7 +17,7 @@ function DeleteDialog({itemId, itemName, idx, takeMeOut}) {
 
     return (
         <>
-            <div className={"flex content-center items-center" + (idx % 2 === 1 ? theme.mainBg : theme.highBg)}>
+            <div className={"flex content-start p-2 items-start" + (idx % 2 === 1 ? theme.mainBg : theme.highBg)}>
                 <Tooltip TransitionComponent={Zoom} placement="bottom" enterDelay={500} title={"Eliminar"} arrow>
                     <button className={"h-8" + theme.primaryText} onClick={()=>setOpen(true)}><DeleteOutlineIcon/></button>
                 </Tooltip>

@@ -12,6 +12,7 @@ import FolderIcon from '@mui/icons-material/Folder';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import { ThemeContext } from "../context/ThemeContext";
 import { RouteContext } from "../context/RouteContext";
+import { Tooltip, Zoom } from "@mui/material";
 
 function Sidebar() {
   const { theme } = useContext(ThemeContext)
@@ -25,10 +26,11 @@ function Sidebar() {
     /*
     { title: "Perfil",path:"/", icon:<PersonIcon/> },
     */
+    { title: "Editor",path:"/edit", icon:<EditIcon/>},
     { title: "Guardados",path:"/saved", icon:<FolderIcon/>},
+
     /*
-    { title: "Editor",path:"/Editor", icon:<EditIcon/>},
-    { title: "Ejecutar",path:"/Ejecutar", icon:<PlayArrowIcon/>},
+    { title: "Ejecutar",path:"/exec", icon:<PlayArrowIcon/>},
     
     { title: "mensajeria ",path:"/", icon:<ChatIcon/>, gap: true  },
     { title: "favoritos",path:"/", icon:<FavoriteIcon/> },
@@ -73,18 +75,20 @@ function Sidebar() {
         <ul className="pt-6">
           {Menus.map((Menu, index) => (
             <Link to={Menu.path} key={`sb-link-${index}`}>
-              <li
-                onClick={Menu.position === -1 ? handleLogout : ()=>{}}
-                className={`flex flex-row justify-center rounded-md py-2 cursor-pointer text-md items-center
-                ${Menu.gap ? "mt-[60px]" : "mt-[1px]"} ${Menu.position === -1 ? "absolute bottom-[5%] px-2 space-x-1" : "space-x-2 px-4"}` + theme.hoverSidebar + theme.textSidebar}
-              >
-                <span>
-                  {Menu.icon}
-                </span>
-                <span className={`${!isOpen && "hidden"} origin-left self-stretch`}>
-                  {Menu.title}
-                </span>
-              </li>
+              <Tooltip TransitionComponent={Zoom} placement="right" enterDelay={120} title={Menu.title} arrow>
+                <li
+                  onClick={Menu.position === -1 ? handleLogout : ()=>{}}
+                  className={`flex flex-row justify-center rounded-md py-2 cursor-pointer text-md items-center
+                  ${Menu.gap ? "mt-[60px]" : "mt-[1px]"} ${Menu.position === -1 ? "absolute bottom-[5%] px-2 space-x-1" : "space-x-2 px-4"}` + theme.hoverSidebar + theme.textSidebar}
+                >
+                  <span>
+                    {Menu.icon}
+                  </span>
+                  <span className={`${!isOpen && "hidden"} origin-left self-stretch`}>
+                    {Menu.title}
+                  </span>
+                </li>
+              </Tooltip>
             </Link>
           ))}
         </ul>

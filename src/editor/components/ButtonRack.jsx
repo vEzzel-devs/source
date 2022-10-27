@@ -16,9 +16,9 @@ function ButtonRack() {
     const copyHandler = () => {
         let copy = selectedCell.current.value;
         selectedCell.current.select();
-        document.execCommand("cut");
+        document.execCommand("copy");
+        window.getSelection().collapseToEnd();
         selectedCell.current.focus();
-        selectedCell.current.value = copy;
     };
 
     const cutHandler = () => {

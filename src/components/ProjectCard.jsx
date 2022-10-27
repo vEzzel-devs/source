@@ -23,9 +23,9 @@ function ProjectCard({title, desc, user, tags, idx, sheetId, sheetCont}) {
     };
 
     return (
-      <>
+      <div className="w-full h-full flex cursor-pointer" onClick={clickHandler}>
         <div className={"md:w-2/3 py-5 pl-4 flex flex-row md:flex-col" + (idx % 2 === 1 ? theme.mainBg : theme.highBg) + theme.mainText}>
-          <h2 className="text-xl md:text-2xl xl:text-4xl cursor-pointer" onClick={clickHandler}>{title}{user ? <em className={"text-lg"}> por {user}</em> : ""}</h2>
+          <h2 className="text-xl md:text-2xl xl:text-4xl">{title}{user ? <em className={"text-lg"}> por {user}</em> : ""}</h2>
           <br className="md:block hidden"/>
           <h3 className={"text-sm" + (idx % 2 === 1 ? theme.lightText : theme.mainText)}>{desc}</h3>
         </div>
@@ -43,7 +43,7 @@ function ProjectCard({title, desc, user, tags, idx, sheetId, sheetCont}) {
             </div>
           </div>
         </div>
-      </>
+      </div>
     )
 }
 

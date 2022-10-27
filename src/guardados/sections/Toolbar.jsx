@@ -54,7 +54,7 @@ function Toolbar() {
       </>}>
       <div className="ml-4 flex flex-row space-x-2">
         <button className={"md:w-36 flex self-start justify-center mr-2 p-2 rounded-lg border-2" + theme.primaryButton + theme.primaryText} onClick={handleNew}><DesignServicesIcon/> Nuevo</button>
-        {isLatest ? <button className={"md:w-36 flex self-start justify-center mr-2 p-2 rounded-lg border-2" + theme.secondaryButton + theme.secondaryText} onClick={handleContinue}><EditIcon/> Continuar</button> : <></>}
+        {isLatest ? <button className={"md:w-36 flex self-start justify-center mr-2 p-2 rounded-lg border-2" + theme.primaryButton + theme.primaryText} onClick={handleContinue}><EditIcon/> Continuar</button> : <></>}
       </div>
     </DashboardToolbar>
   )

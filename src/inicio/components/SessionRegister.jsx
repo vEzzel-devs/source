@@ -35,7 +35,7 @@ function SessionRegister() {
                 <DialogTitle>Regístrate en <Vezzel/></DialogTitle>
                 <DialogContent>
                 <h3 className={"font-mono text-lg" + theme.lightText} style={{fontFamily: "Cascadia Code"}}>
-                        Ingrese los siguientes datos a continuación:
+                        La contraseña debe contener al menos una mayúscula, un dígito y un largo de 8 caracteres, con eso en mente, ingrese sus datos a continuación:
                     </h3>
                     <TextField autoFocus fullWidth margin="dense" id="mail" label="Correo electrónico" type="email" variant="standard"/>
                     <TextField fullWidth margin="dense" id="name" label="Nombre de usuario" type="name" variant="standard"/>

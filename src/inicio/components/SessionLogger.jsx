@@ -34,7 +34,7 @@ function SessionLogger() {
                 <DialogTitle>Inicia sesión en <Vezzel/></DialogTitle>
                 <DialogContent>
                     <h3 className={"font-mono text-lg" + theme.lightText} style={{fontFamily: "Cascadia Code"}}>
-                        Bienvenid@ de vuelta!
+                        Bienvenid@ de vuelta! Ingresa tus credenciales a continuación:
                     </h3>
                     <TextField autoFocus fullWidth margin="dense" id="mail" label="Correo electrónico" type="email" variant="standard"/>
                     <TextField fullWidth margin="dense" id="pass" label="Contraseña" type="password" variant="standard"/>
