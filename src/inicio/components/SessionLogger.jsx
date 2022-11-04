@@ -37,7 +37,7 @@ function SessionLogger() {
                         Bienvenid@ de vuelta! Ingresa tus credenciales a continuación:
                     </h3>
                     <TextField autoFocus fullWidth margin="dense" id="mail" label="Correo electrónico" type="email" variant="standard"/>
-                    <TextField fullWidth margin="dense" id="pass" label="Contraseña" type="password" variant="standard"/>
+                    <TextField fullWidth margin="dense" id="pass" label="Contraseña" type="password" variant="standard" onKeyPress = {(e) =>{if (e.code == "Enter"){handleSubmit()}}}/>
                 </DialogContent>
                 <DialogActions>
                     <button className={"font-mono md:w-1/4 mr-2 p-2 rounded-lg border-2" + theme.mainText + theme.mainBg + theme.secondaryButton} onClick={() => setOpen(false)} style={{fontFamily: "Cascadia Code"}}>Volver</button>
