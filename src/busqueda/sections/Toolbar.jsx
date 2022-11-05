@@ -61,6 +61,7 @@ function Toolbar() {
             placeholder="Buscar"
             id="input-search"
             onChange={(e) => setInput(e.target.value)}
+            onKeyPress = {(e) =>{if (e.code == "Enter"){handleSearch()}}}
           />
           <button className={"p-3 rounded-lg" + theme.primaryText + theme.mainBg + theme.primaryButton} onClick={handleSearch}><SearchIcon/></button>
         </div>
