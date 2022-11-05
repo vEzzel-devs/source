@@ -5,11 +5,12 @@ import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Vezzel from "../../components/Vezzel";
 import { ThemeContext } from "../../context/ThemeContext";
-import { RouteContext } from "../../context/RouteContext";
+import { SystemContext } from "../../context/SystemContext";
 import {register} from "../utils/query";
+
 function SessionRegister() {
     const { theme } = useContext(ThemeContext);
-    const { setLogged } = useContext(RouteContext);
+    const { logged, setLogged } = useContext(SystemContext);
     const [ open, setOpen ] = useState(false);
     const navigate = useNavigate();
 

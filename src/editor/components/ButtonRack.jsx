@@ -38,19 +38,19 @@ function ButtonRack() {
         <div className="space-x-2">
             <SaveDialog/>
             <Tooltip TransitionComponent={Zoom} placement="bottom" enterDelay={500} title={"Copiar"} arrow>
-                <button className={"md:w-1/8 p-2 rounded-lg" + theme.primaryText + theme.mainBg + theme.primaryButton} onClick={copyHandler}><ContentCopyIcon/></button>
+                <button className={"md:w-1/8 p-3 rounded-lg" + theme.primaryText + theme.mainBg + theme.primaryButton} onClick={copyHandler}><ContentCopyIcon/></button>
             </Tooltip>
             <Tooltip TransitionComponent={Zoom} placement="bottom" enterDelay={500} title={"Cortar"} arrow>
-                <button className={"md:w-1/8 p-2 rounded-lg" + theme.primaryText + theme.mainBg + theme.primaryButton} onClick={cutHandler}><ContentCutIcon/></button>
+                <button className={"md:w-1/8 p-3 rounded-lg" + theme.primaryText + theme.mainBg + theme.primaryButton} onClick={cutHandler}><ContentCutIcon/></button>
             </Tooltip>
             <Tooltip TransitionComponent={Zoom} placement="bottom" enterDelay={500} title={"Pegar"} arrow>
-                <button className={"md:w-1/8 p-2 rounded-lg" + theme.primaryText + theme.mainBg + theme.primaryButton} onClick={pasteHandler}><ContentPasteIcon/></button>
+                <button className={"md:w-1/8 p-3 rounded-lg" + theme.primaryText + theme.mainBg + theme.primaryButton} onClick={pasteHandler}><ContentPasteIcon/></button>
             </Tooltip>
             <Tooltip TransitionComponent={Zoom} placement="bottom" enterDelay={500} title={"Deshacer"} arrow>
-                <button className={"md:w-1/8 p-2 rounded-lg" + theme.primaryText + theme.mainBg + theme.primaryButton} onClick={()=>document.execCommand("undo")}><UndoIcon/></button>
+                <button className={"md:w-1/8 p-3 rounded-lg" + theme.primaryText + theme.mainBg + theme.primaryButton} onClick={()=>document.execCommand("undo")}><UndoIcon/></button>
             </Tooltip>
             <Tooltip TransitionComponent={Zoom} placement="bottom" enterDelay={500} title={"Rehacer"} arrow>
-                <button className={"md:w-1/8 p-2 rounded-lg" + theme.primaryText + theme.mainBg + theme.primaryButton} onClick={()=>document.execCommand("redo")}><RedoIcon/></button>
+                <button className={"md:w-1/8 p-3 rounded-lg" + theme.primaryText + theme.mainBg + theme.primaryButton} onClick={()=>document.execCommand("redo")}><RedoIcon/></button>
             </Tooltip>
         </div>
     )

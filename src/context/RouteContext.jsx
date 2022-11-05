@@ -4,7 +4,6 @@ import { Layout as Editor } from "../editor/Layout";
 import { Layout as Ejecutar } from "../ejecutar/Layout";
 import { Layout as Busqueda } from "../busqueda/Layout";
 import { Layout as Guardados } from "../guardados/Layout";
-import { useState, useEffect } from "react";
 
 export const RouteContext = createContext();
 export function RouteContextProvider(props) {
@@ -31,21 +30,8 @@ export function RouteContextProvider(props) {
         },
     ];
 
-    let logged, setLogged;
-    let localLogged = JSON.parse(localStorage.getItem('logged'));
-
-    if (localLogged) {
-        [ logged, setLogged ] = useState(true);
-    } else {
-        [ logged, setLogged ] = useState(false);
-    }
-    
-    useEffect(() => {
-        localStorage.setItem('logged', JSON.stringify(logged));
-    }, [logged]);
-
     return (
-        <RouteContext.Provider value={({ allRoutes, logged, setLogged })}>
+        <RouteContext.Provider value={({ allRoutes })}>
             {props.children}
         </RouteContext.Provider>
     )

@@ -134,6 +134,17 @@ const themeLight = createTheme({
                     },
                 }
             }
+        },
+        MuiCircularProgress: {
+            styleOverrides: {
+                root: {
+                    width: "256px !important",
+                    height: "256px !important",
+                    color: "#000000",
+                    alignSelf: "center",
+                    justifySelf: "center"
+                }
+            }
         }
     }
 });
@@ -271,6 +282,17 @@ const themeDark = createTheme({
                     },
                 }
             }
+        },
+        MuiCircularProgress: {
+            styleOverrides: {
+                root: {
+                    width: "256px !important",
+                    height: "256px !important",
+                    color: "#FFFFFF",
+                    alignSelf: "center",
+                    justifySelf: "center"
+                }
+            }
         }
     }
 });
@@ -278,8 +300,8 @@ const themeDark = createTheme({
 export const MuiThemeContext = createContext();
 export function MuiThemeContextProvider(props) {
     let muiDark, setMuiDark;
-    let localTheme = JSON.parse(localStorage.getItem('theme'));
-    if (localTheme?.mainBg === " bg-neutral-800") {
+    let localTheme = localStorage.getItem('theme');
+    if (localTheme === "dark") {
         [ muiDark, setMuiDark ] = useState(true);
     } else {
         [ muiDark, setMuiDark ] = useState(false);
@@ -287,7 +309,7 @@ export function MuiThemeContextProvider(props) {
     const toggleMui = () => { setMuiDark(!muiDark); };
     return (
         <ThemeProvider theme={muiDark ? themeDark : themeLight}>
-            <MuiThemeContext.Provider value={({ toggleMui })}>
+            <MuiThemeContext.Provider value={({ toggleMui, muiDark })}>
                 { props.children }
             </MuiThemeContext.Provider>
         </ThemeProvider>

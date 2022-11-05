@@ -2,12 +2,14 @@ import SearchIcon from '@mui/icons-material/Search';
 import DashboardToolbar from '../../components/DashboardToolbar'
 import { ThemeContext } from '../../context/ThemeContext'
 import { SearchContext } from "../context/SearchContext"
+import { SystemContext } from '../../context/SystemContext';
 import { useContext, useState } from 'react'
 import { Autocomplete, TextField } from '@mui/material';
 import {search} from "../utils/query";
 
 function Toolbar() {
   const { theme } = useContext(ThemeContext);
+  const { allTags } = useContext(SystemContext);
   const { setResults } = useContext(SearchContext);
   const [added, setAdded] = useState([])
   const [input, setInput] = useState("")
@@ -42,7 +44,7 @@ function Toolbar() {
             popupIcon={""}
             onChange={tagLimit(3)}
             id="tags-outlined"
-            options={["tag1", "tag2", "tag3", "tag4", "tag5", "tag6", "tag7", "tag8", "tag9"]}
+            options={allTags}
             renderInput={(params) => (
             <TextField
               {...params}

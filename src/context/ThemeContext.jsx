@@ -6,7 +6,7 @@ import DarkModeIcon from '@mui/icons-material/DarkMode';
 const LIGHT = ({
     "folder" : "light",
     "scrollbar": " light-scrollbar",
-    "buttonIcon" : <DarkModeIcon className="text-neutral-700 hover:text-black"/>,
+    "buttonIcon" : <DarkModeIcon className="text-neutral-700"/>,
     "iconHover": " text-neutral-700 hover:text-black",
     "sidebarBg": " bg-neutral-100",
     "hoverSidebar" : " hover:bg-neutral-400 hover:text-black",
@@ -41,7 +41,7 @@ const LIGHT = ({
 const DARK = ({
     "folder" : "dark",
     "scrollbar": " dark-scrollbar",
-    "buttonIcon": <LightModeIcon className="text-neutral-300 hover:text-white"/>,
+    "buttonIcon": <LightModeIcon className="text-neutral-300"/>,
     "iconHover": " text-neutral-300 hover:text-white",
     "sidebarBg": " bg-neutral-850",
     "hoverSidebar" : " hover:bg-neutral-500 hover:text-white",
@@ -78,8 +78,8 @@ export const ThemeContext = createContext();
 export function ThemeContextProvider(props) {
     const { toggleMui } = useContext(MuiThemeContext);
     let theme, setTheme;
-    let localTheme = JSON.parse(localStorage.getItem('theme'));
-    if (localTheme?.mainBg === " bg-neutral-800") {
+    let localTheme = localStorage.getItem('theme');
+    if (localTheme === 'dark') {
         [theme, setTheme] = useState(DARK);
     } else {
         [theme, setTheme] = useState(LIGHT);
@@ -94,7 +94,11 @@ export function ThemeContextProvider(props) {
     }
 
     useEffect(() => {
-        localStorage.setItem('theme', JSON.stringify(theme));
+        if (theme.mainBg === " bg-neutral-800") {
+            localStorage.setItem('theme', 'dark');
+        } else {
+            localStorage.setItem('theme', 'light');
+        }
     }, [theme]);
 
     return (
