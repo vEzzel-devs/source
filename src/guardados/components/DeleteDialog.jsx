@@ -2,15 +2,25 @@ import { DialogTitle, DialogContent, Zoom } from "@mui/material";
 import { Dialog, Tooltip, DialogActions } from "@mui/material";
 import { useContext, useState } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
+import { SystemContext } from "../../context/SystemContext";
+import { SpreadSheetContext } from "../../context/SpreadSheetContext";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { removespread } from "../utils/query.js";
 
 function DeleteDialog({itemId, itemName, idx, takeMeOut}) {
     const { theme } = useContext(ThemeContext);
+    const { setLoading, setIsLatest } = useContext(SystemContext);
+    const { sheetConfig, restartSheet } = useContext(SpreadSheetContext);
     const [ open, setOpen ] = useState(false);
 
     const handleSubmit = async () => {
+        setLoading(true);
         let res = await removespread(itemId);
+        if (sheetConfig.id === itemId) {
+            setIsLatest(false);
+            restartSheet();
+        }
+        setLoading(false);
         setOpen(false);
         takeMeOut();
     };

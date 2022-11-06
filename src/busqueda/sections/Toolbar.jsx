@@ -9,7 +9,7 @@ import {search} from "../utils/query";
 
 function Toolbar() {
   const { theme } = useContext(ThemeContext);
-  const { allTags } = useContext(SystemContext);
+  const { allTags, setLoading } = useContext(SystemContext);
   const { setResults } = useContext(SearchContext);
   const [added, setAdded] = useState([])
   const [input, setInput] = useState("")
@@ -22,6 +22,7 @@ function Toolbar() {
   });
 
   const handleSearch = async () => {
+    setLoading(true);
     let searchSpread = await search(added, input);
     try {
       if (searchSpread) {

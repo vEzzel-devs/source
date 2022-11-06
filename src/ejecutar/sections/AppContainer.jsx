@@ -34,7 +34,10 @@ function AppContainer() {
       <div className={"w-1/4 h-full p-1 md:p-2 md:pl-0 pl-0 flex flex-col" + theme.mainBg}>
         <div className={"w-full h-full flex flex-col overflow-y-scroll justify-start" + theme.scrollbar}>
           {ph.map((props, idx) => {
-            return <CommentCard {...props} idx={idx} key={`comment-${idx}-on-this-sheet`}/>
+            if (props.desc === "") {
+              return <></>;
+            }
+            return <CommentCard {...props} idx={idx} key={`comment-${idx}-on-this-sheet`}/>;
           })}
         </div>
       </div>

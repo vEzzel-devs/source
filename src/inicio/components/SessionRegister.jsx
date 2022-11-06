@@ -10,15 +10,16 @@ import {register} from "../utils/query";
 
 function SessionRegister() {
     const { theme } = useContext(ThemeContext);
-    const { logged, setLogged } = useContext(SystemContext);
+    const { logged, setLogged, setLoading } = useContext(SystemContext);
     const [ open, setOpen ] = useState(false);
     const navigate = useNavigate();
 
     const handleSubmit = async () => {
+        setLoading(true);
         let log = await register();
-
+        setLoading(false);
+        await new Promise(r => setTimeout(r, 10));
         if (log[0]) {
-            
             localStorage.setItem('userid', (log[1]));
             setOpen(false);
             setLogged(true);

@@ -13,10 +13,8 @@ export function SystemContextProvider(props) {
         "tag6",
     ];
 
+    const [ isLatest, setIsLatest ] = useState(false);
     const [ loading, setLoading ] = useState(false);
-    const toggleLoading = () => {
-        setLoading(!loading);
-    }
 
     let logged, setLogged;
     let localLogged = JSON.parse(localStorage.getItem('logged'));
@@ -32,7 +30,15 @@ export function SystemContextProvider(props) {
     }, [logged]);
 
     return (
-        <SystemContext.Provider value={({ allTags, logged, loading, setLogged, toggleLoading })}>
+        <SystemContext.Provider value={({
+            allTags,
+            logged,
+            loading,
+            isLatest,
+            setIsLatest,
+            setLogged,
+            setLoading,
+        })}>
             {props.children}
         </SystemContext.Provider>
     )

@@ -10,14 +10,16 @@ import {logger} from "../utils/query";
 
 function SessionLogger() {
     const { theme } = useContext(ThemeContext);
-    const { setLogged } = useContext(SystemContext);
+    const { setLogged, setLoading } = useContext(SystemContext);
     const [ open, setOpen ] = useState(false);
     const navigate = useNavigate();
 
     const handleSubmit = async () => {
+        setLoading(true);
         let log = await logger();
+        setLoading(false);
+        await new Promise(r => setTimeout(r, 10));
         if (log[0]) {
-            
             localStorage.setItem('userid', (log[1]));
             setOpen(false);
             setLogged(true);

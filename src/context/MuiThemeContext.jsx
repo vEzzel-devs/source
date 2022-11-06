@@ -138,9 +138,9 @@ const themeLight = createTheme({
         MuiCircularProgress: {
             styleOverrides: {
                 root: {
-                    width: "256px !important",
-                    height: "256px !important",
-                    color: "#000000",
+                    width: "128px !important",
+                    height: "128px !important",
+                    color: "#404040",
                     alignSelf: "center",
                     justifySelf: "center"
                 }
@@ -286,9 +286,9 @@ const themeDark = createTheme({
         MuiCircularProgress: {
             styleOverrides: {
                 root: {
-                    width: "256px !important",
-                    height: "256px !important",
-                    color: "#FFFFFF",
+                    width: "128px !important",
+                    height: "128px !important",
+                    color: "#A3A3A3",
                     alignSelf: "center",
                     justifySelf: "center"
                 }

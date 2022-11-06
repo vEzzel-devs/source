@@ -5,15 +5,16 @@ import { useNavigate } from "react-router-dom";
 import EditIcon from '@mui/icons-material/Edit';
 import SearchIcon from '@mui/icons-material/Search';
 import DesignServicesIcon from '@mui/icons-material/DesignServices';
-import { latestSpread } from '../../editor/utils/query';
+import { latestSpread } from '../utils/query';
 import { SpreadSheetContext } from '../../context/SpreadSheetContext';
 import { Tooltip, Zoom, TextField } from '@mui/material';
+import { SystemContext } from '../../context/SystemContext';
 
 function Toolbar() {
   const { theme } = useContext(ThemeContext);
   const { setSheetDim, setSheetData, setSheetConfig, restartSheet } = useContext(SpreadSheetContext);
-  const [isLatest, setIsLatest] = useState(false);
-  const [input, setInput] = useState("")
+  const { isLatest, setIsLatest } = useContext(SystemContext);
+  const [ input, setInput ] = useState("")
   const navigate = useNavigate();
 
   useEffect(() => {

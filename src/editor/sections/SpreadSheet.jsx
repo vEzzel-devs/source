@@ -94,8 +94,6 @@ function SpreadSheet() {
     }
   };
 
-  
-
   useEffect(() => {
     cellsLoad();
   }, [sheetDim]);

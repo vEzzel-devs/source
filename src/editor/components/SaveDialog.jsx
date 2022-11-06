@@ -9,7 +9,7 @@ import { SystemContext } from "../../context/SystemContext";
 
 function SaveDialog() {
     const { theme } = useContext(ThemeContext);
-    const { allTags } = useContext(SystemContext);
+    const { allTags, setLoading } = useContext(SystemContext);
     const { sheetData, sheetDim, setSheetConfig, sheetConfig } = useContext(SpreadSheetContext);
     const [ open, setOpen ] = useState(false);
     const titleRef = useRef();
@@ -38,13 +38,18 @@ function SaveDialog() {
         };
         let title = titleRef.current.value;
         let desc = descRef.current.value;
+        setLoading(true);
         if (sheetConfig.id) {
             let res = await editspread(sheetConfig.id, content, title, desc, tags);
         } else {
             let res = await savespread(content, title, desc, tags);
         }
-        setSheetConfig({title, desc, tags});
+        setLoading(false);
         setOpen(false);
+        let localConfig = JSON.parse(localStorage.getItem('sheetConfig'));
+        if (localConfig) {
+            setSheetConfig(localConfig);
+        }
     };
 
     const tagLimit = (to) => ((e, newValue) => {

@@ -1,15 +1,26 @@
+function updateConfig(res, title, desc, tags) {
+  let config = JSON.stringify({
+    id: res.id,
+    title,
+    desc,
+    tags
+  });
+  localStorage.setItem('sheetConfig', config);
+}
+
 export async function savespread(content, name_s, description, tags){
   let id_user = localStorage.getItem('userid');
   content = JSON.stringify(content);
   let result = await savespread_query(id_user,name_s,tags,description,content);
+  updateConfig(result, name_s, description, tags);
   return result;
 }
 
 export async function editspread(sheet_id, content, name_s, description, tags){
-  //change for edit!
   let id_user = localStorage.getItem('userid');
   content = JSON.stringify(content);
   let result = await editspread_query(id_user,sheet_id,name_s,tags,description,content);
+  updateConfig(result, name_s, description, tags);
   return result;
 }
 
@@ -66,45 +77,5 @@ async function editspread_query(id_user,id_sheet,name_s,tags,description,content
     return await result.json();
   } catch(e) {
     console.log(e);
-  }
-}
-
-function loadSheet(res) {
-  if (res.error) { return false; }
-  let sheet = JSON.parse(res.content);
-  let config = JSON.stringify({
-    id: String(res["_id"]),
-    title: res["name"],
-    desc: res["description"],
-    tags: res["tags"]
-  });
-  localStorage.setItem('sheetDim', sheet.shape);
-  localStorage.setItem('sheetData', sheet.cont);
-  localStorage.setItem('sheetConfig', config);
-  return true;
-}
-
-export async function latestSpread() {
-  try {
-    let id_user = localStorage.getItem('userid');
-    let res = await latestSpread_query(id_user);
-    return loadSheet(res);
-  } catch(e) {
-    return ({ error: "error" });
-  }
-}
-
-async function latestSpread_query(id_user){
-  // retorna el ultimo spreadsheet usado
-  var requestOptions = {
-    method: 'POST',
-    redirect: 'follow'
-  };
-  
-  try{
-    let result = await fetch("https://vezzel-api.herokuapp.com/spreadsheet_getlast/"+id_user, requestOptions)
-    return await result.json();
-  } catch(e) {
-    return ({ error: "error" });
   }
 }
