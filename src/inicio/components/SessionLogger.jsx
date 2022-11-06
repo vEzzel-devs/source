@@ -23,7 +23,7 @@ function SessionLogger() {
         await new Promise(r => setTimeout(r, 10));
         if (log[0]) {
             localStorage.setItem('userid', (log[1]));
-            setUsername(log[2]);
+            localStorage.setItem('username', (log[2]));
             setLogged(true);
             setOpen(false);
             navigate("/search");
