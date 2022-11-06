@@ -10,7 +10,7 @@ import {register} from "../utils/query";
 
 function SessionRegister() {
     const { theme } = useContext(ThemeContext);
-    const { logged, setLogged, setLoading } = useContext(SystemContext);
+    const { logged, setLogged, setLoading, logout } = useContext(SystemContext);
     const [ open, setOpen ] = useState(false);
     const navigate = useNavigate();
 
@@ -30,9 +30,17 @@ function SessionRegister() {
         }
     };
 
+    const btnHandler = () => {
+        if (logged) {
+            logout();
+        } else {
+            setOpen(true)
+        }
+    };
+
     return (
         <div className="mr-2">
-            <button className={"md:w-1/8 p-2 rounded-lg border-4" + theme.mainText + theme.mainBg + theme.secondaryButton} onClick={() => setOpen(true)}>Regístrate</button>
+            <button className={"md:w-1/8 p-2 rounded-lg border-4" + theme.mainText + theme.mainBg + theme.secondaryButton} onClick={btnHandler}>{logged ? "Cerrar sesión" : "Regístrate"}</button>
             <Dialog open={open} onClose={() => setOpen(false)}>
                 <DialogTitle>Regístrate en <Vezzel/></DialogTitle>
                 <DialogContent>

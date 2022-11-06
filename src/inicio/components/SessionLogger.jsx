@@ -10,7 +10,7 @@ import {logger} from "../utils/query";
 
 function SessionLogger() {
     const { theme } = useContext(ThemeContext);
-    const { setLogged, setLoading } = useContext(SystemContext);
+    const { logged, setLogged, setLoading } = useContext(SystemContext);
     const [ open, setOpen ] = useState(false);
     const navigate = useNavigate();
 
@@ -30,9 +30,17 @@ function SessionLogger() {
         }
     };
 
+    const btnHandler = () => {
+        if (logged) {
+            navigate("/search");
+        } else {
+            setOpen(true)
+        }
+    };
+
     return (
         <div className="mr-2">
-            <button className={"md:w-1/8 p-2 rounded-lg border-4" + theme.mainText + theme.mainBg + theme.primaryButton} onClick={() => setOpen(true)}>Inicia sesión</button>
+            <button className={"md:w-1/8 p-2 rounded-lg border-4" + theme.mainText + theme.mainBg + theme.primaryButton} onClick={btnHandler}>{logged ? "Acceder" : "Inicia sesión"}</button>
             <Dialog open={open} onClose={() => setOpen(false)}>
                 <DialogTitle>Inicia sesión en <Vezzel/></DialogTitle>
                 <DialogContent>

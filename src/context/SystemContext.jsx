@@ -28,6 +28,13 @@ export function SystemContextProvider(props) {
         localStorage.setItem('logged', JSON.stringify(logged));
     }, [logged]);
 
+    const logout = () => {
+        let theme = localStorage.getItem("theme");
+        localStorage.clear()
+        localStorage.setItem("theme", theme);
+        setLogged(false);
+    };
+
     return (
         <SystemContext.Provider value={({
             allTags,
@@ -35,6 +42,7 @@ export function SystemContextProvider(props) {
             loading,
             setLogged,
             setLoading,
+            logout,
         })}>
             {props.children}
         </SystemContext.Provider>

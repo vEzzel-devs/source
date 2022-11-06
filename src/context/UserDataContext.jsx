@@ -7,7 +7,7 @@ export const UserDataContext = createContext();
 export function UserDataContextProvider(props) {
 
     const [ isLatest, setIsLatest ] = useState(false);
-    const { setLoading } = useContext(SystemContext);
+    const { logged, setLoading } = useContext(SystemContext);
     const [ cards, setCards ] = useState([]);
     const addCard = (card) => {
         let oldCards = [...cards];
@@ -33,8 +33,10 @@ export function UserDataContextProvider(props) {
                 console.log(err);
             }
         }
-        fetchData();
-    }, []);
+        if (logged) {
+            fetchData();
+        }
+    }, [logged]);
 
     useEffect(() => {
         setLoading(false);
