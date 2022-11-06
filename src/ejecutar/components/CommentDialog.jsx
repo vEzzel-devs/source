@@ -73,7 +73,7 @@ function CommentDialog() {
     const updateOp = async () => {
         await new Promise(r => setTimeout(r, 10));
         let desc = descRef?.current?.value;
-        if (true && stars === 0 && desc === "" && comm.status !== 401) {
+        if (stars === 0 && desc === "" && comm.status !== 401) {
             setOp("Eliminar");
         } else if (comm!==[] && comm.status !== 401) {
             setOp("Editar");
