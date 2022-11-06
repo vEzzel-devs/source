@@ -9,26 +9,39 @@ import SheetData from '../components/SheetData';
 function AppContainer() {
   const { theme } = useContext(ThemeContext);
   const { userApp } = useContext(UserAppContext);
-  const { setLoading } = useContext(SystemContext);
+  const { loading,setLoading,reload,setReload } = useContext(SystemContext);
   const [ comm, setComm ] = useState([]);
 
   useEffect(() => {
-    async function getComm() {
-      await new Promise(r => setTimeout(r, 10));
+    async function first() {
+      await new Promise(r => setTimeout(r, 5));
       setLoading(true);
       try {
           const res  = await getSpreadComm(); 
-          console.log(res);
           setComm(res);
       } catch (err) {
           console.log(err);
       }
+      setLoading(false);
+      return;
     }
-    getComm();
+    first();
   }, []);
+
+
+  const getComm = async () => {
+    try {
+        const res  = await getSpreadComm(); 
+        setComm(res);
+    } catch (err) {
+        console.log(err);
+    }
+    setReload(false);
+    return;
+  };
   useEffect(() => {
-    setLoading(false);
-  }, [comm]);
+    getComm();
+  }, [reload]);
   
   return (
     <div className={"w-full p-3 h-full flex flex-row items-start justify-start" + theme.primaryBg}>

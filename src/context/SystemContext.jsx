@@ -14,6 +14,7 @@ export function SystemContextProvider(props) {
     ];
 
     const [ loading, setLoading ] = useState(false);
+    const [ reload,setReload ] = useState(false);
 
     let logged, setLogged;
     let localLogged = JSON.parse(localStorage.getItem('logged'));
@@ -40,9 +41,11 @@ export function SystemContextProvider(props) {
             allTags,
             logged,
             loading,
+            reload,
             setLogged,
             setLoading,
             logout,
+            setReload
         })}>
             {props.children}
         </SystemContext.Provider>

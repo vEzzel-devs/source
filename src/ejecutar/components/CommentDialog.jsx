@@ -2,21 +2,33 @@ import { DialogContent, DialogTitle, Tooltip } from "@mui/material";
 import { Dialog, DialogActions, Zoom } from "@mui/material";
 import { useContext, useState, useRef, useEffect } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
+import { SystemContext } from '../../context/SystemContext'
 import CommentIcon from '@mui/icons-material/Comment';
 import ValueStars from "./ValueStars";
+import {editComm,getUserSpreadComm,createComm,deleteComm} from "../utils/query";
 
 function CommentDialog() {
     const { theme } = useContext(ThemeContext);
     const [ open, setOpen ] = useState(false);
     const [ stars, setStars ] = useState(0);
     const [ op, setOp ] = useState("Publicar")
+    const [ comm, setComm ] = useState([]);
+    const { setReload } = useContext(SystemContext);
     const descRef = useRef();
 
     const handleOpen = () => {
         setOpen(true);
         let wait = async () => {
-            await new Promise(r => setTimeout(r, 10));
-            descRef.current.value = ""; // add detection
+            await new Promise(r => setTimeout(r, 5));
+            
+            if (comm.status !== 401) {
+                setStars(comm.score);
+                descRef.current.value = comm.comment // add detection    
+            }else{
+                setStars(0);
+                descRef.current.value = "";
+            }
+
         }
         wait();
     }
@@ -24,12 +36,38 @@ function CommentDialog() {
     const handleCancel = () => {
         setOpen(false);
     }
+    const getComm = async () => {
+        
+        try {
+            const res  = await getUserSpreadComm(); 
+            setComm(res);
+        } catch (err) {
+            console.log(err);
+        }
+        return;
+    };
+    useEffect(() => {
+        getComm();
+        setReload(true);
+    }, [open]);
 
     const handleSubmit = async () => {
-        let desc = descRef.current.value;
-        // query
+        let desc = descRef?.current?.value;
+        try {
+            if (op === "Editar") {
+                const res  = await editComm(comm._id,desc, stars);
+            }else if (op === "Publicar") {
+                const res  = await createComm(desc, stars);
+            }else if (op === "Eliminar") {
+                const res  = await deleteComm(comm._id);
+            }
+
+        } catch (e) {
+            console.log(e);
+        }
         setOpen(false);
     };
+
 
     const tagLimit = (to) => ((e, newValue) => {
         if (newValue.length > to) {
@@ -41,11 +79,11 @@ function CommentDialog() {
     const updateOp = async () => {
         await new Promise(r => setTimeout(r, 10));
         let desc = descRef?.current?.value;
-        if (true && stars === 0 && desc === "") {
+        if (true && stars === 0 && desc === "" && comm.status !== 401) {
             setOp("Eliminar");
-        } else if (true) {
+        } else if (comm!==[] && comm.status !== 401) {
             setOp("Editar");
-        } else {
+        } else if(comm.status === 401){
             setOp("Publicar");
         }
     }
