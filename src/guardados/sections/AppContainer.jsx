@@ -18,6 +18,8 @@ function AppContainer() {
                   title={card.name}
                   desc={card.description}
                   tags={(card.tags).map(tag => String(tag))}
+                  score={card.score}
+                  route="/edit"
                   idx={idx}
                   sheetId={card["_id"]}
                   sheetCont={card.content}

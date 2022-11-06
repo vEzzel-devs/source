@@ -22,7 +22,7 @@ async function spreadsheet_query(id_user){
   }
 }
 
-async function getUserComm(){
+export async function getUserComm(){
   // retorna todos los comentarios de un usuario
   let id_user = localStorage.getItem('userid');
 

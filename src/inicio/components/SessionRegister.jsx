@@ -6,11 +6,13 @@ import { useNavigate } from "react-router-dom";
 import Vezzel from "../../components/Vezzel";
 import { ThemeContext } from "../../context/ThemeContext";
 import { SystemContext } from "../../context/SystemContext";
+import { UserDataContext } from "../../context/UserDataContext";
 import {register} from "../utils/query";
 
 function SessionRegister() {
     const { theme } = useContext(ThemeContext);
     const { logged, setLogged, setLoading, logout } = useContext(SystemContext);
+    const { setUsername } = useContext(UserDataContext);
     const [ open, setOpen ] = useState(false);
     const navigate = useNavigate();
 
@@ -21,8 +23,9 @@ function SessionRegister() {
         await new Promise(r => setTimeout(r, 10));
         if (log[0]) {
             localStorage.setItem('userid', (log[1]));
-            setOpen(false);
+            setUsername(log[2]);
             setLogged(true);
+            setOpen(false);
             navigate("/search");
         }else{
             // hacer mas bonito el alert

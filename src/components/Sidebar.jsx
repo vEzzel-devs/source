@@ -11,13 +11,14 @@ import EditIcon from '@mui/icons-material/Edit';
 import FolderIcon from '@mui/icons-material/Folder';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import { ThemeContext } from "../context/ThemeContext";
-import { RouteContext } from "../context/RouteContext";
+import { SystemContext } from "../context/SystemContext";
 import { Tooltip, Zoom } from "@mui/material";
+
 
 function Sidebar() {
   const { theme } = useContext(ThemeContext)
-  const { setLogged } = useContext(RouteContext);
-  const [isOpen, setIsOpen] = useState(false);
+  const { logout } = useContext(SystemContext);
+  const [ isOpen, setIsOpen ] = useState(false);
   const toggleOpen = () => {
     setIsOpen(!isOpen);
   };
@@ -37,23 +38,7 @@ function Sidebar() {
   ];
 
   const handleLogout = () => {
-    let localDim = JSON.parse(localStorage.getItem('sheetDim'));
-    if (localDim) {
-        localStorage.removeItem('sheetDim');
-    }
-    let localData = JSON.parse(localStorage.getItem('sheetData'));
-    if (localData) {
-      localStorage.removeItem('sheetData');
-    }
-    let localConfig = JSON.parse(localStorage.getItem('sheetConfig'));
-    if (localConfig) {
-      localStorage.removeItem('sheetConfig');
-    }
-    let localCells = JSON.parse(localStorage.getItem('sheetCells'));
-    if (localCells) {
-      localStorage.removeItem('sheetCells');
-    }
-    setLogged(false);
+    
   };
 
   return (
@@ -75,7 +60,7 @@ function Sidebar() {
             <Link to={Menu.path} key={`sb-link-${index}`}>
               <Tooltip TransitionComponent={Zoom} placement="right" enterDelay={120} title={Menu.title} arrow>
                 <li
-                  onClick={Menu.position === -1 ? handleLogout : ()=>{}}
+                  onClick={Menu.position === -1 ? logout : ()=>{}}
                   className={`flex flex-row justify-center rounded-md py-2 cursor-pointer text-md items-center
                   ${Menu.gap ? "mt-[60px]" : "mt-[1px]"} ${Menu.position === -1 ? "absolute bottom-[5%] px-2 space-x-1" : "space-x-2 px-4"}` + theme.hoverSidebar + theme.textSidebar}
                 >

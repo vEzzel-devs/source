@@ -1,14 +1,22 @@
 import { createContext } from "react";
 import { useState, useEffect, useContext } from "react";
 import { SystemContext } from "./SystemContext";
-import {spreadsheet} from "../utils/query";
+import { spreadsheet, getUserComm } from "../utils/query.js";
 
 export const UserDataContext = createContext();
 export function UserDataContextProvider(props) {
-
+    let username, setUsername;
+    let localName = localStorage.getItem("username");
+    if (localName) {
+        [ username, setUsername ] = useState(localName);
+    } else {
+        [ username, setUsername ] = useState("");
+    }
     const [ isLatest, setIsLatest ] = useState(false);
     const { logged, setLoading } = useContext(SystemContext);
     const [ cards, setCards ] = useState([]);
+    const [ comments, setComments ] = useState([]);
+    
     const addCard = (card) => {
         let oldCards = [...cards];
         setCards([card, ...oldCards]);
@@ -20,8 +28,6 @@ export function UserDataContextProvider(props) {
         setCards([card, ...oldCards]);
     }
 
-    // make almost the same with comments
-
     useEffect(() => {
         async function fetchData() {
             await new Promise(r => setTimeout(r, 10));
@@ -29,23 +35,48 @@ export function UserDataContextProvider(props) {
             try {
                 const res  = await spreadsheet(); 
                 setCards(res);
+                const res2  = await getUserComm(); 
+                setComments(res2);
             } catch (err) {
                 console.log(err);
             }
         }
         if (logged) {
-            fetchData();
+            let localSaved = JSON.parse(sessionStorage.getItem("saved"));
+            if (localSaved) {
+                setCards(JSON.parse(localSaved.cards));
+                setComments(JSON.parse(localSaved.comments));
+            } else {
+                fetchData();
+            }
         }
     }, [logged]);
 
     useEffect(() => {
         setLoading(false);
-    }, [cards]);
+        let saved = ({
+            cards: JSON.stringify(cards),
+            comments: JSON.stringify(comments),
+        });
+        sessionStorage.setItem("saved", JSON.stringify(saved));
+    }, [cards, comments]);
+
+    useEffect(() => {
+        if (username != "") {
+            localStorage.setItem("username", username);
+        } else {
+            localStorage.removeItem("username");
+        }
+    }, [username]);
 
     return (
         <UserDataContext.Provider value={({
             isLatest,
             cards,
+            username,
+            comments,
+            setComments,
+            setUsername,
             addCard,
             updateCard,
             setCards,

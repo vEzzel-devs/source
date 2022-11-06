@@ -44,6 +44,8 @@ function AppContainer() {
                   user={result.username}
                   desc={result.description}
                   tags={(result.tags).map(tag => String(tag))}
+                  score={result.score}
+                  route="/run"
                   idx={idx}
                   sheetId={result["_id"]}
                   sheetCont={result.content}

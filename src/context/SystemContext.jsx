@@ -14,7 +14,8 @@ export function SystemContextProvider(props) {
     ];
 
     const [ loading, setLoading ] = useState(false);
-    const [ reload,setReload ] = useState(false);
+    // if it is for user comment checking, then it must change its name!
+    const [ reload, setReload ] = useState(false); 
 
     let logged, setLogged;
     let localLogged = JSON.parse(localStorage.getItem('logged'));

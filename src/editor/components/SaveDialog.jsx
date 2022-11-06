@@ -50,6 +50,10 @@ function SaveDialog() {
         }
         setLoading(false);
         setOpen(false);
+        if (!res) {
+            alert("Error de conexión");
+            return;
+        }
         let localConfig = JSON.parse(localStorage.getItem('sheetConfig'));
         if (localConfig) {
             setSheetConfig(localConfig);
@@ -60,6 +64,7 @@ function SaveDialog() {
                 description: desc,
                 name: title,
                 content: JSON.stringify(content),
+                score: 0,
                 tags,
             });
         } else {
@@ -68,6 +73,7 @@ function SaveDialog() {
                 description: desc,
                 name: title,
                 content: JSON.stringify(content),
+                score: sheetConfig.score,
                 tags,
             })
         }

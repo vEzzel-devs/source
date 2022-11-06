@@ -2,8 +2,9 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { SpreadSheetContext } from "../context/SpreadSheetContext";
 import { ThemeContext } from "../context/ThemeContext";
+import DoubleStars from "../components/DoubleStars";
 
-function ProjectCard({title, desc, user, tags, idx, sheetId, sheetCont}) {
+function ProjectCard({title, desc, user, tags, score, idx, sheetId, sheetCont, route}) {
     const { theme } = useContext(ThemeContext);
     const { setSheetDim, setSheetData, setSheetConfig } = useContext(SpreadSheetContext);
     const navigate = useNavigate();
@@ -14,12 +15,13 @@ function ProjectCard({title, desc, user, tags, idx, sheetId, sheetCont}) {
         id: sheetId,
         title,
         desc,
-        tags
+        tags,
+        score
       });
       setSheetDim(JSON.parse(sheet.shape));
       setSheetData(JSON.parse(sheet.cont));
       setSheetConfig(JSON.parse(config));
-      navigate("/edit");
+      navigate(route);
     };
 
     return (
@@ -31,7 +33,7 @@ function ProjectCard({title, desc, user, tags, idx, sheetId, sheetCont}) {
         </div>
         <div className={"md:w-1/3 py-5 pr-4 flex flex-row md:flex-col" + (idx % 2 === 1 ? theme.mainBg : theme.highBg) + theme.mainText}>
           <div className="flex self-start">
-            {/* Valoracion */}
+            <DoubleStars value={score}/>
           </div>
           <div className="h-full flex items-end content-end">
             <div className="flex flex-wrap justify-end">

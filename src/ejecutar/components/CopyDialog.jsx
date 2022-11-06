@@ -4,12 +4,14 @@ import { useContext, useState, useRef } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
 import SaveIcon from '@mui/icons-material/Save';
 import { SpreadSheetContext } from "../../context/SpreadSheetContext";
-import { savespread } from "../utils/query";
+import { UserDataContext } from "../../context/UserDataContext";
 import { SystemContext } from "../../context/SystemContext";
+import { savespread } from "../utils/query";
 
 function CopyDialog() {
     const { theme } = useContext(ThemeContext);
     const { allTags } = useContext(SystemContext);
+    const { addCard } = useContext(UserDataContext);
     const { sheetData, sheetDim, sheetConfig } = useContext(SpreadSheetContext);
     const [ open, setOpen ] = useState(false);
     const titleRef = useRef();
@@ -39,6 +41,18 @@ function CopyDialog() {
         let title = titleRef.current.value;
         let desc = descRef.current.value;
         let res = await savespread(content, title, desc, tags);
+        if (!res) {
+            alert("Error de conexión");
+            return;
+        }
+        addCard({
+            "_id": res.id,
+            description: desc,
+            name: title,
+            content: JSON.stringify(content),
+            score: 0,
+            tags,
+        });
         setOpen(false);
     };
 

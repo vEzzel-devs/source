@@ -16,10 +16,12 @@ function CommentDialog() {
     const { setReload } = useContext(SystemContext);
     const descRef = useRef();
 
+    // NEED FIX!!!!
+
     const handleOpen = () => {
         setOpen(true);
         let wait = async () => {
-            await new Promise(r => setTimeout(r, 5));
+            await new Promise(r => setTimeout(r, 10));
             
             if (comm.status !== 401) {
                 setStars(comm.score);
@@ -55,7 +57,7 @@ function CommentDialog() {
         let desc = descRef?.current?.value;
         try {
             if (op === "Editar") {
-                const res  = await editComm(comm._id,desc, stars);
+                const res  = await editComm(comm._id, desc, stars);
             }else if (op === "Publicar") {
                 const res  = await createComm(desc, stars);
             }else if (op === "Eliminar") {
@@ -67,14 +69,6 @@ function CommentDialog() {
         }
         setOpen(false);
     };
-
-
-    const tagLimit = (to) => ((e, newValue) => {
-        if (newValue.length > to) {
-          newValue.pop(); 
-        }
-        setTags([...newValue]);
-    });
 
     const updateOp = async () => {
         await new Promise(r => setTimeout(r, 10));

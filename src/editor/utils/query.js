@@ -12,7 +12,9 @@ export async function savespread(content, name_s, description, tags){
   let id_user = localStorage.getItem('userid');
   content = JSON.stringify(content);
   let result = await savespread_query(id_user,name_s,tags,description,content);
-  updateConfig(result, name_s, description, tags);
+  if (result) {
+    updateConfig(result, name_s, description, tags);
+  }
   return result;
 }
 
@@ -20,7 +22,9 @@ export async function editspread(sheet_id, content, name_s, description, tags){
   let id_user = localStorage.getItem('userid');
   content = JSON.stringify(content);
   let result = await editspread_query(id_user,sheet_id,name_s,tags,description,content);
-  updateConfig(result, name_s, description, tags);
+  if (result) {
+    updateConfig(result, name_s, description, tags);
+  }
   return result;
 }
 

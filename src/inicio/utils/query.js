@@ -1,14 +1,13 @@
 export async function logger(){
   let mail= String(document.getElementById("mail").value);
   let pass= String(document.getElementById("pass").value);
-  
   let result = await logger_query(mail, pass);
-
-  if (result.status === 401){
+  if (!result) {
+    return [false, "Falló la conexión"]
+  } else if (result.status === 401){
     return [false,String(result.message)];
-  }
-  else if (result.status === 200){
-    return [true,String(result.id)];
+  } else {
+    return [true,String(result.id)], String(result.username);
   }
 }
 
@@ -18,14 +17,13 @@ export async function register(){
   let pass= String(document.getElementById("pass").value);
   let user= String(document.getElementById("name").value);
 
-  let result = await register_query(mail, pass,user);
-  
-  if (result.status === 401){
-    
+  let result = await register_query(mail, pass, user);
+  if (!result) {
+    return [false, "Falló la conexión"]
+  } else if (result.status === 401) {
     return [false,String(Object.values(result.message).join().split(',').join('\n'))];
-  }
-  else if (result.status === 200){
-    return [true,String(result.id)];
+  } else{
+    return [true,String(result.id), user];
   }
 }
 

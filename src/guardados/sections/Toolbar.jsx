@@ -52,11 +52,18 @@ function Toolbar() {
     navigate("/edit");
   };
 
+  const resetHandler = () => {
+    location.reload()
+  }
+
   return (
     <DashboardToolbar helpText={<>
       <p>En esta vista se muestran todos los proyectos asociados a su cuenta, ya sea debido a que sean sus creaciones propias como otros proyectos a los que les hizo alguna modificación. Además, si quiere realizar un nuevo proyecto, o continuar con el último que edito, los botones de la barra de herramientas le permitirán hacer estas acciones. También en esta vista puede eliminar los proyectos que no vaya a necesitar más. Pero confirme a su propio riesgo, ya que una vez eliminado, su proyecto no podrá ser recuperado.</p>
       </>}>
       <div className="ml-4 flex flex-row space-x-2">
+      <Tooltip TransitionComponent={Zoom} placement="bottom" enterDelay={500} title={"Refrescar"} arrow>
+          <button className={"md:w-1/8 p-3 rounded-lg" + theme.primaryText + theme.mainBg + theme.primaryButton} onClick={resetHandler}><CachedIcon/></button>
+        </Tooltip>
         <Tooltip TransitionComponent={Zoom} placement="bottom" enterDelay={500} title={"Nuevo"} arrow>
           <button className={"md:w-1/8 p-3 rounded-lg" + theme.primaryText + theme.mainBg + theme.primaryButton} onClick={handleNew}><DesignServicesIcon/></button>
         </Tooltip>
