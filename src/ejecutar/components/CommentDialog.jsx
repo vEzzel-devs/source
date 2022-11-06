@@ -75,7 +75,7 @@ function CommentDialog() {
         let desc = descRef?.current?.value;
         if (stars === 0 && desc === "" && comm.status !== 401) {
             setOp("Eliminar");
-        } else if (comm!==[] && comm.status !== 401) {
+        } else if (comm.status !== 401) {
             setOp("Editar");
         } else if(comm.status === 401){
             setOp("Publicar");
