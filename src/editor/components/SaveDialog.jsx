@@ -2,14 +2,16 @@ import { Autocomplete, DialogTitle, TextField, Tooltip } from "@mui/material";
 import { Dialog, DialogContent, DialogActions, Zoom } from "@mui/material";
 import { useContext, useState, useRef } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
-import SaveIcon from '@mui/icons-material/Save';
 import { SpreadSheetContext } from "../../context/SpreadSheetContext";
 import { savespread, editspread } from "../utils/query";
 import { SystemContext } from "../../context/SystemContext";
+import { UserDataContext } from "../../context/UserDataContext";
+import SaveIcon from '@mui/icons-material/Save';
 
 function SaveDialog() {
     const { theme } = useContext(ThemeContext);
     const { allTags, setLoading } = useContext(SystemContext);
+    const { addCard, updateCard } = useContext(UserDataContext);
     const { sheetData, sheetDim, setSheetConfig, sheetConfig } = useContext(SpreadSheetContext);
     const [ open, setOpen ] = useState(false);
     const titleRef = useRef();
@@ -36,19 +38,38 @@ function SaveDialog() {
             shape: JSON.stringify(sheetDim),
             cont: JSON.stringify(sheetData)
         };
+        let res, newCard = false;
         let title = titleRef.current.value;
         let desc = descRef.current.value;
         setLoading(true);
-        if (sheetConfig.id) {
-            let res = await editspread(sheetConfig.id, content, title, desc, tags);
+        if (sheetConfig.id != "") {
+            res = await editspread(sheetConfig.id, content, title, desc, tags);
         } else {
-            let res = await savespread(content, title, desc, tags);
+            res = await savespread(content, title, desc, tags);
+            newCard = true;
         }
         setLoading(false);
         setOpen(false);
         let localConfig = JSON.parse(localStorage.getItem('sheetConfig'));
         if (localConfig) {
             setSheetConfig(localConfig);
+        }
+        if (newCard) {
+            addCard({
+                "_id": res.id,
+                description: desc,
+                name: title,
+                content: JSON.stringify(content),
+                tags,
+            });
+        } else {
+            updateCard({
+                "_id": sheetConfig.id,
+                description: desc,
+                name: title,
+                content: JSON.stringify(content),
+                tags,
+            })
         }
     };
 

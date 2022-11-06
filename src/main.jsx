@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { SpreadSheetContextProvider } from './context/SpreadSheetContext';
+import { UserDataContextProvider } from './context/UserDataContext';
 import { MuiThemeContextProvider } from './context/MuiThemeContext'
 import { ThemeContextProvider } from './context/ThemeContext'
 import { RouteContextProvider } from './context/RouteContext';
@@ -16,9 +17,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <RouteContextProvider>
           <MuiThemeContextProvider>
             <ThemeContextProvider>
-              <SpreadSheetContextProvider>
-                <App/>
-              </SpreadSheetContextProvider>
+              <UserDataContextProvider>
+                <SpreadSheetContextProvider>
+                  <App/>
+                </SpreadSheetContextProvider>
+              </UserDataContextProvider>
             </ThemeContextProvider>
           </MuiThemeContextProvider>
         </RouteContextProvider>

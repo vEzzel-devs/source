@@ -13,7 +13,6 @@ export function SystemContextProvider(props) {
         "tag6",
     ];
 
-    const [ isLatest, setIsLatest ] = useState(false);
     const [ loading, setLoading ] = useState(false);
 
     let logged, setLogged;
@@ -34,8 +33,6 @@ export function SystemContextProvider(props) {
             allTags,
             logged,
             loading,
-            isLatest,
-            setIsLatest,
             setLogged,
             setLoading,
         })}>

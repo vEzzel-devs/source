@@ -8,12 +8,12 @@ import DesignServicesIcon from '@mui/icons-material/DesignServices';
 import { latestSpread } from '../utils/query';
 import { SpreadSheetContext } from '../../context/SpreadSheetContext';
 import { Tooltip, Zoom, TextField } from '@mui/material';
-import { SystemContext } from '../../context/SystemContext';
+import { UserDataContext } from '../../context/UserDataContext';
 
 function Toolbar() {
   const { theme } = useContext(ThemeContext);
   const { setSheetDim, setSheetData, setSheetConfig, restartSheet } = useContext(SpreadSheetContext);
-  const { isLatest, setIsLatest } = useContext(SystemContext);
+  const { isLatest, setIsLatest } = useContext(UserDataContext);
   const [ input, setInput ] = useState("")
   const navigate = useNavigate();
 

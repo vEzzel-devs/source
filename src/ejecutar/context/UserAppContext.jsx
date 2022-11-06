@@ -31,7 +31,7 @@ export function UserAppContextProvider(props) {
         <VPlacer width={"1/3"}>
             <VButton text={"Click!"}/>
         </VPlacer>,],
-        [<VPlacer width={"3/5"}>
+        [<VPlacer width={"2/5"}>
             <VNote text={"Lorem ipsum and any other stuff that may appear in a paragraph."}/>
         </VPlacer>,
         <VPlacer width={"1/3"}>

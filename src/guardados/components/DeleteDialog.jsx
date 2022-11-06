@@ -4,12 +4,14 @@ import { useContext, useState } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
 import { SystemContext } from "../../context/SystemContext";
 import { SpreadSheetContext } from "../../context/SpreadSheetContext";
+import { UserDataContext } from "../../context/UserDataContext";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { removespread } from "../utils/query.js";
 
 function DeleteDialog({itemId, itemName, idx, takeMeOut}) {
     const { theme } = useContext(ThemeContext);
-    const { setLoading, setIsLatest } = useContext(SystemContext);
+    const { setLoading } = useContext(SystemContext);
+    const { setIsLatest } = useContext(UserDataContext)
     const { sheetConfig, restartSheet } = useContext(SpreadSheetContext);
     const [ open, setOpen ] = useState(false);
 

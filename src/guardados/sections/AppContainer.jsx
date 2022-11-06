@@ -1,32 +1,12 @@
 import { ThemeContext } from '../../context/ThemeContext'
-import { SystemContext } from '../../context/SystemContext'
-import { useContext, useState, useEffect } from 'react'
+import { UserDataContext } from '../../context/UserDataContext';
+import { useContext } from 'react'
 import ProjectCard from "../../components/ProjectCard"
 import DeleteDialog from '../components/DeleteDialog';
-import {spreadsheet} from "../utils/query";
 
 function AppContainer() {
   const { theme } = useContext(ThemeContext);
-  const { setLoading } = useContext(SystemContext);
-  const [ cards, setCards ] = useState([]);
-  
-  useEffect(() => {
-      async function fetchData() {
-        await new Promise(r => setTimeout(r, 10));
-        setLoading(true);
-        try {
-            const res  = await spreadsheet(); 
-            setCards(res);
-        } catch (err) {
-            console.log(err);
-        }
-      }
-      fetchData();
-  }, []);
-
-  useEffect(() => {
-    setLoading(false);
-  }, [cards]);
+  const { cards, setCards } = useContext(UserDataContext);
 
   return (
     <div className={"w-full p-3 h-full flex items-start justify-start" + theme.primaryBg}>

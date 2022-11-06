@@ -2,6 +2,7 @@ import { ThemeContext } from '../../context/ThemeContext'
 import { UserAppContext } from '../context/UserAppContext'
 import { useContext } from 'react'
 import CommentCard from '../../components/CommentCard';
+import SheetData from '../components/SheetData';
 
 function AppContainer() {
   const { theme } = useContext(ThemeContext);
@@ -25,10 +26,10 @@ function AppContainer() {
     <div className={"w-full p-3 h-full flex flex-row items-start justify-start" + theme.primaryBg}>
       <div className={"w-3/4 h-full p-1 md:p-2 flex flex-col" + theme.mainBg}>
         <div className={"w-full h-2/3 flex flex-col justify-center border-2" + theme.mainBorder}>
-          <div className={"text-center" + theme.mainText}>app corriendo</div>
+          <div className={"text-center" + theme.mainText}>*aplicación funcionando*</div>
         </div>
-        <div className={"w-full h-1/3 mt-2 flex flex-col justify-center border-2" + theme.mainBorder}>
-          <div className={"text-center" + theme.mainText}>info</div>
+        <div className="w-full h-1/3 mt-2 flex flex-col justify-start">
+          <SheetData/>
         </div>
       </div>
       <div className={"w-1/4 h-full p-1 md:p-2 md:pl-0 pl-0 flex flex-col" + theme.mainBg}>
