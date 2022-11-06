@@ -30,7 +30,7 @@ function ProfileContainer() {
                 type="text"
                 id="username"
                 className={"text-5xl font-medium w-3/5" + theme.primaryText + theme.mainBg}
-                placeholder="Name test"
+                placeholder={localStorage.getItem("username")}
                 disabled/>
               
               <EditIcon
@@ -41,7 +41,6 @@ function ProfileContainer() {
                       document.getElementById("username").disabled = false;
                     } else {
                       document.getElementById("username").disabled = true;
-                      console.log(username.value);
                       edit_username(username.value);
                     }
                   }
