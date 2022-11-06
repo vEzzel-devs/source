@@ -103,7 +103,7 @@ function SpreadSheet() {
   }, [sheetData, theme]);
 
   document.onkeydown = (event) => {
-    let changeToCell = keydownHelper(sheetDim, selectedCell.current.id, event);
+    let changeToCell = keydownHelper(sheetDim, selectedCell?.current?.id, event);
     if (changeToCell) {
       setNextCell(changeToCell);
     }

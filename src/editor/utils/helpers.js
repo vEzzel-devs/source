@@ -3,7 +3,7 @@ import { parseCell } from "./strings";
 
 export const keydownHelper = (shape, current, event) => {
     event = event || window.event;
-    if (event.shiftKey || !event.ctrlKey) { return undefined; }
+    if (!current || event.shiftKey || !event.ctrlKey) { return undefined; }
     let move;
     switch (event.key) {
         case "ArrowLeft":
