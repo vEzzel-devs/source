@@ -11,7 +11,7 @@ async function killSpread_query(id, user_id){
   };
   
   try{
-    let result = await fetch(`https://vezzel-api.herokuapp.com/spreadsheet_delete/${user_id}/${id}`, requestOptions)
+    let result = await fetch("https://vezzel-api.herokuapp.com/spreadsheet_delete/"+user_id+"/"+id, requestOptions)
     return await result.json();
   }catch(e){
     console.log(e);

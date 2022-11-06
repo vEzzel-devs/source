@@ -55,6 +55,27 @@ async function getSpreadComm_query(spread_id){
   }
 }
 
+export async function getOneSpread(){
+  let sheetConfig = localStorage.getItem('sheetConfig');
+  let result = await getOneSpread_query(JSON.parse(sheetConfig).id);
+  return result;
+}
+
+async function getOneSpread_query(spread_id){
+  // obtiene comentarios de un spreadsheet en la base de datos
+  var requestOptions = {
+    method: 'POST',
+    redirect: 'follow'
+  };
+
+
+  try {
+    let result = await fetch("https://vezzel-api.herokuapp.com/getOneSpread/"+spread_id, requestOptions)
+    return await result.json();
+  } catch(e) {
+    console.log(e);
+  }
+}
 
 export async function editComm(id_comm,desc, stars){
   // edita el comentario de un spreadsheet
