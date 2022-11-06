@@ -4,6 +4,7 @@ import { Layout as Editor } from "../editor/Layout";
 import { Layout as Ejecutar } from "../ejecutar/Layout";
 import { Layout as Busqueda } from "../busqueda/Layout";
 import { Layout as Guardados } from "../guardados/Layout";
+import { Layout as Perfil } from "../perfil/Layout";
 
 export const RouteContext = createContext();
 export function RouteContextProvider(props) {
@@ -27,6 +28,10 @@ export function RouteContextProvider(props) {
         {
             url: "/run",
             comp: <Ejecutar/>,
+        },
+        {
+            url: "/profile",
+            comp: <Perfil/>,
         },
     ];
 

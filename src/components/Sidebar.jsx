@@ -24,9 +24,7 @@ function Sidebar() {
   };
   const Menus = [
     { title: "Búsqueda",path:"/search", icon:<SearchIcon/>, gap: true  },
-    /*
-    { title: "Perfil",path:"/", icon:<PersonIcon/> },
-    */
+    { title: "Perfil",path:"/profile", icon:<PersonIcon/> },
     { title: "Editor",path:"/edit", icon:<EditIcon/>},
     { title: "Guardados",path:"/saved", icon:<FolderIcon/>},
     /*

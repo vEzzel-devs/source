@@ -47,9 +47,16 @@ export async function edit_username(new_name){
 }
 
 async function edit_username_query(id_user, new_name){
-
+  var myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+  var raw = JSON.stringify({
+    "username": new_name
+  });
+  
   var requestOptions = {
     method: 'POST',
+    headers: myHeaders,
+    body: raw,
     redirect: 'follow'
   };
   try{
