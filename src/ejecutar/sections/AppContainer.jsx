@@ -1,26 +1,33 @@
 import { ThemeContext } from '../../context/ThemeContext'
+import { SystemContext } from '../../context/SystemContext'
 import { UserAppContext } from '../context/UserAppContext'
-import { useContext } from 'react'
+import { useContext,useEffect,useState } from 'react'
 import CommentCard from '../../components/CommentCard';
-
+import {getSpreadComm} from "../utils/query";
 function AppContainer() {
   const { theme } = useContext(ThemeContext);
   const { userApp } = useContext(UserAppContext);
+  const { setLoading } = useContext(SystemContext);
+  const [ comm, setComm ] = useState([]);
 
-  // query de carga de comentarios, y posterior loop sobre el div de comentarios
-  const ph = [
-    {title: "User1", desc: "Lorem ipsum and anything else that is supposed to be in a paragraph. Lorem ipsum and anything else that is supposed to be in a paragraph. Lorem ipsum and anything else that is supposed to be in a paragraph", stars: 1},
-    {title: "User2", desc: "Lorem ipsum and anything else that is supposed to be in a paragraph", stars: 2},
-    {title: "User3", desc: "Lorem ipsum and anything else that is supposed to be in a paragraph", stars: 3},
-    {title: "User4", desc: "Lorem ipsum and anything else that is supposed to be in a paragraph", stars: 4},
-    {title: "User5", desc: "Lorem ipsum and anything else that is supposed to be in a paragraph", stars: 5},
-    {title: "User1", desc: "Lorem ipsum and anything else that is supposed to be in a paragraph", stars: 1},
-    {title: "User2", desc: "Lorem ipsum and anything else that is supposed to be in a paragraph", stars: 2},
-    {title: "User3", desc: "Lorem ipsum and anything else that is supposed to be in a paragraph", stars: 3},
-    {title: "User4", desc: "Lorem ipsum and anything else that is supposed to be in a paragraph", stars: 4},
-    {title: "User5", desc: "Lorem ipsum and anything else that is supposed to be in a paragraph", stars: 5},
-  ]
-
+  useEffect(() => {
+    async function getComm() {
+      await new Promise(r => setTimeout(r, 10));
+      setLoading(true);
+      try {
+          const res  = await getSpreadComm(); 
+          console.log(res);
+          setComm(res);
+      } catch (err) {
+          console.log(err);
+      }
+    }
+    getComm();
+  }, []);
+  useEffect(() => {
+    setLoading(false);
+  }, [comm]);
+  
   return (
     <div className={"w-full p-3 h-full flex flex-row items-start justify-start" + theme.primaryBg}>
       <div className={"w-3/4 h-full p-1 md:p-2 flex flex-col" + theme.mainBg}>
@@ -33,11 +40,11 @@ function AppContainer() {
       </div>
       <div className={"w-1/4 h-full p-1 md:p-2 md:pl-0 pl-0 flex flex-col" + theme.mainBg}>
         <div className={"w-full h-full flex flex-col overflow-y-scroll justify-start" + theme.scrollbar}>
-          {ph.map((props, idx) => {
+          {comm.map((props, idx) => {
             if (props.desc === "") {
               return <></>;
             }
-            return <CommentCard {...props} idx={idx} key={`comment-${idx}-on-this-sheet`}/>;
+            return <CommentCard title={props.username} desc={props.comment} stars={props.score} idx={idx} key={`comment-${idx}-on-this-sheet`}/>;
           })}
         </div>
       </div>
