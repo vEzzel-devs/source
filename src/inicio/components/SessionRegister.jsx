@@ -5,11 +5,12 @@ import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Vezzel from "../../components/Vezzel";
 import { ThemeContext } from "../../context/ThemeContext";
-import { RouteContext } from "../../context/RouteContext";
+import { SystemContext } from "../../context/SystemContext";
 import {register} from "../utils/query";
+
 function SessionRegister() {
     const { theme } = useContext(ThemeContext);
-    const { setLogged } = useContext(RouteContext);
+    const { logged, setLogged } = useContext(SystemContext);
     const [ open, setOpen ] = useState(false);
     const navigate = useNavigate();
 
@@ -38,7 +39,7 @@ function SessionRegister() {
                     </h3>
                     <TextField autoFocus fullWidth margin="dense" id="mail" label="Correo electrónico" type="email" variant="standard"/>
                     <TextField fullWidth margin="dense" id="name" label="Nombre de usuario" type="name" variant="standard"/>
-                    <TextField fullWidth margin="dense" id="pass" label="Contraseña" type="password" variant="standard"/>
+                    <TextField fullWidth margin="dense" id="pass" label="Contraseña" type="password" variant="standard" onKeyPress = {(e) =>{if (e.code == "Enter"){handleSubmit()}}}/>
                 </DialogContent>
                 <DialogActions>
                     <button className={"md:w-1/4 mr-2 p-2 rounded-lg border-2" + theme.mainText + theme.mainBg + theme.secondaryButton} onClick={() => setOpen(false)}>Volver</button>

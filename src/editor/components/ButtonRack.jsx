@@ -7,12 +7,47 @@ import SaveDialog from './SaveDialog';
 
 function ButtonRack() {
     const { theme } = useContext(ThemeContext);
+    const { selectedCell } = useContext(SpreadSheetContext);
+
+    const copyHandler = () => {
+        let copy = selectedCell.current.value;
+        selectedCell.current.select();
+        document.execCommand("copy");
+        window.getSelection().collapseToEnd();
+        selectedCell.current.focus();
+    };
+
+    const cutHandler = () => {
+        selectedCell.current.select();
+        document.execCommand("cut");
+        selectedCell.current.focus();
+    };
+
+    const pasteHandler = async () => {
+        selectedCell.current.select();
+        const paste = await navigator.clipboard.readText();
+        selectedCell.current.value = paste;
+        selectedCell.current.focus();
+    };
+
     return (
         <div className="space-x-2">
             <SaveDialog/>
-            <button className={"md:w-1/8 p-2 rounded-lg" + theme.primaryText + theme.mainBg + theme.primaryButton}><ContentCopyIcon/></button>
-            <button className={"md:w-1/8 p-2 rounded-lg" + theme.primaryText + theme.mainBg + theme.primaryButton}><ContentCutIcon/></button>
-            <button className={"md:w-1/8 p-2 rounded-lg" + theme.primaryText + theme.mainBg + theme.primaryButton}><ContentPasteIcon/></button>
+            <Tooltip TransitionComponent={Zoom} placement="bottom" enterDelay={500} title={"Copiar"} arrow>
+                <button className={"md:w-1/8 p-3 rounded-lg" + theme.primaryText + theme.mainBg + theme.primaryButton} onClick={copyHandler}><ContentCopyIcon/></button>
+            </Tooltip>
+            <Tooltip TransitionComponent={Zoom} placement="bottom" enterDelay={500} title={"Cortar"} arrow>
+                <button className={"md:w-1/8 p-3 rounded-lg" + theme.primaryText + theme.mainBg + theme.primaryButton} onClick={cutHandler}><ContentCutIcon/></button>
+            </Tooltip>
+            <Tooltip TransitionComponent={Zoom} placement="bottom" enterDelay={500} title={"Pegar"} arrow>
+                <button className={"md:w-1/8 p-3 rounded-lg" + theme.primaryText + theme.mainBg + theme.primaryButton} onClick={pasteHandler}><ContentPasteIcon/></button>
+            </Tooltip>
+            <Tooltip TransitionComponent={Zoom} placement="bottom" enterDelay={500} title={"Deshacer"} arrow>
+                <button className={"md:w-1/8 p-3 rounded-lg" + theme.primaryText + theme.mainBg + theme.primaryButton} onClick={()=>document.execCommand("undo")}><UndoIcon/></button>
+            </Tooltip>
+            <Tooltip TransitionComponent={Zoom} placement="bottom" enterDelay={500} title={"Rehacer"} arrow>
+                <button className={"md:w-1/8 p-3 rounded-lg" + theme.primaryText + theme.mainBg + theme.primaryButton} onClick={()=>document.execCommand("redo")}><RedoIcon/></button>
+            </Tooltip>
         </div>
     )
 }

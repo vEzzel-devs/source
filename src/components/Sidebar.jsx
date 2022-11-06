@@ -6,7 +6,7 @@ import ChatIcon from '@mui/icons-material/Chat';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 import PersonIcon from '@mui/icons-material/Person';
-import AppsIcon from '@mui/icons-material/Apps';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import EditIcon from '@mui/icons-material/Edit';
 import FolderIcon from '@mui/icons-material/Folder';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
@@ -22,14 +22,11 @@ function Sidebar() {
   };
   const Menus = [
     { title: "Búsqueda",path:"/search", icon:<SearchIcon/>, gap: true  },
-    /*
-    { title: "Perfil",path:"/", icon:<PersonIcon/> },
-    */
+    { title: "Perfil",path:"/profile", icon:<PersonIcon/> },
+    { title: "Editor",path:"/edit", icon:<EditIcon/>},
     { title: "Guardados",path:"/saved", icon:<FolderIcon/>},
     /*
-    { title: "Editor",path:"/Editor", icon:<EditIcon/>},
-    { title: "Ejecutar",path:"/Ejecutar", icon:<PlayArrowIcon/>},
-    
+    { title: "Ejecutar",path:"/run", icon:<PlayArrowIcon/>},
     { title: "mensajeria ",path:"/", icon:<ChatIcon/>, gap: true  },
     { title: "favoritos",path:"/", icon:<FavoriteIcon/> },
     */
@@ -39,8 +36,8 @@ function Sidebar() {
     <div className="h-screen z-10">
       <div className={`${isOpen ? "w-[200px]" : "w-[80px]"} duration-[100ms] h-screen p-5 relative` + theme.sidebarBg}>
         <div className="px-4 cursor-pointer" onClick={toggleOpen}>
-          <AppsIcon 
-          className={`absolute z-10 cursor-pointer rounded-full text-lg -right-3 top-9 w-7 border-2 ${isOpen && "rotate-45"}` + theme.mainBorder + theme.mainBg + theme.mainText}/>
+          <ArrowForwardIcon 
+          className={`absolute z-10 cursor-pointer rounded-full text-lg -right-3 top-9 w-7 border-2 ${isOpen && "rotate-180"}` + theme.mainBorder + theme.mainBg + theme.mainText}/>
         </div>
 
         <Link to="/">

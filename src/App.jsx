@@ -1,11 +1,13 @@
 import { useEffect, useContext } from 'react';
 import { ThemeContext } from './context/ThemeContext'
 import { RouteContext } from './context/RouteContext'
+import { SystemContext } from './context/SystemContext';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
 function App() {
   const { theme } = useContext(ThemeContext);
-  const { allRoutes, logged } = useContext(RouteContext);
+  const { allRoutes } = useContext(RouteContext);
+  const { logged } = useContext(SystemContext);
 
   useEffect(() => {
     let localDim = JSON.parse(localStorage.getItem('sheetDim'));
