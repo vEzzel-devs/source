@@ -7,7 +7,7 @@ export async function logger(){
   } else if (result.status === 401){
     return [false,String(result.message)];
   } else {
-    return [true,String(result.id)], String(result.username);
+    return [true,String(result.id), String(result.username)];
   }
 }
 
