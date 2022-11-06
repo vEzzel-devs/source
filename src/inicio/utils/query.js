@@ -23,7 +23,7 @@ export async function register(){
   } else if (result.status === 401) {
     return [false,String(Object.values(result.message).join().split(',').join('\n'))];
   } else{
-    return [true,String(result.id), user];
+    return [true,String(result.id), String(result.username)];
   }
 }
 
