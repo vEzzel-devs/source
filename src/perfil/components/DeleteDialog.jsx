@@ -1,23 +1,30 @@
 import { DialogTitle, DialogContent, Zoom } from "@mui/material";
 import { Dialog, Tooltip, DialogActions } from "@mui/material";
 import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { ThemeContext } from "../../context/ThemeContext";
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 import ChangeCircleIcon from '@mui/icons-material/ChangeCircle';
 import PersonRemoveIcon from '@mui/icons-material/PersonRemove';
 import { removeuser } from "../utils/query.js";
 import { RouteContext } from "../../context/RouteContext";
+import { SystemContext } from "../../context/SystemContext";
 
 export function DeleteAccountDialog() {
   const { theme } = useContext(ThemeContext);
   const [open, setOpen] = useState(false);
-
+  const { logout, setLogged, setLoading } = useContext(SystemContext);
+  const navigate = useNavigate();
+  
   const handleDelete = async () => {
+    setLoading(true);
     let res = await removeuser();
+    setLoading(false);
     setOpen(false);
-    takeMeOut();
+    logout;
+    setLogged(false);
+    navigate("/");
   };
-  const id_name = localStorage.getItem('userid');
 
   return (
     <>
@@ -38,7 +45,7 @@ export function DeleteAccountDialog() {
             className={"font-mono text-lg" + theme.lightText}
             style={{ fontFamily: "Cascadia Code" }}
           >
-            "{id_name}", estás segur@ de querer eliminar tu cuenta?
+            {localStorage.getItem('username')}, estás segur@ de querer eliminar tu cuenta?
           </h3>
         </DialogContent>
         <DialogActions>
@@ -64,31 +71,7 @@ export function DeleteAccountDialog() {
 export function LogoutDialog() {
   const { theme } = useContext(ThemeContext);
   const [open, setOpen] = useState(false);
-  const { setLogged } = useContext(RouteContext);
-  const [isOpen, setIsOpen] = useState(false);
-  
-
-  const id_name = localStorage.getItem('userid');
-
-  const handleLogout = () => {
-    let localDim = JSON.parse(localStorage.getItem('sheetDim'));
-    if (localDim) {
-        localStorage.removeItem('sheetDim');
-    }
-    let localData = JSON.parse(localStorage.getItem('sheetData'));
-    if (localData) {
-      localStorage.removeItem('sheetData');
-    }
-    let localConfig = JSON.parse(localStorage.getItem('sheetConfig'));
-    if (localConfig) {
-      localStorage.removeItem('sheetConfig');
-    }
-    let localCells = JSON.parse(localStorage.getItem('sheetCells'));
-    if (localCells) {
-      localStorage.removeItem('sheetCells');
-    }
-    setLogged(false);
-  };
+  const { logout } = useContext(SystemContext);
 
   return (
     <>
@@ -109,7 +92,7 @@ export function LogoutDialog() {
             className={"font-mono text-lg" + theme.lightText}
             style={{ fontFamily: "Cascadia Code" }}
           >
-            "{id_name}", estás segur@ de querer cerrar sesión?
+            {localStorage.getItem('username')}, estás segur@ de querer cerrar sesión?
           </h3>
         </DialogContent>
         <DialogActions>
@@ -122,7 +105,7 @@ export function LogoutDialog() {
           <button
             className={"font-mono md:w-1/4 mr-2 p-2 rounded-lg border-2" + theme.mainText + theme.mainBg + theme.primaryButton}
             type="submit"
-            /* onClick={handleLogout} */
+            onClick={logout}
             style={{ fontFamily: "Cascadia Code" }}>
                 Confirmar
           </button>
@@ -135,8 +118,17 @@ export function LogoutDialog() {
 export function ChangeUserDialog() {
   const { theme } = useContext(ThemeContext);
   const [open, setOpen] = useState(false);
+  const { logout, setLogged, setLoading } = useContext(SystemContext);
+  const navigate = useNavigate();
   
-  const id_name = localStorage.getItem('userid');
+  const handleLog = async () => {
+    setLoading(true);
+    logout;
+    setLoading(false);
+    setOpen(false);
+    setLogged(false);
+    navigate("/#login");
+  };
 
   return (
     <>
@@ -157,7 +149,7 @@ export function ChangeUserDialog() {
             className={"font-mono text-lg" + theme.lightText}
             style={{ fontFamily: "Cascadia Code" }}
           >
-            "{id_name}", estás segur@ de querer cambiar de cuenta?
+            {localStorage.getItem('username')}, estás segur@ de querer cambiar de cuenta?
           </h3>
         </DialogContent>
         <DialogActions>
@@ -170,7 +162,7 @@ export function ChangeUserDialog() {
           <button
             className={"font-mono md:w-1/4 mr-2 p-2 rounded-lg border-2" + theme.mainText + theme.mainBg + theme.primaryButton}
             type="submit"
-            /* onClick={handleLogout} */
+            onClick={handleLog}
             style={{ fontFamily: "Cascadia Code" }}>
                 Confirmar
           </button>

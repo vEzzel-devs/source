@@ -37,11 +37,11 @@ async function killComment_query(user_id, id_com, id_spread){
   }
 }
 
-export async function edit_username(new_name){
+export async function edit_username(){
     
   let id_user = localStorage.getItem('userid');
-
-  let result = await edit_username_query(id_user, new_name);
+  let new_user_name = String(document.getElementById("username").value);
+  let result = await edit_username_query(id_user, new_user_name);
   
   return await result;
 }
