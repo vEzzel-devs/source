@@ -39,7 +39,7 @@ export async function latestSpread() {
     let res = await latestSpread_query(id_user);
     return loadSheet(res);
   } catch(e) {
-    return ({ error: "error" });
+    return false;
   }
 }
 

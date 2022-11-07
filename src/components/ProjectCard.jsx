@@ -26,16 +26,16 @@ function ProjectCard({title, desc, user, tags, score, idx, sheetId, sheetCont, r
 
     return (
       <div className="w-full h-full flex cursor-pointer" onClick={clickHandler}>
-        <div className={"md:w-2/3 py-5 pl-4 flex flex-row md:flex-col" + (idx % 2 === 1 ? theme.mainBg : theme.highBg) + theme.mainText}>
-          <h2 className="text-xl md:text-2xl xl:text-4xl">{title}{user ? <em className={"text-lg"}> por {user}</em> : ""}</h2>
-          <br className="md:block hidden"/>
-          <h3 className={"text-sm" + (idx % 2 === 1 ? theme.lightText : theme.mainText)}>{desc}</h3>
+        <div className={"w-2/3 py-5 pl-4 flex flex-col" + (idx % 2 === 1 ? theme.mainBg : theme.highBg) + theme.mainText}>
+          <h2 className="text-xl md:text-2xl xl:text-4xl">{title}</h2>
+          <h2 className="text-xl md:text-2xl xl:text-4xl md:ml-8">{user?<em className={"text-lg"}> por {user}</em> : ""}</h2>
+          <h3 className={"text-sm mt-4 md:ml-12" + (idx % 2 === 1 ? theme.lightText : theme.mainText)}>{desc}</h3>
         </div>
-        <div className={"md:w-1/3 py-5 pr-4 flex flex-row md:flex-col" + (idx % 2 === 1 ? theme.mainBg : theme.highBg) + theme.mainText}>
-          <div className="flex self-start">
+        <div className={"w-1/3 py-5 pr-4 flex flex-col" + (idx % 2 === 1 ? theme.mainBg : theme.highBg) + theme.mainText}>
+          <div className="flex self-end md:mb-12 mb-4">
             <DoubleStars value={score}/>
           </div>
-          <div className="h-full flex items-end content-end">
+          <div className="h-full flex items-center content-start self-end">
             <div className="flex flex-wrap justify-end">
               {tags.map((tag) => {
                 return (

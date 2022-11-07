@@ -1,13 +1,14 @@
 import { ThemeContext } from "../../context/ThemeContext";
-import { useContext, useState, useEffect } from "react";
+import { useContext } from "react";
 import CommentCard from "../../components/CommentCard";
 import EditIcon from "@mui/icons-material/Edit";
-import { edit_username, comments } from "../utils/query";
+import { edit_username, } from "../utils/query";
 import { SystemContext } from "../../context/SystemContext";
+import { UserDataContext } from "../../context/UserDataContext";
 
 function ProfileContainer() {
   const { theme } = useContext(ThemeContext);
-  const [cards, setCards] = useState([]);
+  const { cards } = useContext(UserDataContext);
   const { setLoading } = useContext(SystemContext);
 
   const handleSubmit = async () => {
@@ -15,28 +16,15 @@ function ProfileContainer() {
     let edit_user = await edit_username();
     setLoading(false);
     await new Promise(r => setTimeout(r, 10));
-    if (edit_user.status==200) {
+    if (edit_user?.status==200) {
         localStorage.setItem('username', String(document.getElementById("username").value));
     }
     alert(edit_user.message);
   };
 
-  useEffect( () => { 
-    async function fetchData() {
-        try {
-            const res  = await comments(); 
-            setCards(res);
-        } catch (err) {
-            console.log(err);
-        }
-    }
-    fetchData();
-  }, []);
-
   return (
     <div className={"w-full p-3 h-full flex items-start justify-start" + theme.primaryBg}>
-      <div className={"w-full h-full p-4 md:p-8 flex flex-wrap overflow-y-scroll content-start" + theme.mainBg + theme.scrollbar}>
-        <div className="w-full h-1/3 grid grid-cols-3">
+      <div className="w-full h-1/3 grid grid-cols-3">
           <div className="col-start-1 col-span-2 grid grid-rows-3 gap-4">
             <div>
               <input
@@ -46,8 +34,8 @@ function ProfileContainer() {
                 placeholder={localStorage.getItem("username")}
                 disabled/>
               
-              <EditIcon
-                className={theme.primaryText}
+              <button
+                className={"cursor-pointer" + theme.primaryText}
                 onClick={
                   function () {
                     if (document.getElementById("username").disabled === true) {
@@ -59,7 +47,7 @@ function ProfileContainer() {
                       }
                     }
                   }
-                }/>
+                }><EditIcon/></button>
             </div>
           </div>
           <div className="col-start-3">
@@ -73,9 +61,10 @@ function ProfileContainer() {
             </div>
           </div>
         </div>
+      <div className={"w-full h-2/3 p-4 md:p-8 flex flex-wrap overflow-y-scroll content-start" + theme.mainBg + theme.scrollbar}>
         {cards.map((card, idx) => {
             return (
-              <div key={`project-card-key-prop-${idx}`} className="w-full h-2/5 flex flex-row px-2">
+              <div key={`project-card-key-prop-${idx}`} className="w-full h-1/4 flex flex-row px-2">
                 <CommentCard
                   title={card.spreadname} desc={card.comment} stars={card.score} idx={idx}/>
               </div>

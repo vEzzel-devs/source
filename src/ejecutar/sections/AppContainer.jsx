@@ -14,7 +14,7 @@ function AppContainer() {
 
   useEffect(() => {
     async function first() {
-      await new Promise(r => setTimeout(r, 5));
+      await new Promise(r => setTimeout(r, 10));
       setLoading(true);
       try {
           const res  = await getSpreadComm(); 
