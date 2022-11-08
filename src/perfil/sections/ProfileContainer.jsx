@@ -9,6 +9,7 @@ import { edit_username, } from "../utils/query";
 import { SystemContext } from "../../context/SystemContext";
 import { UserDataContext } from "../../context/UserDataContext";
 import { FilterContext } from "../context/FilterContext";
+import StatGrid from "../components/StatGrid";
 
 function ProfileContainer() {
   const { theme } = useContext(ThemeContext);
@@ -92,8 +93,9 @@ function ProfileContainer() {
               </Tooltip>}
             </div>
           </div>
-          <div className="md:w-1/2 h-full flex items-start justify-center">
-            <h1 className={"text-3xl text-center border-b" + theme.mainBorder}>Estadísticas</h1>
+          <div className="md:w-1/2 h-full flex flex-col items-start justify-center">
+            <h1 className={"self-center text-3xl text-center border-b" + theme.mainBorder}>Estadísticas</h1>
+            <StatGrid/>
           </div>
         </div>
         <div className={"w-full h-2/3 p-2 md:p-6 flex flex-wrap overflow-y-scroll content-start" + theme.scrollbar}>

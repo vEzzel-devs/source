@@ -10,7 +10,7 @@ import {search} from "../utils/query";
 function Toolbar() {
   const { theme } = useContext(ThemeContext);
   const { allTags, setLoading } = useContext(SystemContext);
-  const { setResults } = useContext(SearchContext);
+  const { setResults, setDetect, setSearching } = useContext(SearchContext);
   const [added, setAdded] = useState([])
   const [input, setInput] = useState("")
 
@@ -21,9 +21,15 @@ function Toolbar() {
     setAdded([...newValue]);
   });
 
-  const handleSearch = async () => {
+  const handlerSearch = async () => {
     setLoading(true);
-    let searchSpread = await search(added, input);
+    setSearching(true);
+    let arr = input.split("_");
+    if (arr.length === 0) {
+      arr = [""];
+    }
+    setDetect(arr);
+    let searchSpread = await search(added, "");
     try {
       if (searchSpread) {
         setResults(searchSpread);
@@ -31,7 +37,14 @@ function Toolbar() {
     } catch (e) {
       console.log(e);
     }
+    setSearching(false);
   };
+
+  const inputHandler = (event) => {
+    let raw = event.target.value;
+    setInput(raw.replaceAll(" ", "_").replace(/\W/g, '').toLowerCase());
+  };
+
   return (
     <DashboardToolbar helpText={<>
       <p>En esta vista se puede buscar soluciones digitales que estén disponibles para su libre uso y/o personalización. Para realizar la búsqueda se puede filtrar por medio de diferentes etiquetas predefinidas y el texto de la entrada de la derecha de la barra de herramientas, se obtendrá un resultado más preciso al seleccionar menos etiquetas y al especificar más en el texto de búsqueda. Igualmente se recomienda buscar con menos palabras en el buscador para obtener más resultados. Hay un límite de 3 etiquetas por búsqueda.</p>
@@ -61,10 +74,10 @@ function Toolbar() {
             fullWidth
             placeholder="Buscar"
             id="input-search"
-            onChange={(e) => setInput(e.target.value)}
-            onKeyPress = {(e) =>{if (e.code == "Enter"){handleSearch()}}}
+            onChange={inputHandler}
+            onKeyPress = {(e) =>{if (e.code == "Enter"){handlerSearch()}}}
           />
-          <button className={"p-3 rounded-lg" + theme.primaryText + theme.mainBg + theme.primaryButton} onClick={handleSearch}><SearchIcon/></button>
+          <button className={"p-3 rounded-lg" + theme.primaryText + theme.mainBg + theme.primaryButton} onClick={handlerSearch}><SearchIcon/></button>
         </div>
       </div>
     </DashboardToolbar>

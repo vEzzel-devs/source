@@ -29,7 +29,6 @@ function AppContainer() {
       return rankText(txt) > 0;
     })
     setRealCards(arr);
-    console.log(arr)
   }, [cards, detect]);
 
   return (

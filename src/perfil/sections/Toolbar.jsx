@@ -22,7 +22,7 @@ function Toolbar() {
 
   const inputHandler = (event) => {
     let raw = event.target.value;
-    setInput(raw.replace(" ", "_").replace(/\W/g, ''))
+    setInput(raw.replaceAll(" ", "_").replace(/\W/g, '').toLowerCase())
   };
 
   const handlerSearch = () => {

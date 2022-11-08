@@ -7,15 +7,23 @@ import {search} from "../utils/query";
 
 function AppContainer() {
   const { theme } = useContext(ThemeContext);
-  const { setResults, results } = useContext(SearchContext);
+  const { setResults, results, detect, rankText, searching } = useContext(SearchContext);
   const { loading, setLoading } = useContext(SystemContext);
-  const [ fail, setFail ] = useState("")
+  const [ fail, setFail ] = useState("");
+  const [ realCards, setRealCards ] = useState(results);
+
+  useEffect(() => {
+    if (!loading) {
+      setFail("No se han encontrado resultados para tu búsqueda...");
+    } else {
+      setFail("");
+    }
+  }, [loading]);
 
   useEffect(() => {
     const handleSearch = async () => {
       await new Promise(r => setTimeout(r, 10));
       setLoading(true);
-      setFail("No se han encontrado resultados para tu búsqueda...")
       let searchSpread = await search([""], "");
       try {
         if (searchSpread) {
@@ -24,19 +32,31 @@ function AppContainer() {
       } catch (e) {
         console.log(e);
       }
+      setLoading(false);
     };
     handleSearch();
   }, []);
 
   useEffect(() => {
-    setLoading(false);
-  }, [results])
+    let oldCards = [...results];
+    let arr = oldCards.filter((card) => {
+      let txt = [card.name, card.description].join("_");
+      return rankText(txt) > 0;
+    })
+    setRealCards(arr);
+  }, [results, detect]);
+
+  useEffect(() => {
+    if (!searching) {
+      setLoading(false);
+    }
+  }, [searching])
 
   return (
     <div className={"w-full p-3 h-full flex items-start justify-start" + theme.primaryBg}>
       <div className={"w-full h-full p-4 md:p-8 flex flex-wrap overflow-y-scroll content-start" + theme.mainBg + theme.scrollbar}>
-        {!loading && (results && results.length > 0
-          ? results.map((result, idx) => {
+        {!loading && (realCards && realCards.length > 0
+          ? realCards.map((result, idx) => {
             return (
               <div key={`project-result-key-prop-${idx}`} className="w-full h-2/5 flex flex-row px-2">
                 <ProjectCard

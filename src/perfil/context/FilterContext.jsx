@@ -6,7 +6,8 @@ export function FilterContextProvider(props) {
     const [ detect, setDetect ] = useState([""]);
 
     const rankText = (text) => {
-        let p = text.replace(" ", "_").replace(/\W/g, '');
+        let p = text.replaceAll(" ", "_").replaceAll("\n", "_");
+        p = p.replace(/\W/g, '').toLowerCase();
         let arr = p.split("_").filter((s) => !banned.includes(s));
         let acc = 0;
         let oldDetection = [...detect];

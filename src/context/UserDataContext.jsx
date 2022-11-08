@@ -77,7 +77,9 @@ export function UserDataContextProvider(props) {
             cards: JSON.stringify(cards),
             comments: JSON.stringify(comments),
         });
-        sessionStorage.setItem("saved", JSON.stringify(saved));
+        if (cards && comments) {
+            sessionStorage.setItem("saved", JSON.stringify(saved));
+        }
     }, [cards, comments]);
 
     useEffect(() => {
@@ -88,12 +90,32 @@ export function UserDataContextProvider(props) {
         }
     }, [username]);
 
+    const getStats = () => {
+        let sheetScore = 0, commentScore = 0;
+        let oldCards = [...cards];
+        let oldComments = [...comments];
+        oldCards.forEach((card) => {
+            sheetScore += card.score;
+        })
+        oldComments.forEach((comm) => {
+            commentScore += comm.score;
+        })
+        let stats = [
+            sheetScore/oldCards.length,
+            oldCards.length,
+            commentScore/oldComments.length,
+            oldComments.length,
+        ];
+        return stats;
+    };
+
     return (
         <UserDataContext.Provider value={({
             isLatest,
             cards,
             username,
             comments,
+            getStats,
             queryComment,
             setComments,
             setUsername,
