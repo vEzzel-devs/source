@@ -3,17 +3,18 @@ import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import SearchIcon from '@mui/icons-material/Search';
 import ChatIcon from '@mui/icons-material/Chat';
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 import PersonIcon from '@mui/icons-material/Person';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import EditIcon from '@mui/icons-material/Edit';
 import FolderIcon from '@mui/icons-material/Folder';
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import { ThemeContext } from "../context/ThemeContext";
 import { SystemContext } from "../context/SystemContext";
 import { Tooltip, Zoom } from "@mui/material";
 
+function ConditionalTooltip({display, children, ...props}) {
+  return display ? <Tooltip {...props}>{children}</Tooltip> : <>{children}</>;
+}
 
 function Sidebar() {
   const { theme } = useContext(ThemeContext)
@@ -28,9 +29,7 @@ function Sidebar() {
     { title: "Editor",path:"/edit", icon:<EditIcon/>},
     { title: "Guardados",path:"/saved", icon:<FolderIcon/>},
     /*
-    { title: "Ejecutar",path:"/run", icon:<PlayArrowIcon/>},
     { title: "mensajeria ",path:"/", icon:<ChatIcon/>, gap: true  },
-    { title: "favoritos",path:"/", icon:<FavoriteIcon/> },
     */
     { title: "Cerrar sesión",path:"/", icon:<PowerSettingsNewIcon/>, position:-1 },
   ];
@@ -52,11 +51,10 @@ function Sidebar() {
         <ul className="pt-6">
           {Menus.map((Menu, index) => (
             <Link to={Menu.path} key={`sb-link-${index}`}>
-              <Tooltip TransitionComponent={Zoom} placement="right" enterDelay={120} title={Menu.title} arrow>
+              <ConditionalTooltip display={!isOpen} TransitionComponent={Zoom} placement="right" enterDelay={120} title={Menu.title} arrow>
                 <li
                   onClick={Menu.position === -1 ? logout : ()=>{}}
-                  className={`flex flex-row justify-center rounded-md py-2 cursor-pointer text-md items-center
-                  ${Menu.gap ? "mt-[60px]" : "mt-[1px]"} ${Menu.position === -1 ? "absolute bottom-[5%] px-2 space-x-1" : "space-x-2 px-4"}` + theme.hoverSidebar + theme.textSidebar}
+                  className={`flex flex-row rounded-md py-2 cursor-pointer text-md items-center ${Menu.gap ? "mt-[60px]" : "mt-[1px]"} ${Menu.position === -1 ? "absolute bottom-[5%] px-2 space-x-1" : "space-x-2 px-4"}` + theme.hoverSidebar + theme.textSidebar + (isOpen ? " justify-start" : " justify-center")}
                 >
                   <span>
                     {Menu.icon}
@@ -65,7 +63,7 @@ function Sidebar() {
                     {Menu.title}
                   </span>
                 </li>
-              </Tooltip>
+              </ConditionalTooltip>
             </Link>
           ))}
         </ul>

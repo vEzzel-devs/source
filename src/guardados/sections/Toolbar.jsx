@@ -56,7 +56,8 @@ function Toolbar() {
   };
 
   const resetHandler = () => {
-    location.reload()
+    sessionStorage.clear();
+    location.reload();
   }
 
   const inputHandler = (event) => {
@@ -96,6 +97,7 @@ function Toolbar() {
             placeholder="Buscar"
             id="input-search"
             onChange={inputHandler}
+            onKeyPress = {(e) =>{if (e.code == "Enter"){handlerSearch()}}}
             />
             <button className={"p-3 rounded-lg" + theme.primaryText + theme.mainBg + theme.primaryButton} onClick={handlerSearch}><SearchIcon/></button>
         </div>

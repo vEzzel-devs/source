@@ -17,8 +17,9 @@ function Toolbar() {
   const [input, setInput] = useState("");
 
   const resetHandler = () => {
-    window.location.reload()
-  };
+    sessionStorage.clear();
+    location.reload();
+  }
 
   const inputHandler = (event) => {
     let raw = event.target.value;
@@ -35,7 +36,9 @@ function Toolbar() {
 
   return (
     <DashboardToolbar helpText={<>
-      <p>Tooltip.</p>
+      <p>En esta vista puedes ver tu perfil y sus estadisticas, puedes editar tu nombre de usuario y ver los comentarios que has hecho.</p>
+      <p>En la barra de herramientas se encuentra algunos botones para realizar operaciones de accesibilidad, como lo es cambiar de cuenta o eliminar tu cuenta, si quieres terminar tu tiempo con vezzel.</p>
+      <p>Tambien puedes buscar los comentarios por su contenido en la entrada de la barra de herramientas.</p>
       </>}>
       <div className="ml-4 flex flex-row space-x-2">
         <Tooltip TransitionComponent={Zoom} placement="bottom" enterDelay={500} title={"Refrescar"} arrow>
@@ -55,6 +58,7 @@ function Toolbar() {
             placeholder="Buscar"
             id="input-search"
             onChange={inputHandler}
+            onKeyPress = {(e) =>{if (e.code == "Enter"){handlerSearch()}}}
           />
           <button className={"p-3 rounded-lg" + theme.primaryText + theme.mainBg + theme.primaryButton} onClick={handlerSearch}><SearchIcon/></button>
         </div>

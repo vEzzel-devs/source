@@ -74,7 +74,7 @@ function ProfileContainer() {
   return (
     <div className={"w-full p-3 h-full flex items-start justify-start" + theme.primaryBg}>
       <div className={"w-full h-full p-2 md:py-4" + theme.mainBg + theme.mainText}>
-        <div className={"h-1/3 md:mx-16 p-2 border-b flex flex-col md:flex-row" + theme.mainBorder}>
+        <div className={"h-1/3 md:mx-16 p-2 border-b cursor-default flex flex-col md:flex-row" + theme.mainBorder}>
           <div className="md:w-1/2 h-full flex flex-col justify-center">
             <h1 className="text-5xl">Bienvenid@,</h1>
             <div className="h-1/3 flex flex-row">
@@ -85,7 +85,7 @@ function ProfileContainer() {
                 value={prev}
                 onChange={changeHandler}
                 disabled/>
-              <Tooltip TransitionComponent={Zoom} placement="top" enterDelay={500} title={(editing ? "Aceptar" : "Editar")} arrow>
+              <Tooltip TransitionComponent={Zoom} placement="top" enterDelay={500} title={(editing ? "Aceptar" : "Cambiar nombre")} arrow>
                 {editing ? <button className={" h-1/3 self-end cursor-pointer" + theme.primaryText} onClick={handleSubmit}><DoneIcon/></button> : <button className={" h-1/3 self-end cursor-pointer" + theme.primaryText} onClick={startEditing}><EditIcon/></button>}
               </Tooltip>
               {editing && <Tooltip TransitionComponent={Zoom} placement="top" enterDelay={500} title={"Cancelar"} arrow>

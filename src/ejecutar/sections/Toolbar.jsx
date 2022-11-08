@@ -17,12 +17,13 @@ function Toolbar() {
   }
 
   const resetHandler = () => {
-    location.reload()
+    location.reload();
   }
 
   return (
     <DashboardToolbar helpText={<>
-      <p>En esta vista puedes hacer XD</p>
+      <p>En esta vista puedes utilizar tu aplicación u otras aplicaciones hechas por los demás usuarios. Podrás clonar los proyectos de otros usuarios a tu cuenta de forma de que pueda personalizarlo más tarde.</p>
+      <p>En la barra de herramientas se encuentra el botón para reiniciar la aplicación, guardar una copia de la aplicación en tu cuenta, ir al editor directamente para personalizar la programación de la cuenta y un último botón para realizar una valoración de este proyecto con un comentario y un puntaje.</p>
       </>}>
       <div className="ml-4 flex flex-row space-x-2">
         <Tooltip TransitionComponent={Zoom} placement="bottom" enterDelay={500} title={"Reiniciar"} arrow>

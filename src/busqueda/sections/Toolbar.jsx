@@ -47,7 +47,7 @@ function Toolbar() {
 
   return (
     <DashboardToolbar helpText={<>
-      <p>En esta vista se puede buscar soluciones digitales que estén disponibles para su libre uso y/o personalización. Para realizar la búsqueda se puede filtrar por medio de diferentes etiquetas predefinidas y el texto de la entrada de la derecha de la barra de herramientas, se obtendrá un resultado más preciso al seleccionar menos etiquetas y al especificar más en el texto de búsqueda. Igualmente se recomienda buscar con menos palabras en el buscador para obtener más resultados. Hay un límite de 3 etiquetas por búsqueda.</p>
+      <p>En esta vista se puede buscar soluciones digitales que estén disponibles para su libre uso y personalización. Para realizar la búsqueda se puede filtrar por medio de diferentes etiquetas predefinidas o bien texto personalizado, se obtendrá un resultado más preciso al seleccionar menos etiquetas y al especificar más en el texto de búsqueda. Hay un límite de 3 etiquetas por búsqueda.</p>
       </>}>
       <div className="w-5/6 space-x-1 flex flex-row justify-center self-center">
         <div className="w-1/3 py-2 flex flex-row content-center self-center">
