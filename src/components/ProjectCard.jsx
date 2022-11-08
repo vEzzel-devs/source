@@ -9,7 +9,7 @@ function ProjectCard({title, desc, user, tags, score, idx, sheetId, sheetCont, r
     const { setSheetDim, setSheetData, setSheetConfig } = useContext(SpreadSheetContext);
     const navigate = useNavigate();
 
-    const clickHandler = () => {
+    const clickHandler = async () => {
       let sheet = JSON.parse(sheetCont);
       let config = JSON.stringify({
         id: sheetId,
@@ -21,6 +21,7 @@ function ProjectCard({title, desc, user, tags, score, idx, sheetId, sheetCont, r
       setSheetDim(JSON.parse(sheet.shape));
       setSheetData(JSON.parse(sheet.cont));
       setSheetConfig(JSON.parse(config));
+      await new Promise(r => setTimeout(r, 10));
       navigate(route);
     };
 

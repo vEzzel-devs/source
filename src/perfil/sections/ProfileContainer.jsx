@@ -1,5 +1,5 @@
 import { ThemeContext } from "../../context/ThemeContext";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import CommentCard from "../../components/CommentCard";
 import { Tooltip, Zoom } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
@@ -8,13 +8,25 @@ import CloseIcon from '@mui/icons-material/Close';
 import { edit_username, } from "../utils/query";
 import { SystemContext } from "../../context/SystemContext";
 import { UserDataContext } from "../../context/UserDataContext";
+import { FilterContext } from "../context/FilterContext";
 
 function ProfileContainer() {
   const { theme } = useContext(ThemeContext);
   const { comments, username, setUsername } = useContext(UserDataContext);
-  const { setLoading } = useContext(SystemContext);
+  const { loading, setLoading } = useContext(SystemContext);
+  const { detect, rankText } = useContext(FilterContext);
   const [ prev, setPrev ] = useState(username);
+  const [ fail, setFail ] = useState("");
   const [ editing, setEditing ] = useState(false);
+  const [ realCards, setRealCards ] = useState(comments);
+
+  useEffect(() => {
+    if (!loading) {
+      setFail("No has comentado nada en ningún proyecto aún, visita los proyectos de otros usuarios para cambiar eso.")
+    } else {
+      setFail("");
+    }
+  }, [loading]);
 
   const handleSubmit = async () => {
     setLoading(true);
@@ -49,6 +61,15 @@ function ProfileContainer() {
     entry.disabled = false;
   }
 
+  useEffect(() => {
+    let oldCards = [...comments];
+    let arr = oldCards.filter((card) => {
+      let txt = [card.spreadname, card.comment].join(" ");
+      return rankText(txt) > 0;
+    })
+    setRealCards(arr);
+  }, [comments, detect]);
+
   return (
     <div className={"w-full p-3 h-full flex items-start justify-start" + theme.primaryBg}>
       <div className={"w-full h-full p-2 md:py-4" + theme.mainBg + theme.mainText}>
@@ -76,12 +97,13 @@ function ProfileContainer() {
           </div>
         </div>
         <div className={"w-full h-2/3 p-2 md:p-6 flex flex-wrap overflow-y-scroll content-start" + theme.scrollbar}>
-          {comments.map((card, idx) => {
+        {!loading && ((comments && comments.length > 0) ? realCards.map((card, idx) => {
             return (
               <div  key={`comment-card-key-prop-${idx}`} className="w-full h-2/5 flex">
                 <CommentCard title={card.spreadname} desc={card.comment} stars={card.score} idx={idx} redirect={card["spread_id"]}/>
               </div>);
-          })}
+          }) : <p className={theme.mainText}>{fail}</p>)}
+          {(comments && comments.length > 0 && realCards.length === 0) && <p className={theme.mainText}>No existen comentarios con las características buscadas...</p>}
         </div>
       </div>
     </div>

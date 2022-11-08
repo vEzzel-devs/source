@@ -11,6 +11,15 @@ function AppContainer() {
   const { userApp } = useContext(UserAppContext);
   const { loading,setLoading,reload,setReload } = useContext(SystemContext);
   const [ comm, setComm ] = useState([]);
+  const [ fail, setFail ] = useState("")
+
+  useEffect(() => {
+    if (!loading) {
+      setFail("No hay comentarios en esta aplicación aún, sé el primero en dar tu opinión con el botón de valoración en la barra de arriba!");
+    } else {
+      setFail("");
+    }
+  }, [loading]);
 
   useEffect(() => {
     async function first() {
@@ -30,12 +39,14 @@ function AppContainer() {
 
 
   const getComm = async () => {
+    setLoading(true);
     try {
         const res  = await getSpreadComm(); 
         setComm(res);
     } catch (err) {
         console.log(err);
     }
+    setLoading(false);
     setReload(false);
     return;
   };
@@ -55,7 +66,7 @@ function AppContainer() {
       </div>
       <div className={"w-1/4 h-full p-1 md:p-2 md:pl-0 pl-0 flex flex-col" + theme.mainBg}>
         <div className={"w-full h-full flex flex-col overflow-y-scroll justify-start" + theme.scrollbar}>
-          {comm.map((props, idx) => {
+          {!loading && ((comm && comm.length > 0) ? comm.map((props, idx) => {
             if (props.desc === "") {
               return <></>;
             }
@@ -63,7 +74,7 @@ function AppContainer() {
               <div key={`comment-${idx}-on-this-sheet`} className="w-full h-1/4 flex flex-none">
                 <CommentCard title={props.username} desc={props.comment} stars={props.score} idx={idx}/>
               </div>);
-          })}
+          }) : <p className={theme.mainText}>{fail}</p>)}
         </div>
       </div>
     </div>
