@@ -32,7 +32,8 @@ export function SystemContextProvider(props) {
 
     const logout = () => {
         let theme = localStorage.getItem("theme");
-        localStorage.clear()
+        localStorage.clear();
+        sessionStorage.clear();
         localStorage.setItem("theme", theme);
         setLogged(false);
     };

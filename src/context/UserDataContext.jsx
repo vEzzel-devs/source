@@ -26,7 +26,21 @@ export function UserDataContextProvider(props) {
         let take = oldCards.findIndex((e) => e["_id"] === card["_id"]);
         oldCards.splice(take, 1);
         setCards([card, ...oldCards]);
-    }
+    };
+    const queryComment = (comm, query) => {
+        let oldComments = [...comments];
+        if (query === "Editar") {
+            let take = oldComments.findIndex((e) => e["_id"] === comm["_id"]);
+            oldComments.splice(take, 1);
+            setComments([comm, ...oldComments]);
+        } else if (query === "Publicar") {
+            setComments([comm, ...oldComments]);
+        } else {
+            let take = oldComments.findIndex((e) => e["_id"] === comm["_id"]);
+            oldComments.splice(take, 1);
+            setComments([...oldComments]);
+        }
+    };
 
     useEffect(() => {
         async function fetchData() {
@@ -43,9 +57,14 @@ export function UserDataContextProvider(props) {
         }
         if (logged) {
             let localSaved = JSON.parse(sessionStorage.getItem("saved"));
+            let localCards, localComments;
             if (localSaved) {
-                setCards(JSON.parse(localSaved.cards));
-                setComments(JSON.parse(localSaved.comments));
+                localCards = JSON.parse(localSaved.cards);
+                localComments = JSON.parse(localSaved.comments);
+            }
+            if (localSaved && (localCards?.length > 0 || localComments?.length > 0)) {
+                setCards(localCards);
+                setComments(localComments);
             } else {
                 fetchData();
             }
@@ -75,6 +94,7 @@ export function UserDataContextProvider(props) {
             cards,
             username,
             comments,
+            queryComment,
             setComments,
             setUsername,
             addCard,

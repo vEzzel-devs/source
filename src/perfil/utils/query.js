@@ -37,11 +37,10 @@ async function killComment_query(user_id, id_com, id_spread){
   }
 }
 
-export async function edit_username(){
+export async function edit_username(new_name){
     
   let id_user = localStorage.getItem('userid');
-  let new_user_name = String(document.getElementById("username").value);
-  let result = await edit_username_query(id_user, new_user_name);
+  let result = await edit_username_query(id_user, new_name);
   
   return await result;
 }
@@ -85,4 +84,40 @@ async function killUser_query(user_id){
   }catch(e){
     console.log(e);
   }
+}
+
+export async function logger(){
+  let mail= String(document.getElementById("mail").value);
+  let pass= String(document.getElementById("pass").value);
+  let result = await logger_query(mail, pass);
+  if (!result) {
+    return [false, "Falló la conexión"]
+  } else if (result.status === 401){
+    return [false,String(result.message)];
+  } else {
+    return [true,String(result.id), String(result.username)];
+  }
+}
+
+async function logger_query(mail, pass){
+  var myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+  var raw = JSON.stringify({
+    "email": mail,
+    "password": pass
+  });
+  
+  var requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: raw,
+    redirect: 'follow'
+  };
+  try{
+    const result = await fetch("https://vezzel-api.herokuapp.com/login", requestOptions)
+    return await result.json();
+  }catch(e){
+    console.log(e);
+  }
+
 }

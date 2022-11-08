@@ -3,6 +3,8 @@ import { Dialog, DialogActions, Zoom } from "@mui/material";
 import { useContext, useState, useRef, useEffect } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
 import { SystemContext } from '../../context/SystemContext'
+import { UserDataContext } from "../../context/UserDataContext";
+import { SpreadSheetContext } from "../../context/SpreadSheetContext";
 import CommentIcon from '@mui/icons-material/Comment';
 import ValueStars from "./ValueStars";
 import {editComm,getUserSpreadComm,createComm,deleteComm} from "../utils/query";
@@ -13,10 +15,10 @@ function CommentDialog() {
     const [ stars, setStars ] = useState(0);
     const [ op, setOp ] = useState("Publicar")
     const [ comm, setComm ] = useState([]);
-    const { setReload } = useContext(SystemContext);
+    const { setReload, setLoading } = useContext(SystemContext);
+    const { queryComment } = useContext(UserDataContext)
+    const { sheetConfig } = useContext(SpreadSheetContext);
     const descRef = useRef();
-
-    // NEED FIX!!!!
 
     const handleOpen = () => {
         setOpen(true);
@@ -25,7 +27,7 @@ function CommentDialog() {
             
             if (comm.status !== 401) {
                 setStars(comm.score);
-                descRef.current.value = comm.comment // add detection    
+                descRef.current.value = comm.comment
             }else{
                 setStars(0);
                 descRef.current.value = "";
@@ -49,22 +51,35 @@ function CommentDialog() {
         return;
     };
     useEffect(() => {
+        setLoading(true); // maybe fix?
         getComm();
+        setLoading(false);
         setReload(true);
-    }, [open]);
+    }, []);
 
     const handleSubmit = async () => {
         let desc = descRef?.current?.value;
+        let comID = comm?._id;
         try {
+            setLoading(true);
             if (op === "Editar") {
                 const res  = await editComm(comm._id, desc, stars);
-            }else if (op === "Publicar") {
+            } else if (op === "Publicar") {
                 const res  = await createComm(desc, stars);
-            }else if (op === "Eliminar") {
+                comID = res.id;
+            } else {
                 const res  = await deleteComm(comm._id);
             }
-
+            setLoading(false);
+            queryComment(({
+                "_id": comID,
+                comment: desc,
+                score: stars,
+                spreadname: sheetConfig.title,
+                "spread_id": sheetConfig.id,
+            }), op);
         } catch (e) {
+            setLoading(false);
             console.log(e);
         }
         setOpen(false);

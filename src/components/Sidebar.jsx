@@ -35,10 +35,6 @@ function Sidebar() {
     { title: "Cerrar sesión",path:"/", icon:<PowerSettingsNewIcon/>, position:-1 },
   ];
 
-  const handleLogout = () => {
-    
-  };
-
   return (
     <div className="h-screen z-10">
       <div className={`${isOpen ? "w-[200px]" : "w-[80px]"} duration-[100ms] h-screen p-5 relative` + theme.sidebarBg}>

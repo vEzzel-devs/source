@@ -59,7 +59,10 @@ function AppContainer() {
             if (props.desc === "") {
               return <></>;
             }
-            return <CommentCard title={props.username} desc={props.comment} stars={props.score} idx={idx} key={`comment-${idx}-on-this-sheet`}/>;
+            return (
+              <div key={`comment-${idx}-on-this-sheet`} className="w-full h-1/4 flex flex-none">
+                <CommentCard title={props.username} desc={props.comment} stars={props.score} idx={idx}/>
+              </div>);
           })}
         </div>
       </div>
