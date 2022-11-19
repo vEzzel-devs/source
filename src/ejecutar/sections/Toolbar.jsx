@@ -1,4 +1,6 @@
 import DashboardToolbar from '../../components/DashboardToolbar'
+import { Tooltip, Zoom } from "@mui/material";
+import { CommContext } from '../context/CommContext';
 import { ThemeContext } from '../../context/ThemeContext'
 import { useContext } from 'react'
 import { useNavigate } from "react-router-dom";
@@ -6,10 +8,11 @@ import EditIcon from '@mui/icons-material/Edit';
 import CachedIcon from '@mui/icons-material/Cached';
 import CopyDialog from "../components/CopyDialog";
 import CommentDialog from "../components/CommentDialog";
-import { Tooltip, Zoom } from "@mui/material";
+import RemoveDialog from "../components/RemoveDialog";
 
 function Toolbar() {
   const { theme } = useContext(ThemeContext);
+  const { mine } = useContext(CommContext)
   const navigate = useNavigate();
 
   const editHandler = () => {
@@ -34,6 +37,7 @@ function Toolbar() {
           <button className={"md:w-1/8 p-3 rounded-lg" + theme.primaryText + theme.mainBg + theme.primaryButton} onClick={editHandler}><EditIcon/></button>
         </Tooltip>
         <CommentDialog/>
+        {mine && <RemoveDialog/>}
       </div>
     </DashboardToolbar>
   )

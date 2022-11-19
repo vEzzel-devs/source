@@ -5,19 +5,20 @@ import { ThemeContext } from "../../context/ThemeContext";
 import { SystemContext } from '../../context/SystemContext'
 import { UserDataContext } from "../../context/UserDataContext";
 import { SpreadSheetContext } from "../../context/SpreadSheetContext";
+import { CommContext } from "../context/CommContext";
 import CommentIcon from '@mui/icons-material/Comment';
 import ValueStars from "./ValueStars";
-import {editComm,getUserSpreadComm,createComm,deleteComm} from "../utils/query";
+import { editComm, createComm, deleteComm } from "../utils/query.js";
 
 function CommentDialog() {
     const { theme } = useContext(ThemeContext);
+    const { mine } = useContext(CommContext);
+    const { setLoading } = useContext(SystemContext);
+    const { queryComment } = useContext(UserDataContext)
+    const { sheetConfig } = useContext(SpreadSheetContext);
     const [ open, setOpen ] = useState(false);
     const [ stars, setStars ] = useState(0);
     const [ op, setOp ] = useState("Publicar")
-    const [ comm, setComm ] = useState([]);
-    const { setReload, setLoading } = useContext(SystemContext);
-    const { queryComment } = useContext(UserDataContext)
-    const { sheetConfig } = useContext(SpreadSheetContext);
     const descRef = useRef();
 
     const handleOpen = () => {
@@ -25,9 +26,9 @@ function CommentDialog() {
         let wait = async () => {
             await new Promise(r => setTimeout(r, 10));
             
-            if (comm.status !== 401) {
-                setStars(comm.score);
-                descRef.current.value = comm.comment
+            if (mine) {
+                setStars(mine.score);
+                descRef.current.value = mine.comment
             }else{
                 setStars(0);
                 descRef.current.value = "";
@@ -40,37 +41,20 @@ function CommentDialog() {
     const handleCancel = () => {
         setOpen(false);
     }
-    const getComm = async () => {
-        
-        try {
-            const res  = await getUserSpreadComm(); 
-            setComm(res);
-        } catch (err) {
-            console.log(err);
-        }
-        return;
-    };
-    useEffect(() => {
-        setLoading(true); // maybe fix?
-        getComm();
-        setLoading(false);
-        setReload(true);
-    }, []);
 
     const handleSubmit = async () => {
         let desc = descRef?.current?.value;
-        let comID = comm?._id;
+        let comID = mine?._id;
+        setLoading(true);
         try {
-            setLoading(true);
             if (op === "Editar") {
-                const res  = await editComm(comm._id, desc, stars);
+                const res  = await editComm(mine._id, desc, stars);
             } else if (op === "Publicar") {
                 const res  = await createComm(desc, stars);
                 comID = res.id;
             } else {
-                const res  = await deleteComm(comm._id);
+                const res  = await deleteComm(mine._id);
             }
-            setLoading(false);
             queryComment(({
                 "_id": comID,
                 comment: desc,
@@ -82,18 +66,19 @@ function CommentDialog() {
             setLoading(false);
             console.log(e);
         }
+        setLoading(false);
         setOpen(false);
     };
 
     const updateOp = async () => {
         await new Promise(r => setTimeout(r, 10));
         let desc = descRef?.current?.value;
-        if (stars === 0 && desc === "" && comm.status !== 401) {
+        if (stars === 0 && desc === "" && mine) {
             setOp("Eliminar");
-        } else if (comm.status !== 401) {
-            setOp("Editar");
-        } else if(comm.status === 401){
+        } else if(!mine){
             setOp("Publicar");
+        } else {
+            setOp("Editar");
         }
     }
 
@@ -103,7 +88,7 @@ function CommentDialog() {
 
     return (
         <>
-            <Tooltip TransitionComponent={Zoom} placement="bottom" enterDelay={500} title={"Valorar"} arrow>
+            <Tooltip TransitionComponent={Zoom} placement="bottom" enterDelay={500} title={"Valorar/Comentar"} arrow>
                 <button className={"md:w-1/8 p-3 rounded-lg" + theme.primaryText + theme.mainBg + theme.primaryButton} onClick={handleOpen}><CommentIcon/></button>
             </Tooltip>
             <Dialog open={open} onClose={handleCancel}>

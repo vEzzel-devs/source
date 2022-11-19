@@ -11,12 +11,12 @@ function CommentCard({ title, desc, stars, redirect, idx }) {
 
     return (
       <>
-        <div className={"w-full h-full p-1 md:p-2 flex flex-col" + (idx % 2 === 1 ? theme.mainBg : theme.highBg) + theme.mainText /*+ (redirect ? " cursor-pointer" : "")*/}>
+        <div className={"w-full h-full p-1 md:p-2 flex flex-col cursor-default" + (idx % 2 === 1 ? theme.mainBg : theme.highBg) + theme.mainText /*+ (redirect ? " cursor-pointer" : "")*/}>
           <div className="flex flex-row mb-4 justify-between">
-            <h2 className="text-lg md:text-xl xl:text-2xl md:mr-8">
+            <h2 className="text-lg md:text-xl xl:text-2xl md:mr-8 truncate">
                 {title}
             </h2>
-            <div>
+            <div className="flex flex-none">
               {[...Array(stars).keys()].map((i) => {
                   return <span key={`comm-${idx}-value-star-key-${i}`} className={"h-8" + theme.mainText}><StarIcon/></span>;
               })}

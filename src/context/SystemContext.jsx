@@ -5,17 +5,22 @@ export const SystemContext = createContext();
 export function SystemContextProvider(props) {
 
     const allTags = [
-        "tag1",
-        "tag2",
-        "tag3",
-        "tag4",
-        "tag5",
-        "tag6",
+        "Matemáticas",
+        "Optimización",
+        "Algoritmo",
+        "vEzzel",
+        "Educación",
+        "Plantilla",
+        "Problema",
+        "Negocios",
+        "Gestión",
+        "Propuesta",
+        "Desarrollo",
+        "Soporte",
+        "Misceláneo"
     ];
 
     const [ loading, setLoading ] = useState(false);
-    // if it is for user comment checking, then it must change its name!
-    const [ reload, setReload ] = useState(false); 
 
     let logged, setLogged;
     let localLogged = JSON.parse(localStorage.getItem('logged'));
@@ -43,11 +48,9 @@ export function SystemContextProvider(props) {
             allTags,
             logged,
             loading,
-            reload,
             setLogged,
             setLoading,
             logout,
-            setReload
         })}>
             {props.children}
         </SystemContext.Provider>

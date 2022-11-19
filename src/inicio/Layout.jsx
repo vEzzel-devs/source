@@ -38,7 +38,7 @@ export function Layout() {
         <Docs/>
         <About/>
       </div>
-      {loading && <LoadingScreen/>}
+      {loading && <LoadingScreen welcome={true}/>}
     </CarrouselContextProvider>
   )
 }
