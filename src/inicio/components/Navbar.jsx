@@ -3,7 +3,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { ThemeContext } from "../../context/ThemeContext";
 import MenuItems from "./MenuItems";
 
-function Navbar() {
+function Navbar({ current }) {
     const paths = ["#start", "#login", "#docs", "#about"];
     const [selection, setSelection] = useState("#start");
     const [collapse, setCollapse] = useState("hidden");
@@ -37,6 +37,16 @@ function Navbar() {
         }))
     }, [selection, theme]);
 
+    useEffect(() => {
+      setNavstyle(paths.map((_, idx) => {
+          if (current === idx) {
+              return "px-3 py-2 border-b rounded-md text-sm font-medium" + theme.activeNavbar + theme.primaryText;
+          } else {
+              return "px-3 py-2 border-b rounded-md font-medium" + theme.textNavbar + theme.borderNavbar + theme.hoverNavbar;
+          }
+      }))
+  }, [current]);
+
     return (
     <nav className={"sticky top-0 z-50" + theme.navbarBg}>
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -69,7 +79,7 @@ function Navbar() {
         </div>
       </div>
       
-      <MenuItems showMenu={showMenu} active={active} />
+      <MenuItems showMenu={showMenu} active={active}/>
     </nav>
     )
 }

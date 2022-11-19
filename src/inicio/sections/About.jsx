@@ -11,7 +11,7 @@ function About() {
     <section className={theme.mainBg} id="about">
       <div className={"w-full h-screen flex flex-col justify-center items-center p-2 md:p-4" + theme.secondaryBg}>
         <ContainerBox>
-          <div className="p-2 md:px-6 md:py-4 flex justify-center items-center">
+          <div className="p-2 px-4 md:px-6 md:py-4 flex justify-center items-center">
             <h1 className={"text-4xl text-center" + theme.mainText}>El equipo <Vezzel/></h1>
           </div>
           <br/>
