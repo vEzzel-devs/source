@@ -28,9 +28,7 @@ function Sidebar() {
     { title: "Perfil",path:"/profile", icon:<PersonIcon/> },
     { title: "Editor",path:"/edit", icon:<EditIcon/>},
     { title: "Guardados",path:"/saved", icon:<FolderIcon/>},
-    /*
-    { title: "mensajeria ",path:"/", icon:<ChatIcon/>, gap: true  },
-    */
+    { title: "mensajeria ",path:"/chat", icon:<ChatIcon/>},
     { title: "Cerrar sesión",path:"/", icon:<PowerSettingsNewIcon/>, position:-1 },
   ];
 

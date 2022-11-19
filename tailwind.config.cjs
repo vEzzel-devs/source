@@ -15,7 +15,8 @@ module.exports = {
       colors: {
         "main-red": "#FF4949",
         "main-purple": "#541690",
-        "neutral-850": "#1E1E1E"
+        "neutral-850": "#1E1E1E",
+        "neutral-750": "#323232"
       }
     },
   },
