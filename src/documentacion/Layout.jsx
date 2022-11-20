@@ -1,18 +1,23 @@
-import { ThemeContext } from '../context/ThemeContext';
-import { useContext } from 'react';
+import { DocsDataContextProvider } from "./context/DocsDataContext";
+import { DocsRouteContextProvider } from "./context/DocsRouteContext";
+import TopBar from "./sections/TopBar";
+import SidePanel from "./sections/SidePanel";
+import BodyContainer from "./sections/BodyContainer";
 
 export function Layout() {
-  const { theme } = useContext(ThemeContext);
-  
   window.onhashchange = function () {
     history.pushState(null, "", window.location.pathname);
   }
 
   return (
-    <>
-      <div ref={body} className={"h-screen overflow-y-scroll" + theme.scrollbar} onScroll={scrollHandler}>
-        {/* TO DO */}
-      </div>
-    </>
+    <DocsDataContextProvider>
+      <DocsRouteContextProvider>
+        <div className="absolute top-0 pt-16 h-screen w-screen flex flex-row">
+          <SidePanel/>
+          <BodyContainer/>
+        </div>
+        <TopBar/>
+      </DocsRouteContextProvider>
+    </DocsDataContextProvider>
   )
 }
