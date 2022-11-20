@@ -20,14 +20,12 @@ function AppContainer() {
   
   
   const sendMSG = async () => {
-    setLoading(true);
     try {
         const res  = await sendMsg(active);
         console.log(res);
     } catch (err) {
         console.log(err);
     }
-    setLoading(false);
     return;
   }; 
 
