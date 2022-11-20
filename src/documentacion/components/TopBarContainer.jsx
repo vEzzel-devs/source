@@ -1,4 +1,4 @@
-import { ThemeContext } from "../context/ThemeContext";
+import { ThemeContext } from "../../context/ThemeContext";
 import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
 import { useContext } from "react";
 import { Tooltip, Zoom } from "@mui/material";

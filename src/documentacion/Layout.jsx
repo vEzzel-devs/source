@@ -12,9 +12,11 @@ export function Layout() {
   return (
     <DocsDataContextProvider>
       <DocsRouteContextProvider>
+        <div className="absolute top-0 pt-16 h-screen w-screen flex flex-row">
+          <SidePanel/>
+          <BodyContainer/>
+        </div>
         <TopBar/>
-        <SidePanel/>
-        <BodyContainer/>
       </DocsRouteContextProvider>
     </DocsDataContextProvider>
   )
