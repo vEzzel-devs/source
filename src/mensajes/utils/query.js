@@ -30,11 +30,22 @@ async function getUserChats_query(id_user, name_user){
     }
 }
 
-export async function sendMsg(id_user2, name_user2, msg) {
+export async function sendMsg(active) {
     /* TO DO */
     let id_user = localStorage.getItem('userid');
     let name_user = localStorage.getItem('username');
-
+    let id_user2 = '';
+    let name_user2 = '';
+    if (active.users[0][0] !== id_user) {
+      id_user2 = active.users[0][0];
+      name_user2 = active.users[0][1];
+    }
+    else {
+      id_user2 = active.users[1][0];
+      name_user2 = active.users[1][1];
+    }
+    let msg = document.getElementById("msg").value;
+    console.log(id_user, name_user, id_user2, name_user2, msg);
     let result = await sendMsg_query(id_user, name_user,id_user2, name_user2, msg);
     return await result;
 }
