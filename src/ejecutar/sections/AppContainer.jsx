@@ -28,8 +28,14 @@ function AppContainer() {
   return (
     <div className={"w-full p-3 h-full flex flex-row items-start justify-start" + theme.primaryBg}>
       <div className={"w-3/4 h-full p-1 md:p-2 flex flex-col" + theme.mainBg}>
-        <div className={"w-full h-2/3 flex flex-col justify-center border-2" + theme.mainBorder}>
-          <div className={"text-center" + theme.mainText}>*aplicación funcionando*</div>
+        <div className={"w-full h-2/3 text-center px-2 flex flex-col justify-center border" + theme.mainBorder + theme.mainText}>
+          {(userApp && userApp.length > 0) ? userApp.map((row) => {
+            return (
+              <div className="w-full py-2 flex flex-row flex-wrap">
+                { row }
+              </div>
+            );
+          }) : "El usuario no ha utilizado elementos visuales..."}
         </div>
         <div className="w-full h-1/3 mt-2 flex flex-col justify-start">
           <SheetData/>
@@ -59,13 +65,3 @@ function AppContainer() {
 }
 
 export default AppContainer
-
-/*
-  {userApp.map((row) => {
-    return (
-      <div className="w-full py-2 flex flex-row">
-        { row }
-      </div>
-    );
-  })}
-*/
