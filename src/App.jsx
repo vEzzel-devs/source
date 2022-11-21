@@ -38,7 +38,7 @@ function App() {
   return (
     <Routes>
       {allRoutes.map((page, idx) => {
-        if (page.url === "/") {
+        if (page.url === "/" || page.url === "/docs") {
           return <Route key={`route-${idx}-to-${page}`} path={page.url} element={page.comp}/>;
         } else {
           return <Route key={`route-${idx}-to-${page}`} path={page.url} element={logged ? page.comp : <Navigate replace to={"/"}/>}/>;
