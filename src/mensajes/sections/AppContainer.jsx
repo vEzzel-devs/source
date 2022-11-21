@@ -37,7 +37,7 @@ function AppContainer() {
         </div>
         <div className="w-full h-3/4 px-2">
           <div className={"w-full h-full p-2 m-auto flex flex-col justify-end border" + theme.mainBorder}>
-            <div className={"text-center flex flex-col px-3 space-y-2 overflow-y-scroll" + theme.mainText + theme.scrollbar}>
+            <div className={"flex flex-col px-3 space-y-2 overflow-y-scroll" + theme.mainText + theme.scrollbar}>
               {/* Aqui hacen falta mas detalles sobre la implementacion */}
               <Message side={"left"} content={"Sample text for a hello"}/>
               <Message side={"right"} content={"Your sample response"} time={"17:12"}/>

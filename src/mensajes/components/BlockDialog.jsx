@@ -1,6 +1,6 @@
 import { DialogTitle, DialogContent, Zoom } from "@mui/material";
 import { Dialog, Tooltip, DialogActions } from "@mui/material";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
 import { SystemContext } from "../../context/SystemContext";
 import { MsgContext } from "../context/MsgContext";
@@ -9,18 +9,23 @@ import { blockChat } from "../utils/query.js";
 
 function BlockDialog() {
     const { theme } = useContext(ThemeContext);
-    const { chat, active } = useContext(MsgContext);
+    const { chats, active } = useContext(MsgContext);
     const { setLoading } = useContext(SystemContext);
     const [ open, setOpen ] = useState(false);
+    const [ target, setTarget ] = useState("");
 
     const handleSubmit = async () => {
         setLoading(true);
-        let target = chat[active]?.username;
         let res = await blockChat(target);
         setLoading(false);
         setOpen(false);
-        takeMeOut();
     };
+
+    useEffect(() => {
+        if (chats[active]?.username) {
+            setTarget(chats[active].username);
+        }
+    }, [ active ]);
 
     return (
         <>
@@ -31,7 +36,7 @@ function BlockDialog() {
                 <DialogTitle>Bloquear usuario</DialogTitle>
                 <DialogContent>
                     <h3 className={"font-mono text-lg" + theme.lightText} style={{fontFamily: "Cascadia Code"}}>
-                        Esta opción no de puede deshacer, está segur@ que quiere bloquear al usuario {chat[active]?.username} ?
+                        Esta opción no de puede deshacer, está segur@ que quiere bloquear al usuario {target}?
                     </h3>
                 </DialogContent>
                 <DialogActions>
