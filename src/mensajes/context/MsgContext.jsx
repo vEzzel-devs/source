@@ -24,7 +24,8 @@ export function MsgContextProvider(props) {
         getChats();
     }, []);
 
-    // use active to set which messages are being loaded
+    // usar la variable active para indicar que mensajes estan siendo
+    // cargados en tiempo real, los demas se cargaran desde la db al refrescar
 
     return (
         <MsgContext.Provider value={({chat, active, setActive})}>

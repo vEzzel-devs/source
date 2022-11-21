@@ -2,10 +2,10 @@ import { useContext, useEffect, useState, useRef } from 'react';
 import { ThemeContext } from '../../context/ThemeContext';
 import { SystemContext } from '../../context/SystemContext';
 import { MsgContext } from '../context/MsgContext';
-import { Tooltip, Zoom } from "@mui/material";
 import UserCard from '../components/UserCard';
 import SendIcon from '@mui/icons-material/Send';
-import BlockIcon from '@mui/icons-material/Block';
+import Message from '../components/Message';
+import BlockDialog from '../components/BlockDialog';
 
 function AppContainer() {
   const { theme } = useContext(ThemeContext);
@@ -21,10 +21,6 @@ function AppContainer() {
       setFail("");
     }
   }, [loading]);
-  
-  const handleBlock = () => {
-    // TO DO, also to refactor...
-  };
 
   const sendHandler = () => {
     let content = entry.current.value;
@@ -35,14 +31,18 @@ function AppContainer() {
   return (
     <div className={"w-full p-3 h-full flex flex-row items-start justify-start" + theme.primaryBg}>
       <div className={"w-3/4 h-full p-1 md:p-2 flex flex-col" + theme.mainBg}>
-        <div className="w-full h-1/6 px-2 flex flex-row items-center justify-start">
+        <div className="w-full h-1/6 px-5 flex flex-row items-center justify-start">
           <h1 className={"text-4xl" + theme.mainText}>NombreUsuario</h1>
-          <Tooltip TransitionComponent={Zoom} placement="top" enterDelay={500} title={"Bloquear"} arrow>
-            <button className={" h-1/4 mt-4 ml-2 cursor-pointer" + theme.primaryText} onClick={handleBlock}><BlockIcon/></button>
-          </Tooltip>
+          <BlockDialog/>
         </div>
-        <div className={"w-full h-3/4 m-auto flex flex-col justify-center border-2" + theme.mainBorder}>
-          <div className={"text-center" + theme.mainText}>* mensajes intercambiados con usuario{active} *</div>
+        <div className="w-full h-3/4 px-2">
+          <div className={"w-full h-full p-2 m-auto flex flex-col justify-end border" + theme.mainBorder}>
+            <div className={"text-center flex flex-col px-3 space-y-2 overflow-y-scroll" + theme.mainText + theme.scrollbar}>
+              {/* Aqui hacen falta mas detalles sobre la implementacion */}
+              <Message side={"left"} content={"Sample text for a hello"}/>
+              <Message side={"right"} content={"Your sample response"} time={"17:12"}/>
+            </div>
+          </div>
         </div>
         <div className="w-full p-2 mt-2 space-x-2 flex flex-row justify-start">
           <input ref={entry} className={"w-full h-full px-2 rounded-md border" + theme.mainText + theme.mainBg + theme.mainBorder} placeholder="Escribe un mensaje" onKeyPress = {(e) =>{if (e.code == "Enter") {sendHandler();}}}/>
