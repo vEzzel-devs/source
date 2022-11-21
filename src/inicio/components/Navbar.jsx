@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import MenuIcon from '@mui/icons-material/Menu';
+import { Link } from "react-router-dom";
 import { ThemeContext } from "../../context/ThemeContext";
 import MenuItems from "./MenuItems";
 
@@ -58,10 +59,10 @@ function Navbar({ current }) {
             </button>
           </div>
           <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-            <div className="flex flex-shrink-0 items-center">
+            <Link to="/"><div className="flex flex-shrink-0 items-center">
               <img className="hidden h-8 w-auto lg:hidden" src={theme.folder + "/banner.png"} alt="vEzzel banner"/>
               <img className="block h-8 w-auto lg:block" src={theme.folder + "/banner.png"} alt="vEzzel banner"/>
-            </div>
+            </div></Link>
             <div className="hidden sm:ml-6 sm:block">
               <div className="flex space-x-4">
                 <a href="#start" className={navstyle[0] + " text-sm"} onClick={() => setSelection('#start')}>vEzzel?</a>

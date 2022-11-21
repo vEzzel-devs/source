@@ -8,7 +8,7 @@ function BodyContainer() {
     const { section } = useContext(DocsRouteContext);
 
     return (
-        <div className={"w-full md:w-5/6 h-full p-3 flex flex-col cursor-default" + theme.secondaryBg}>
+        <div className={"w-full md:w-5/6 h-full p-2 flex flex-col cursor-default" + theme.secondaryBg}>
             <div className={"w-full h-full overflow-y-scroll px-4" + theme.mainBg + theme.lightText + theme.scrollbar}>
                 {section.map((sec, idx) => {
                     return (
