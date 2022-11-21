@@ -1,7 +1,7 @@
 import { Alert, AlertTitle, Slide, Snackbar } from "@mui/material";
 import { useState } from "react";
 
-function ErrorAlert({type, content}) {
+function Notification({type, title, content}) {
     const [ open, setOpen ] = useState(true);
 
     const [ vertical, horizontal ] = ["top", "center"];
@@ -13,12 +13,12 @@ function ErrorAlert({type, content}) {
     };
     return (
         <Snackbar anchorOrigin={{ vertical, horizontal }} open={open} autoHideDuration={5000} onClose={handleClose} TransitionComponent={TransitionDown}>
-            <Alert variant="filled" onClose={handleClose} severity="error" sx={{ width: '50vw' }}>
-                <AlertTitle>{type}</AlertTitle>
+            <Alert variant="filled" onClose={handleClose} severity={type} sx={{ width: '50vw' }}>
+                <AlertTitle>{title}</AlertTitle>
                 {content}
             </Alert>
         </Snackbar>
     )
 }
 
-export default ErrorAlert
+export default Notification

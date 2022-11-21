@@ -30,7 +30,7 @@ function VInput({cell, placeholder, value}) {
         changeCell({
             "ref": cell,
             "cell": {
-                "cls": "basic",
+                "cls": "base",
                 "type": contType,
                 "cont": cont,
             },

@@ -66,6 +66,9 @@ export function init_math() {
 }
 
 function rec_deps(p, deps) {
+    if (p.type === "SymbolNode") {
+        return [p.name];
+    }
     let args = p.content?.args ? p.content.args : p.args;
     if (args && args.length > 0) {
         args.forEach((node) => {
@@ -83,5 +86,15 @@ function rec_deps(p, deps) {
 
 export function get_dependences(body) {
     const detection = parse(body);
-    return rec_deps(detection, []);
+    let takeOut = [""];
+    if (detection.type === "FunctionNode") {
+        if (detection.fn.name == "func"
+        || detection.fn.name == "set") {
+            takeOut = ["", detection.args[0]?.name]
+        } else if (detection.fn.name == "move") {
+            takeOut = ["", detection.args[1]?.name]
+        }
+    }
+    let deps = rec_deps(detection, [""]);
+    return deps.filter((c) => !takeOut.includes(c));
 }

@@ -7,28 +7,38 @@ import VInput from "../lang/VInput";
 import VButton from "../lang/VButton";
 import VText from "../lang/VText";
 import VLabel from "../lang/VLabel";
-import * as lang from "../lang/parser.js";
+import { start_language } from "../lang/main.js";
 
 export const UserAppContext = createContext();
 export function UserAppContextProvider(props) {
-    const { sheetData } = useContext(SpreadSheetContext)
+    const { sheetData } = useContext(SpreadSheetContext);
     const [ runtime, setRuntime ] = useState([]);
     const [ userApp, setUserApp ] = useState([]);
 
-    const createRuntime = (data) => {
-        {/*
-          * Make a nice copy of sheetData to work with
-          * also add any other stuff needed to itself
-          ********************************************/}
-        return;
+    const createRuntime = (data, deps) => {
+        if (data != runtime) {
+          //setRuntime(data);
+          let lang = start_language();
+          console.log(lang.get_all_deps(data))
+        }
     };
-
-    const parseDependences = (data) => {
-        {/*
-          * Detect the dependences from every cell, so
-          * it can set an order to build the scope
-          ********************************************/}
-        return;
+    useEffect(() => {
+      createRuntime(sheetData)
+    }, [ sheetData ]);
+    const changeCell = (cell) => {
+      const values = [...runtime];
+        let notFound = true;
+        let newValues = values.map((element) => {
+            if (element.ref === cell.ref) {
+                notFound = false;
+                return cell;
+            }
+            return element;
+        });
+        if (notFound) {
+            newValues = [...values, cell];
+        }
+        setRuntime(newValues);
     };
 
     const createApp = (data) => {
@@ -40,7 +50,7 @@ export function UserAppContextProvider(props) {
     };
 
     return (
-        <UserAppContext.Provider value={({runtime, userApp})}>
+        <UserAppContext.Provider value={({runtime, userApp, changeCell})}>
             {props.children}
         </UserAppContext.Provider>
     )
