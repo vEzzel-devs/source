@@ -1,11 +1,19 @@
-import { useContext, useRef } from "react";
+import { useContext, useRef, useEffect } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
 import { UserAppContext } from "../context/UserAppContext";
 
-function VInput({cell, value, bg, color}) {
+function VInput({cell, placeholder, value}) {
     const entry = useRef();
     const { theme } = useContext(ThemeContext);
-    const { changeValOf } = useContext(UserAppContext);
+    const { changeCell } = useContext(UserAppContext);
+    
+    useEffect(() => {
+      const wait = async () => {
+        await new Promise(r => setTimeout(r, 10));
+        entry.current.value = value;
+      };
+      wait();
+    }, []);
 
     const update = () => {
         let cont = entry.current.value;
@@ -19,7 +27,7 @@ function VInput({cell, value, bg, color}) {
               contType = "Integer";
             }
           }
-        changeValOf({
+        changeCell({
             "ref": cell,
             "cell": {
                 "cls": "basic",
@@ -32,7 +40,7 @@ function VInput({cell, value, bg, color}) {
     };
 
     return (
-        <input ref={entry} onChange={update} id={"in-" + cell} placeholder={value?value:"Ingrese datos"} className={"w-full m-2 border" + (bg ? ` bg-[${bg}]` : theme.mainBg) + (color ? ` text-[${color}]` : theme.mainText) + theme.mainBorder}/>
+        <input ref={entry} onChange={update} id={"in-" + cell} placeholder={placeholder} className={"w-full p-1 self-center border" + theme.mainBg + theme.mainText + theme.mainBorder}/>
     )
 }
 

@@ -12,8 +12,8 @@ function LoadingScreen({ welcome }) {
             <h1 className="text-5xl self-center text-center mb-8">
                 {(welcome)
                 ? <>Bienvenid@{(username)
-                    ? <em className={theme.primaryText}>, {username}</em>
-                    : " de vuelta"
+                    ? <>, <em className={theme.primaryText}>{username}</em></>
+                    : <> de vuelta</>
                 }!</>
                 : "Cargando..."}
             </h1>
