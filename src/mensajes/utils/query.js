@@ -1,19 +1,105 @@
 export async function getUserChats() {
   /* TO DO */
-  return Array();
+  let id_user = localStorage.getItem('userid');
+  let result = await getUserChats_query(id_user);
+  return await result;
+}
+async function getUserChats_query(id_user){
+  var myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+  
+  var raw = JSON.stringify({
+    "user1_id": id_user
+  });
+  
+  var requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: raw,
+    redirect: 'follow'
+  };
+  
+  try{
+      const result = await fetch("http://127.0.0.1:5000/getAllChat", requestOptions)
+      return await result.json();
+  }catch(e){
+      console.log(e);
+  }
 }
 
-export async function createChat(name) {
+export async function createChat(target,msg) {
   /* TO DO */
-  return [false, `No se pudo iniciar una conversación con ${name}. Puede que el usuario no exista, o en su defecto que no se encuentre disponible.`];
+  
+  let id_user = localStorage.getItem('userid');
+  let user2_id = target.userid;
+  let time = Date().toLocaleString();
+
+  let result = await createChat_query(id_user,user2_id,msg,time);
+  return await result;
 }
+
+async function createChat_query(id_user,user2_id,msg,time){
+  var myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+  
+  var raw = JSON.stringify({
+    "user1_id": id_user,
+    "user2_id": user2_id,
+    "msg": msg,
+    "time": time
+  });
+  
+  var requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: raw,
+    redirect: 'follow'
+  };
+  
+  try{
+    const result = await fetch("http://127.0.0.1:5000/createChat", requestOptions)
+    return await result.json();
+  }catch(e){
+      console.log(e);
+  }
+}
+
+
+
 
 export async function blockChat(name) {
   /* TO DO */
   return undefined;
 }
 
-export async function chat() {
+
+
+export async function getAllUser() {
   /* TO DO */
-  return undefined;
+  
+  let result = await getAllUser_query();
+  result = result.map((user) => {
+    return {
+      label: user.username,
+      userid: user._id
+    };
+  });
+  return await result;
+}
+async function getAllUser_query(){
+  var myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+    
+  var requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    redirect: 'follow'
+  };
+  
+  try{
+      const result = await fetch("http://127.0.0.1:5000/getall", requestOptions)
+      return await result.json();
+  }catch(e){
+      console.log(e);
+  }
 }
