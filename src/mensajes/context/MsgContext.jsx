@@ -26,10 +26,10 @@ export function MsgContextProvider(props) {
 
     useEffect(() => {
         setLoading(true);
-        const socket = io("http://127.0.0.1:5000/", {
+        const socket = io("https://vezzel-api.herokuapp.com/", {
         transports: ["polling"],
         cors: {
-            origin: "http://127.0.0.1:5000/",
+            origin: "https://vezzel-api.herokuapp.com/",
         },
         });
 

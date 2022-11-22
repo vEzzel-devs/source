@@ -20,7 +20,7 @@ async function getUserChats_query(id_user){
   };
   
   try{
-      const result = await fetch("http://127.0.0.1:5000/getAllChat", requestOptions)
+      const result = await fetch("https://vezzel-api.herokuapp.com/getAllChat", requestOptions)
       return await result.json();
   }catch(e){
       console.log(e);
@@ -57,7 +57,7 @@ async function createChat_query(id_user,user2_id,msg,time){
   };
   
   try{
-    const result = await fetch("http://127.0.0.1:5000/createChat", requestOptions)
+    const result = await fetch("https://vezzel-api.herokuapp.com/createChat", requestOptions)
     return await result.json();
   }catch(e){
       console.log(e);
@@ -97,7 +97,7 @@ async function getAllUser_query(){
   };
   
   try{
-      const result = await fetch("http://127.0.0.1:5000/getall", requestOptions)
+      const result = await fetch("https://vezzel-api.herokuapp.com/getall", requestOptions)
       return await result.json();
   }catch(e){
       console.log(e);
