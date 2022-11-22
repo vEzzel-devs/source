@@ -30,11 +30,11 @@ export function get_all_deps(data) {
   while (approved != valid.length) {
     approved = valid.length;
     every.forEach((cell) => {
-    if (valid.includes(cell)) { return; }
-    if (checkRefs(cell.deps, valid.map(c => c.ref))) {
-      valid = [...valid, cell];
-    }
-  });
+      if (valid.includes(cell)) { return; }
+      if (checkRefs(cell.deps, valid.map(c => c.ref))) {
+        valid = [...valid, cell];
+      }
+    });
   }
-  return valid.map((c) => c.ref);
+  return valid;
 }
