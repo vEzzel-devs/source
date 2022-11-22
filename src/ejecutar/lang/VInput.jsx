@@ -17,22 +17,12 @@ function VInput({cell, placeholder, value}) {
 
     const update = () => {
         let cont = entry.current.value;
-        let contType = "";
-        if (isNaN(cont)) {
-            contType = "String";
-          } else {
-            if (cont.includes(".")) {
-              contType = "Float";
-            } else {
-              contType = "Integer";
-            }
-          }
-        changeCell({
+        changeCell(cell, {
             "ref": cell,
             "cell": {
-                "cls": "basic",
-                "type": contType,
-                "cont": cont,
+                "cls": "view",
+                "type": "String",
+                "cont": `/input("${placeholder}", "${cont}")`,
             },
             "display": () => `${this.cell.cont}`,
             "hover": () => `${this.cell.cls} cell :${this.cell.type}`,

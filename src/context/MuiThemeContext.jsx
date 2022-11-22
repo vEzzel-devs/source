@@ -145,6 +145,26 @@ const themeLight = createTheme({
                     justifySelf: "center"
                 }
             }
+        },
+        MuiAlert: {
+            styleOverrides: {
+              filledSuccess: {
+                backgroundColor: 'white',
+                color: 'black'
+              },
+              filledInfo: {
+                backgroundColor: 'white',
+                color: 'black'
+              },
+              filledError: {
+                backgroundColor: '#FF4949',
+                color: 'black'
+              },
+              filledWarning: {
+                backgroundColor: '#FF4949',
+                color: 'black'
+              },
+            }
         }
     }
 });
@@ -292,6 +312,26 @@ const themeDark = createTheme({
                     alignSelf: "center",
                     justifySelf: "center"
                 }
+            }
+        },
+        MuiAlert: {
+            styleOverrides: {
+              filledSuccess: {
+                backgroundColor: 'black',
+                color: 'white'
+              },
+              filledInfo: {
+                backgroundColor: 'black',
+                color: 'white'
+              },
+              filledWarning: {
+                backgroundColor: '#FF4949',
+                color: 'white'
+              },
+              filledError: {
+                backgroundColor: '#FF4949',
+                color: 'white'
+              },
             }
         }
     }

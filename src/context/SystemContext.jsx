@@ -21,19 +21,27 @@ export function SystemContextProvider(props) {
     ];
 
     const [ loading, setLoading ] = useState(false);
-
     let logged, setLogged;
     let localLogged = JSON.parse(localStorage.getItem('logged'));
-
     if (localLogged) {
         [ logged, setLogged ] = useState(true);
     } else {
         [ logged, setLogged ] = useState(false);
     }
+    let times, setTimes;
+    let localTimes = JSON.parse(sessionStorage.getItem('times'));
+    if (localTimes) {
+        [ times, setTimes ] = useState(localTimes);
+    } else {
+        [ times, setTimes ] = useState(0);
+    }
     
     useEffect(() => {
         localStorage.setItem('logged', JSON.stringify(logged));
     }, [logged]);
+    useEffect(() => {
+        sessionStorage.setItem('times', JSON.stringify(times));
+    }, [times]);
 
     const logout = () => {
         let theme = localStorage.getItem("theme");
@@ -48,6 +56,8 @@ export function SystemContextProvider(props) {
             allTags,
             logged,
             loading,
+            times,
+            setTimes,
             setLogged,
             setLoading,
             logout,

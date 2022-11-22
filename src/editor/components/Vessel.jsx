@@ -18,7 +18,6 @@ function Vessel({ cell }) {
   const changeVal = () => {
     inputBar.current.value = vessel.current.value;
     const entry = vessel.current.value;
-    
     let clsType="base";
 
     if (entry === "") {
@@ -26,7 +25,7 @@ function Vessel({ cell }) {
       setAddStyle(clsType);
       return;
       
-    }else{    
+    } else {    
       if (entry[0] == "="){
       clsType="math";
       }   
@@ -41,9 +40,6 @@ function Vessel({ cell }) {
       }
       setAddStyle(clsType);
     }
-
-
-
     // esto solo aplica a Base
     let entryType = "";
     if (isNaN(entry)) {
@@ -88,6 +84,10 @@ function Vessel({ cell }) {
       }
     });
   }, []);
+
+  useEffect(() => {
+    changeVal(); // fix for type detection as change
+  }, [ addStyle ])
 
   return (
     <TooltipCell cellRef={vessel} cellRow={parseCell(cell)[1]} setCls={setAddStyle}>
