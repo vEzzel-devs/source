@@ -176,12 +176,12 @@ export function DocsDataContextProvider(props) {
         {
             title: "Mensajería",
             level: 0,
-            content: [" "],
+            content: ["Esta página sirve para establecer un contacto directo entre diferentes usuarios, a través de un chat de mensajería."],
         },
         {
             title: " ",
             level: 1,
-            content: [" "],
+            content: ["Para iniciar un chat se debe presionar el botón de Comunicar, ubicado en la parte izquierda de la barra de navegación, junto al botón de Refrescar, el cual es para actualizar la pagina. Una vez presionado el botón, se abre una ventana flotante en donde se consulta el usuario de destino y el mensaje a enviar, para enviar el mensaje se debe presionar Iniciar y luego esperar a que se envíe."],
         },
         {
             title: " ",
@@ -196,7 +196,7 @@ export function DocsDataContextProvider(props) {
     ];
 
     return (
-        <DocsDataContext.Provider value={({ Layout, Buscador, Perfil, Editor, Guardados, Mensajeria })}>
+        <DocsDataContext.Provider value={({ Layout, Buscador, Perfil, Editor, Guardados })}>
             {props.children}
         </DocsDataContext.Provider>
     )
