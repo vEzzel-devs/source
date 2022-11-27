@@ -10,7 +10,7 @@ async function comment_query(id_user){
     redirect: 'follow'
   };
   try{
-    const result = await fetch(`https://vezzel-api.herokuapp.com/getUserComm/${id_user}`, requestOptions)
+    const result = await fetch(`https://apivezzel.azurewebsites.net/getUserComm/${id_user}`, requestOptions)
     return await result.json();
   }catch(e){
     console.log(e);
@@ -30,7 +30,7 @@ async function killComment_query(user_id, id_com, id_spread){
   };
   
   try{
-    let result = await fetch(`https://vezzel-api.herokuapp.com/deleteComm/${user_id}/${id_spread}/${id_com}`, requestOptions)
+    let result = await fetch(`https://apivezzel.azurewebsites.net/deleteComm/${user_id}/${id_spread}/${id_com}`, requestOptions)
     return await result.json();
   }catch(e){
     console.log(e);
@@ -59,7 +59,7 @@ async function edit_username_query(id_user, new_name){
     redirect: 'follow'
   };
   try{
-    const result = await fetch(`https://vezzel-api.herokuapp.com/edit_user/${id_user}`, requestOptions)
+    const result = await fetch(`https://apivezzel.azurewebsites.net/edit_user/${id_user}`, requestOptions)
     return await result.json();
   }catch(e){
     console.log(e);
@@ -79,7 +79,7 @@ async function killUser_query(user_id){
     redirect: 'follow'
   };
   try{
-    let result = await fetch(`https://vezzel-api.herokuapp.com/deleteUser/${user_id}`, requestOptions)
+    let result = await fetch(`https://apivezzel.azurewebsites.net/deleteUser/${user_id}`, requestOptions)
     return await result.json();
   }catch(e){
     console.log(e);
@@ -114,7 +114,7 @@ async function logger_query(mail, pass){
     redirect: 'follow'
   };
   try{
-    const result = await fetch("https://vezzel-api.herokuapp.com/login", requestOptions)
+    const result = await fetch("https://apivezzel.azurewebsites.net/login", requestOptions)
     return await result.json();
   }catch(e){
     console.log(e);

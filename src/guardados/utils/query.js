@@ -11,7 +11,7 @@ async function killSpread_query(id, user_id){
   };
   
   try{
-    let result = await fetch("https://vezzel-api.herokuapp.com/spreadsheet_delete/"+user_id+"/"+id, requestOptions)
+    let result = await fetch("https://apivezzel.azurewebsites.net/spreadsheet_delete/"+user_id+"/"+id, requestOptions)
     return await result.json();
   }catch(e){
     console.log(e);
@@ -51,7 +51,7 @@ async function latestSpread_query(id_user){
   };
   
   try{
-    let result = await fetch("https://vezzel-api.herokuapp.com/spreadsheet_getlast/"+id_user, requestOptions)
+    let result = await fetch("https://apivezzel.azurewebsites.net/spreadsheet_getlast/"+id_user, requestOptions)
     return await result.json();
   } catch(e) {
     return ({ error: "error" });

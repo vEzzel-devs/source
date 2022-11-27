@@ -15,7 +15,7 @@ async function spreadsheet_query(id_user){
     redirect: 'follow'
   };
   try{
-    const result = await fetch("https://vezzel-api.herokuapp.com/spreadsheet/"+id_user, requestOptions)
+    const result = await fetch("https://apivezzel.azurewebsites.net/spreadsheet/"+id_user, requestOptions)
     return await result.json();
   }catch(e){
     console.log(e);
@@ -38,7 +38,7 @@ async function getUserComm_query(id_user){
     redirect: 'follow'
   };
   try{
-    const result = await fetch("https://vezzel-api.herokuapp.com/getUserComm/"+id_user, requestOptions)
+    const result = await fetch("https://apivezzel.azurewebsites.net/getUserComm/"+id_user, requestOptions)
     return await result.json();
   }catch(e){
     console.log(e);

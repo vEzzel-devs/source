@@ -19,7 +19,7 @@ async function search_query(name, tags){
     redirect: 'follow'
   };
   try{
-    const result = await fetch("https://vezzel-api.herokuapp.com/spreadsheet_search", requestOptions)
+    const result = await fetch("https://apivezzel.azurewebsites.net/spreadsheet_search", requestOptions)
     return await result.json();
   }catch(e){
     console.log(e);

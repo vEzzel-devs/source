@@ -26,9 +26,9 @@ export function MsgContextProvider(props) {
 
     useEffect(() => {
         setLoading(true);
-        const socket = io("https://vezzel-api.herokuapp.com/", {
+        const socket = io("https://chatvezzel.azurewebsites.net", {
         cors: {
-            origin: "https://vezzel-api.herokuapp.com/",
+            origin: "https://chatvezzel.azurewebsites.net",
         },
         });
 

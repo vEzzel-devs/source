@@ -49,7 +49,7 @@ async function savespread_query(id_user,name_s,tags,description,content){
 
 
   try {
-    let result = await fetch("https://vezzel-api.herokuapp.com/spreadsheet_save/"+id_user, requestOptions)
+    let result = await fetch("https://apivezzel.azurewebsites.net/spreadsheet_save/"+id_user, requestOptions)
     return await result.json();
   } catch(e) {
     console.log(e);
@@ -77,7 +77,7 @@ async function editspread_query(id_user,id_sheet,name_s,tags,description,content
 
 
   try {
-    let result = await fetch(`https://vezzel-api.herokuapp.com/spreadsheet_edit/${id_user}/${id_sheet}`, requestOptions)
+    let result = await fetch(`https://apivezzel.azurewebsites.net/spreadsheet_edit/${id_user}/${id_sheet}`, requestOptions)
     return await result.json();
   } catch(e) {
     console.log(e);

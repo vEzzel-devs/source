@@ -43,7 +43,7 @@ async function register_query(mail, pass,user){
     redirect: 'follow'
   };
   try{
-    const result = await fetch("https://vezzel-api.herokuapp.com/add", requestOptions);
+    const result = await fetch("https://apivezzel.azurewebsites.net/add", requestOptions);
     return await result.json();
   }catch(e){
     console.log(e);
@@ -66,7 +66,7 @@ async function logger_query(mail, pass){
     redirect: 'follow'
   };
   try{
-    const result = await fetch("https://vezzel-api.herokuapp.com/login", requestOptions)
+    const result = await fetch("https://apivezzel.azurewebsites.net/login", requestOptions)
     return await result.json();
   }catch(e){
     console.log(e);

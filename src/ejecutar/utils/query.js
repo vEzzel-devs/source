@@ -26,7 +26,7 @@ async function savespread_query(id_user,name_s,tags,description,content){
 
 
   try {
-    let result = await fetch("https://vezzel-api.herokuapp.com/spreadsheet_save/"+id_user, requestOptions)
+    let result = await fetch("https://apivezzel.azurewebsites.net/spreadsheet_save/"+id_user, requestOptions)
     return await result.json();
   } catch(e) {
     console.log(e);
@@ -48,7 +48,7 @@ async function getSpreadComm_query(spread_id){
 
 
   try {
-    let result = await fetch("https://vezzel-api.herokuapp.com/getSpreadComm/"+spread_id, requestOptions)
+    let result = await fetch("https://apivezzel.azurewebsites.net/getSpreadComm/"+spread_id, requestOptions)
     return await result.json();
   } catch(e) {
     console.log(e);
@@ -70,7 +70,7 @@ async function getOneSpread_query(spread_id){
 
 
   try {
-    let result = await fetch("https://vezzel-api.herokuapp.com/getOneSpread/"+spread_id, requestOptions)
+    let result = await fetch("https://apivezzel.azurewebsites.net/getOneSpread/"+spread_id, requestOptions)
     return await result.json();
   } catch(e) {
     console.log(e);
@@ -105,7 +105,7 @@ async function editComm_query(id_user,spread_id,id_comm,desc, stars){
 
 
   try {
-    let result = await fetch("https://vezzel-api.herokuapp.com/editComm/"+id_user+'/'+spread_id+'/'+id_comm, requestOptions)
+    let result = await fetch("https://apivezzel.azurewebsites.net/editComm/"+id_user+'/'+spread_id+'/'+id_comm, requestOptions)
     return await result.json();
   } catch(e) {
     console.log(e);
@@ -127,7 +127,7 @@ async function getUserSpreadComm_query(id_user,spread_id){
     redirect: 'follow'
   };
   try {
-    let result = await fetch("https://vezzel-api.herokuapp.com/getUserSpreadComm/"+id_user+'/'+spread_id, requestOptions)
+    let result = await fetch("https://apivezzel.azurewebsites.net/getUserSpreadComm/"+id_user+'/'+spread_id, requestOptions)
     return await result.json();
   } catch(e) {
     console.log(e);
@@ -153,7 +153,7 @@ async function deleteComm_query(id_user,spread_id,id_comm){
 
 
   try {
-    let result = await fetch("https://vezzel-api.herokuapp.com/deleteComm/"+id_user+'/'+spread_id+'/'+id_comm, requestOptions)
+    let result = await fetch("https://apivezzel.azurewebsites.net/deleteComm/"+id_user+'/'+spread_id+'/'+id_comm, requestOptions)
     return await result.json();
   } catch(e) {
     console.log(e);
@@ -189,7 +189,7 @@ async function createComm_query(id_user,spread_id,desc, stars){
 
 
   try {
-    let result = await fetch("https://vezzel-api.herokuapp.com/createComm/"+id_user+'/'+spread_id, requestOptions)
+    let result = await fetch("https://apivezzel.azurewebsites.net/createComm/"+id_user+'/'+spread_id, requestOptions)
     return await result.json();
   } catch(e) {
     console.log(e);
