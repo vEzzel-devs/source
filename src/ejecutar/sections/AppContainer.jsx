@@ -6,10 +6,11 @@ import { UserDataContext } from '../../context/UserDataContext';
 import { useContext,useEffect,useState } from 'react'
 import CommentCard from '../../components/CommentCard';
 import SheetData from '../components/SheetData';
+import CommentDialogButton from '../components/CommentDialogButton';
 
 function AppContainer() {
   const { theme } = useContext(ThemeContext);
-  const { userApp } = useContext(UserAppContext);
+  const { userApp, message, sent } = useContext(UserAppContext);
   const { username } = useContext(UserDataContext);
   const { loading } = useContext(SystemContext);
   const { comm, mine } = useContext(CommContext);
@@ -61,7 +62,9 @@ function AppContainer() {
           }) : !mine && <p className={theme.mainText}>{fail}</p>)}
           {!loading && ((comm && comm.length > 0) && comm.every(e => !e)) && <p className={theme.mainText}>{fail}</p>}
         </div>
+        <CommentDialogButton/>
       </div>
+      {sent && message}
     </div>
   )
 }

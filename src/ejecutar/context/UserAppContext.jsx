@@ -1,6 +1,7 @@
 import { useContext, useEffect } from "react";
 import { useState, createContext } from "react";
 import { SpreadSheetContext } from "../../context/SpreadSheetContext";
+import Notification from "../../components/Notification";
 
 import VContainer from "../lang/VContainer";
 import VInput from "../lang/VInput";
@@ -178,9 +179,20 @@ export function UserAppContextProvider(props) {
     };
 
     useEffect(() => {
-      let deps = lang.get_all_deps(compile);
-      let views = createRuntime(compile, deps);
-      setUserApp(createApp(views));
+      try {
+        let deps = lang.get_all_deps(compile);
+        let views = createRuntime(compile, deps);
+        setUserApp(createApp(views));
+      } catch (e) {
+        setUserApp([]);
+        setMessage(
+        <Notification
+          title={"SyntaxError"}
+          type={"error"}
+          content={"La aplicación tiene un error en su implementación"}
+          callback={setSent(false)}/>
+        )
+      }
     }, [ compile ]);
 
     return (

@@ -40,7 +40,7 @@ function AppContainer() {
           <h1 className={"text-4xl" + theme.mainText}>
             <div dangerouslySetInnerHTML={{__html: active[1]}}/>
           </h1>
-          <BlockDialog/>
+          {active[1] && <BlockDialog/>}
         </div>
         <div className="w-full h-3/4 px-2">
           <div className={"w-full h-full p-2 m-auto flex flex-col justify-end border" + theme.mainBorder}>
