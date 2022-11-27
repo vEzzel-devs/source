@@ -35,7 +35,6 @@ export function MsgContextProvider(props) {
         setSocketinstance(socket);
         setLoading(false);
         socket.on("data", (data) => {
-            console.log(data);
             if (data[1]===localStorage.getItem('userid') && data!==msg[msg.length-1]) {
                 setMsg(data);
             }if (data[0]===localStorage.getItem('userid') && data!==msg[msg.length-1]) {
@@ -68,9 +67,6 @@ export function MsgContextProvider(props) {
             setActive([newsmsg.users[1][0], newsmsg.users[1][1], newsmsg.msg]);
           }
     };
-
-    // usar la variable active para indicar que mensajes estan siendo
-    // cargados en tiempo real, los demas se cargaran desde la db al refrescar
 
     return (
         <MsgContext.Provider value={({changeActive,getChats,socketinstance,chats, active, setActive,msg})}>

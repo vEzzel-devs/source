@@ -31,6 +31,7 @@ function AppContainer() {
     }
     socketinstance.emit("data", [localStorage.getItem('userid'),active[0],content,Date().toLocaleString()]);
     setMessage("");
+    entry.current.value = "";
   };
 
   return (
@@ -48,7 +49,7 @@ function AppContainer() {
               
               {!loading && (active && active.length > 0) ? active[2].map((chat,index) => {
                   return (
-                    <Message data={chat} index={index}/>
+                    <Message key={`msg-sent-via-chat-${index}`} data={chat} index={index}/>
                     );
               }) : fail}
             </div>
