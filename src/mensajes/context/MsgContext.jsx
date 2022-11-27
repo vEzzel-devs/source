@@ -35,10 +35,11 @@ export function MsgContextProvider(props) {
         setSocketinstance(socket);
         setLoading(false);
         socket.on("data", (data) => {
-            if (data.data[1]===localStorage.getItem('userid') && data.data!==msg[msg.length-1]) {
-                setMsg(data.data);
-            }if (data.data[0]===localStorage.getItem('userid') && data.data!==msg[msg.length-1]) {
-                setMsg(data.data);
+            console.log(data);
+            if (data[1]===localStorage.getItem('userid') && data!==msg[msg.length-1]) {
+                setMsg(data);
+            }if (data[0]===localStorage.getItem('userid') && data!==msg[msg.length-1]) {
+                setMsg(data);
             }
         });
     
