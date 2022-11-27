@@ -191,7 +191,8 @@ export function UserAppContextProvider(props) {
           type={"error"}
           content={"La aplicación tiene un error en su implementación"}
           callback={setSent(false)}/>
-        )
+        );
+        console.log(e);
       }
     }, [ compile ]);
 
