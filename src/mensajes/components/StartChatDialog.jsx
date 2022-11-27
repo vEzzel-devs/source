@@ -35,7 +35,7 @@ function StartChatDialog() {
     };
 
     const handleSubmit = async () => {
-        let target = document.getElementById("search").value;
+        let target = document.getElementById("searchname").value;
         let msg = document.getElementById("msg").value;
         target = option.filter((user) => user.label === target)[0];
         setLoading(true);
@@ -65,7 +65,7 @@ function StartChatDialog() {
                     </h3>
                     <Autocomplete
                         options={option}
-                        id="search"
+                        id="searchname"
                         renderInput={(params) => <TextField {...params} ref={searchRef} className={"font-mono p-2 mb-2 w-full outline-0 border-2 rounded-sm " + theme.mainBg + theme.mainText + theme.borderNavbar} placeholder="Ingrese el nombre del usuario" style={{fontFamily: "Cascadia Code"}}/>}
                     />
                     <input type="text" id="msg" ref={searchRef} className={"mt-2 font-mono p-2 mb-2 w-full outline-0 border-2 rounded-sm" + theme.mainBg + theme.mainText + theme.borderNavbar} placeholder="Ingrese el mensaje" style={{fontFamily: "Cascadia Code"}}/>
