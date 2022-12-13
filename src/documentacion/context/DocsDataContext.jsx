@@ -9,6 +9,15 @@ export function DocsDataContextProvider(props) {
             content: ["Al ingresar a las diferentes páginas, existen diferentes elementos que se repiten dentro de éstas, todo esto para tener un estándar interno y así ser consistentes visualmente. Entre estos elementos está una barra superior que se extiende a lo largo de la página, la que llamaremos “Barra de navegación”, esta poseerá diferentes elementos que se van adaptando a la necesidades de la página que se esté visualizando, pero en todas se van a poder encontrar estos dos elementos, un botón que permite intercambiar entre el modo claro y el modo oscuro de la plataforma, y otra a su derecha que es una tooltip, una tooltip es una herramienta de ayuda que entrega una ayuda adicional para informar al usuario, en este caso esta muestra información de lo que se puede realizar dentro de las vista que se esté visualizando."],
         },
         {
+            title: "",
+            level: 6,
+            content: [<img
+                className="w-2/3 m-auto"
+                src="view.png"
+                alt="view"
+              />],
+        },
+        {
             title: "SideBar",
             level: 1,
             content: ["También en el costado izquierdo de las páginas, se puede ver una barra lateral que se extiende por este costado y que se subdivide en tres zonas. En la zona superior se puede observar el logo de vEzzel, el cual al hacerle click esta redirecciona a la página principal de la plataforma, justo al costado de esta se encuentra un icono de una flecha dentro de un círculo, el cual al presionar la barra lateral se extiende, mostrando más grande el logo de vEzzel y de mejor manera los elementos de las otras dos zonas. En la zona del centro se encuentra una serie de iconos que hacer referencia a las diferentes vistas dentro de la plataforma, ya sea para la búsqueda, perfil, editor, etc., además al momento de situar el cursor sobre alguno de estos iconos, aparece una tooltip indicando cual es la página que hace referencia. Por último, en la parte inferior se encuentra un icono de inicio/apagado, el cual es el encargado del cierre de sesión."],
